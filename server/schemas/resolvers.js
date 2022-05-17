@@ -33,7 +33,7 @@ const resolvers = {
       return Goal.find(params).sort({ createdAt: -1 })
     },
     goal: async (parent, { _id }) => {
-      return Goal.findOne({ _id }).populate('steps').populate('encouragements')
+      return Goal.findOne({ _id }).populate('steps').populate('encouragements').populate('stickers')
     },
   },
 
@@ -84,7 +84,20 @@ const resolvers = {
           { _id: goalId },
           { $push: { steps: { stepBody, username: context.user.username } } },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements')
+        ).populate('steps').populate('encouragements').populate('stickers')
+
+        return updatedGoal
+      }
+
+      throw new AuthenticationError('You need to be logged in!')
+    },
+    addSticker: async (parent, { goalId, imageUrl }, context) => {
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId },
+          { $push: { stickers: imageUrl } },
+          { new: true, runValidators: true },
+        ).populate('steps').populate('encouragements').populate('stickers')
 
         return updatedGoal
       }
@@ -97,7 +110,7 @@ const resolvers = {
           { _id: goalId },
           { $push: { encouragements: { encouragementBody, username: context.user.username } } },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements')
+        ).populate('steps').populate('encouragements').populate('stickers')
 
         return updatedGoal
       }

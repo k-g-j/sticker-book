@@ -50,6 +50,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     addGoal(goalText: String!, type: String!): Goal
     addStep(goalId: ID!, stepBody: String!): Goal
+    addSticker(goalId: ID!): Goal
     giveEncouragement(goalId: ID!, points: Int!): Goal
     addFriend(friendId: ID!): User
   }
