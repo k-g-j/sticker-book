@@ -1,40 +1,60 @@
 import { gql } from '@apollo/client'
 
-export const QUERY_THOUGHTS = gql`
-  query thoughts($username: String) {
-    thoughts(username: $username) {
+export const QUERY_GOALS = gql`
+  query goals($email: String) {
+    goals(email: $email) {
       _id
-      thoughtText
+      goalText
       createdAt
       username
-      reactionCount
-      reactions {
+      reminder
+      completeDate
+      stepCount
+      encouragementPoints
+      stickers
+      steps {
         _id
         createdAt
         username
-        reactionBody
+        stepBody
+      }
+      encouragements {
+        _id
+        points
+        username
+        message
       }
     }
   }
-`;
+`
 
-export const QUERY_THOUGHT = gql`
-  query thought($id: ID!) {
-    thought(_id: $id) {
+export const QUERY_GOAL = gql`
+  query goal($id: ID!) {
+    goal(_id: $id) {
       _id
-      thoughtText
+      goalText
       createdAt
       username
-      reactionCount
-      reactions {
+      reminder
+      completeDate
+      stepCount
+      encouragementPoints
+      stickers
+      steps {
         _id
         createdAt
         username
-        reactionBody
+        stepBody
+      }
+      encouragements {
+        _id
+        points
+        username
+        message
       }
     }
   }
-`;
+`
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -47,15 +67,31 @@ export const QUERY_USER = gql`
         _id
         username
       }
-      thoughts {
+      goals {
         _id
-        thoughtText
+        goalText
         createdAt
-        reactionCount
+        reminder
+        completeDate
+        stepCount
+        encouragementPoints
+        stickers
+        steps {
+          _id
+          createdAt
+          username
+          stepBody
+        }
+        encouragements {
+          _id
+          points
+          username
+          message
+        }
       }
     }
   }
-`;
+`
 
 export const QUERY_ME = gql`
   {
@@ -64,16 +100,26 @@ export const QUERY_ME = gql`
       username
       email
       friendCount
-      thoughts {
+      goals {
         _id
-        thoughtText
+        goalText
         createdAt
-        reactionCount
-        reactions {
+        reminder
+        completeDate
+        stepCount
+        encouragementPoints
+        stickers
+        steps {
           _id
           createdAt
-          reactionBody
           username
+          stepBody
+        }
+        encouragements {
+          _id
+          points
+          username
+          message
         }
       }
       friends {
@@ -82,7 +128,7 @@ export const QUERY_ME = gql`
       }
     }
   }
-`;
+`
 
 export const QUERY_ME_BASIC = gql`
   {
@@ -95,6 +141,14 @@ export const QUERY_ME_BASIC = gql`
         _id
         username
       }
+      goals {
+        _id
+        goalText
+        createdAt
+        stepCount
+        encouragementPoints
+        stickers
+      }
     }
   }
-`;
+`
