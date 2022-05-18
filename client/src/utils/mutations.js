@@ -38,29 +38,75 @@ export const ADD_FRIEND = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+export const ADD_GOAL = gql`
+  mutation addGoal($goalText: String!, $goalType: String!) {
+    addGoal(goalText: $goalText, goalType: $goalType) {
       _id
-      thoughtText
+      goalText
       createdAt
       username
-      reactionCount
-      reactions {
+      stepCount
+      steps {
         _id
+        stepBody
       }
     }
   }
 `;
 
-export const ADD_REACTION = gql`
-  mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
-    addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
+export const ADD_STEP = gql`
+  mutation addStep($goalId: ID!, $stepBody: String!) {
+    addStep(goalId: $goalId, stepBody: $stepBody) {
       _id
-      reactionCount
-      reactions {
+      stepCount
+      steps {
         _id
-        reactionBody
+        stepBody
+        createdAt
+        username
+      }
+    }
+  }
+`
+
+export const GIVE_ENCOURAGEMENT = gql`
+  mutation giveEncouragement($goalId: ID!, $points: Int!) {
+    giveEncouragement(goalId: $goalId, points: $points) {
+      _id
+      encouragementPoints
+      encouragements {
+        _id
+        points
+        createdAt
+        username
+        message
+      }
+    }
+  }
+`
+
+export const ADD_STICKER = gql`
+  mutation addSticker($goalId: ID!, $imageUrl: String!) {
+    addSticker(goalId: $goalId, imageUrl: $imageUrl) {
+      _id
+      goalText
+      stickers
+      createdAt
+      username
+      reminder
+      completeDate
+      encouragementPoints
+      encouragements {
+        _id
+        points
+        createdAt
+        username
+        message
+      }
+      stepCount
+      steps {
+        _id
+        stepBody
         createdAt
         username
       }
