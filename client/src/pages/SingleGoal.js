@@ -2,21 +2,49 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 
+//import stickers from '../assets/stickers'
+// import encouragment commponent
+//import reminder component
+//
+
 //steps, encouragement points, sticker up top,
 const SingleGoal = () => {
-  const { loading, data } = useQuery(QUERY_ME);
+  const { id: goalId} = useParams();
+
+  const { loading, data } = useQuery( QUERY_GOAL, {
+    variables: { id: goalId },
+});
+
+const goal = data?.goal || {};
+
+if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    return <Navigate to="/profile:username" />;
+  }
+  
+if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
-      <div className='text-light bg-dark'>
-        <Container>
-          <h1>{goal.goalText}</h1>
-        <h2>
-          {steps}
-        </h2>
-       
-      </Container>
+      <div className="card mb-3">
+        <p className="card-header">
+          <h1 className="text-teal-500">
+              {goal.goalText}Run a Marathon
+              </h1>
+    <div className="card-body">
+        <h3>
+          {goal.type}
+        </h3>
+        <ul>
+            <li>
+                {goal.steps}Run 3 miles a day 5 days a week
+            </li>
+        </ul>
+          <p>{goal.reminder}</p>
+        </div>
       </div>
+      
     </>
   );
 };
