@@ -8,6 +8,7 @@ import Auth from '../utils/auth';
 //import stickers from '../assets/stickers'
 // import encouragment commponent
 //import reminder component
+//ADD New Goals
 
 const GoalsList = (props) => {
     const { username: userParam } = useParams();

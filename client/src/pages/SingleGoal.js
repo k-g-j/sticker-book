@@ -5,7 +5,7 @@ import { QUERY_ME } from '../utils/queries';
 //import stickers from '../assets/stickers'
 // import encouragment commponent
 //import reminder component
-//
+// steps
 
 //steps, encouragement points, sticker up top,
 const SingleGoal = () => {
@@ -30,7 +30,7 @@ if (loading) {
       <div className="card mb-3">
         <p className="card-header">
           <h1 className="text-teal-500">
-              {goal.goalText}Run a Marathon
+              {goal.goalText}
               </h1>
     <div className="card-body">
         <h3>
@@ -38,7 +38,7 @@ if (loading) {
         </h3>
         <ul>
             <li>
-                {goal.steps}Run 3 miles a day 5 days a week
+                {goal.steps}
             </li>
         </ul>
           <p>{goal.reminder}</p>
