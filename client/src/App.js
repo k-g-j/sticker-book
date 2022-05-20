@@ -5,9 +5,12 @@ import {
   createHttpLink,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+import Nav from './components/Nav';
+import SingleGoal from './pages/SingleGoal';
+
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: '/',
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -31,10 +34,12 @@ const styles = {
 
 function App() {
   return (
-    <div className={styles.flex}>
-      <h1 className="text-teal-500">Welcome to sticker book!</h1>
-    </div>
-  );
-}
+     <>
+     
+        <SingleGoal />
+     </>
+  )
+};
+
 
 export default App;
