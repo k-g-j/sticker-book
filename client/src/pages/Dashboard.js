@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
+import { UPDATE_STICKER } from "../utils/mutations";
 
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
@@ -27,11 +30,9 @@ const Dashboard = () => {
             stack: ".drag",
             start: function(event, ui) {
                 setDraggingState(true);
-                console.log("Dragging is ", draggingState);
             },
             stop: function(event, ui) {
                 setDraggingState(false);
-                console.log("Dragging is ", draggingState);
             }
         });
 
@@ -45,10 +46,6 @@ const Dashboard = () => {
                 console.log("dropped in the dropzone!");
             }
         })
-
-
-
-
     })
 
     return (
@@ -114,11 +111,6 @@ const Dashboard = () => {
                         > 
                         </div>
                     }
-
-
-
-
-                    
                 </div>       
             </div>
         </section>
