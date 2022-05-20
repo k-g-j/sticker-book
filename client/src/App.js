@@ -5,6 +5,8 @@ import {
   createHttpLink,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -31,9 +33,11 @@ const styles = {
 
 function App() {
   return (
-    <div className={styles.flex}>
-      <h1 className="text-teal-500">Welcome to sticker book!</h1>
-    </div>
+    
+    // <Home />
+    <Dashboard />
+
+    
   );
 }
 
