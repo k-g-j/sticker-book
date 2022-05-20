@@ -14,6 +14,9 @@ import physHealth from "../assets/stickers/phys-health.png";
 const Dashboard = () => {
 
     const [draggingState, setDraggingState] = useState(false);
+    // const styles = {
+    //     dropzoneDrag: `flex justify-center flex items-center justify-center min-h-screen from-purple-100 via-red-300 to-indigo-500 bg-gradient-to-br`
+    //   }
 
     // call drag and drop functions for the class .drag and the id .drop
     useEffect(() => {
@@ -82,42 +85,33 @@ const Dashboard = () => {
                             style={{
                             position: "absolute",
                             bottom: "10px",
-                            backgroundColor: "rgba(0,300,0,0)",
+                            backgroundColor: "rgba(0,300,0, 0)",
                             height: "150px",
                             width: "95%",
                             overflow: "hidden",
+                            border: "black 3px dashed",
                             borderRadius: "20px",
                             textAlign: "center",
+                            transition: "border .2s ease"
                             }}
                         > 
-                        <h3
-                        style={{
-                            color: "rgba(0,200,0,.4)"
-                        }}
-                        >
-                            See NOTHING?
-                        </h3> 
+                        <h3>View This Goal?</h3> 
                         </div>
                         :
                         <div className="drop-zone container" 
                             style={{
                             position: "absolute",
                             bottom: "10px",
-                            backgroundColor: "rgba(0,300,0,.2)",
+                            // backgroundColor: "rgba(0,300,0, 0)",
                             height: "150px",
                             width: "95%",
                             overflow: "hidden",
+                            border: "black 0px dashed",
                             borderRadius: "20px",
                             textAlign: "center",
+                            transition: "border .2s ease"
                             }}
                         > 
-                        <h3
-                        style={{
-                            color: "rgba(0,200,0,.4)"
-                        }}
-                        >
-                            See ALL?
-                        </h3> 
                         </div>
                     }
 
