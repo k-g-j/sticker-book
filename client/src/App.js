@@ -31,9 +31,10 @@ const styles = {
 
 function App() {
   return (
-    <div className={styles.flex}>
-      <h1 className="text-teal-500">Welcome to sticker book!</h1>
-    </div>
+    <about/>
+    //  <Friends/>
+  //  <Goals/>
+  //  <SingleGoal/>
   );
 }
 
