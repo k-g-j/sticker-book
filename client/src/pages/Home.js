@@ -10,7 +10,8 @@ const Home = () => {
     }
 
     return (
-        <div className="container flex flex-col justify-center items-center color-teal-500" style={{
+        <div className="container flex flex-col justify-center items-center color-teal-500" 
+        style={{
             backgroundImage: `url(${woodBg})`,
             // backgroundColor: "teal",
             width: "100vw",
@@ -18,7 +19,8 @@ const Home = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             margin: 0
-        }}>           
+        }}
+        >           
             {/* <h1 className="grid place-items-center h-screen"
             id="notebook-title"
             style={{textAlign: "center", }}>HELLO!</h1> */}
