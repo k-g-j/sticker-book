@@ -91,6 +91,19 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!')
     },
+    updateSticker: async (parent, { goalId, newX, newY, newZ }, context) => {
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId },
+          { x: newX, y: newY, z: newZ },
+          { new: true, runValidators: true },
+        ).populate('steps').populate('encouragements').populate('stickers')
+
+        return updatedGoal
+      }
+
+      throw new AuthenticationError('You need to be logged in!')
+    },
     addSticker: async (parent, { goalId, imageUrl }, context) => {
       if (context.user) {
         const updatedGoal = await Goal.findOneAndUpdate(

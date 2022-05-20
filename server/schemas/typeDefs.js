@@ -6,6 +6,7 @@ const typeDefs = gql`
   type Goal {
     _id: ID
     goalText: String
+    type: String
     createdAt: String
     username: String
     reminder: String
@@ -54,6 +55,7 @@ const typeDefs = gql`
     addGoal(goalText: String!, type: String!): Goal
     addStep(goalId: ID!, stepBody: String!): Goal
     addSticker(goalId: ID!, imageUrl: String!): Goal
+    updateSticker(goalId: ID!, newX: Int!, newY: Int!, newZ: Int!): Goal
     giveEncouragement(goalId: ID!, points: Int!): Goal
     addFriend(friendId: ID!): User
   }

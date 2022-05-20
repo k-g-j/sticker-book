@@ -38,11 +38,16 @@ export const ADD_FRIEND = gql`
   }
 `;
 
+// Goal types: 'Physical Health', 'Mental Health', 'Financial', 'Educational', 'Personal'
 export const ADD_GOAL = gql`
-  mutation addGoal($goalText: String!, $goalType: String!) {
-    addGoal(goalText: $goalText, goalType: $goalType) {
+  mutation addGoal($goalText: String!, $type: String!) {
+    addGoal(goalText: $goalText, type: $type) {
       _id
       goalText
+      type
+      x
+      y
+      z
       createdAt
       username
       stepCount
@@ -58,6 +63,8 @@ export const ADD_STEP = gql`
   mutation addStep($goalId: ID!, $stepBody: String!) {
     addStep(goalId: $goalId, stepBody: $stepBody) {
       _id
+      goalText
+      type
       stepCount
       steps {
         _id
@@ -73,6 +80,8 @@ export const GIVE_ENCOURAGEMENT = gql`
   mutation giveEncouragement($goalId: ID!, $points: Int!) {
     giveEncouragement(goalId: $goalId, points: $points) {
       _id
+      goalText
+      type
       encouragementPoints
       encouragements {
         _id
@@ -90,7 +99,43 @@ export const ADD_STICKER = gql`
     addSticker(goalId: $goalId, imageUrl: $imageUrl) {
       _id
       goalText
+      type
       stickers
+      x
+      y
+      z
+      createdAt
+      username
+      reminder
+      completeDate
+      encouragementPoints
+      encouragements {
+        _id
+        points
+        createdAt
+        username
+        message
+      }
+      stepCount
+      steps {
+        _id
+        stepBody
+        createdAt
+        username
+      }
+    }
+  }
+`
+export const UPDATE_STICKER = gql`
+  mutation addSticker($goalId: ID!, $newX: Int!, $newY: Int!, newZ: Int!) {
+    addSticker(goalId: $goalId, newX: $newX, newY: $newY, newZ: $newZ) {
+      _id
+      goalText
+      type
+      stickers
+      x
+      y
+      z
       createdAt
       username
       reminder

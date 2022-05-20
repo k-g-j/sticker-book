@@ -5,6 +5,10 @@ export const QUERY_GOALS = gql`
     goals(email: $email) {
       _id
       goalText
+      type
+      x
+      y
+      z
       createdAt
       username
       reminder
@@ -33,6 +37,10 @@ export const QUERY_GOAL = gql`
     goal(_id: $id) {
       _id
       goalText
+      type
+      x
+      y
+      z
       createdAt
       username
       reminder
@@ -57,8 +65,8 @@ export const QUERY_GOAL = gql`
 `
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query user($email: String!) {
+    user(email: $email) {
       _id
       username
       email
@@ -70,6 +78,10 @@ export const QUERY_USER = gql`
       goals {
         _id
         goalText
+        type
+        x
+        y
+        z
         createdAt
         reminder
         completeDate
@@ -103,6 +115,10 @@ export const QUERY_ME = gql`
       goals {
         _id
         goalText
+        type
+        x
+        y
+        z
         createdAt
         reminder
         completeDate
@@ -144,6 +160,10 @@ export const QUERY_ME_BASIC = gql`
       goals {
         _id
         goalText
+        type
+        x
+        y
+        z
         createdAt
         stepCount
         encouragementPoints
