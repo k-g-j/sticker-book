@@ -35,8 +35,7 @@ const styles = {
 function App() {
   return (
      <>
-     
-        <SingleGoal />
+             <SingleGoal />
      </>
   )
 };
