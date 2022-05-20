@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
@@ -13,10 +13,24 @@ import physHealth from "../assets/stickers/phys-health.png";
 
 const Dashboard = () => {
 
+    const [draggingState, setDraggingState] = useState(false);
+
     // call drag and drop functions for the class .drag and the id .drop
     useEffect(() => {
+        
         //drag the stickers, limit to the container and have the dragged sticker at the highest z-index in the stack
-        $( ".drag" ).draggable({containment: ".container", stack: ".drag"});
+        $( ".drag" ).draggable({
+            containment: ".container", 
+            stack: ".drag",
+            start: function(event, ui) {
+                setDraggingState(true);
+                console.log("Dragging is ", draggingState);
+            },
+            stop: function(event, ui) {
+                setDraggingState(false);
+                console.log("Dragging is ", draggingState);
+            }
+        });
 
         // recognize when sticker dropped in the dropzone
         // redirect to that goal page
@@ -25,7 +39,7 @@ const Dashboard = () => {
                 "ui-droppable-active": "hover-highlight"
             },
             drop: function( event, ui ) {
-                console.log("dropped!");
+                console.log("dropped in the dropzone!");
             }
         })
 
@@ -63,26 +77,54 @@ const Dashboard = () => {
                     <img className="drag" src={mentalHealth} />
                     <img className="drag" src={physHealth} />
 
-                    <div className="drop-zone container" 
-                    style={{
-                        position: "absolute",
-                        bottom: "10px",
-                        backgroundColor: "rgba(0,300,0,.2)",
-                        height: "150px",
-                        width: "95%",
-                        overflow: "hidden",
-                        borderRadius: "20px",
-                        textAlign: "center",
-                    }}
-                    >
+                    {draggingState ? 
+                        <div className="drop-zone container" 
+                            style={{
+                            position: "absolute",
+                            bottom: "10px",
+                            backgroundColor: "rgba(0,300,0,0)",
+                            height: "150px",
+                            width: "95%",
+                            overflow: "hidden",
+                            borderRadius: "20px",
+                            textAlign: "center",
+                            }}
+                        > 
                         <h3
                         style={{
                             color: "rgba(0,200,0,.4)"
                         }}
                         >
-                            See goal?
-                        </h3>
-                    </div>
+                            See NOTHING?
+                        </h3> 
+                        </div>
+                        :
+                        <div className="drop-zone container" 
+                            style={{
+                            position: "absolute",
+                            bottom: "10px",
+                            backgroundColor: "rgba(0,300,0,.2)",
+                            height: "150px",
+                            width: "95%",
+                            overflow: "hidden",
+                            borderRadius: "20px",
+                            textAlign: "center",
+                            }}
+                        > 
+                        <h3
+                        style={{
+                            color: "rgba(0,200,0,.4)"
+                        }}
+                        >
+                            See ALL?
+                        </h3> 
+                        </div>
+                    }
+
+
+
+
+                    
                 </div>       
             </div>
         </section>
