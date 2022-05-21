@@ -11,7 +11,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'graphql',
 })
 
 const authLink = setContext((_, { headers }) => {

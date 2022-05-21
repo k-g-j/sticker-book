@@ -26,8 +26,6 @@ const Login = () => {
             ...loginState,
             [name]: value,
         });
-
-        console.log(loginState);
     };
 
     // Update the signup state when the form changes
@@ -39,7 +37,6 @@ const Login = () => {
             [name]: value,
         });
 
-        console.log(signupState);
     };
 
     // Call login mutation when login submitted
@@ -182,4 +179,3 @@ const Login = () => {
 };
 
 export default Login;
-
