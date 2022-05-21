@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_GOAL } from '../utils/mutations';
@@ -15,7 +14,7 @@ const GoalsList = (props) => {
     const [formState, setFormState] = useState({ goalText: '', type: '', steps: '' });
     const [addGoal] = useMutation(ADD_GOAL);
 
-    const { loading, data } = useQuery(userParam ?  QUERY_ME {
+    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_GOALS, {
       variables: { username: userParam, goals: goalId },
     });
 
@@ -56,8 +55,8 @@ const handleFormSubmit = async (event) => {
   return (
       <>
         <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="firstName">Goal:</label>
+        <div className="">
+          <label htmlFor="goalText">Goal:</label>
           <input
             placeholder="Type your goal here"
             name="goalText"
@@ -66,6 +65,16 @@ const handleFormSubmit = async (event) => {
             onChange={handleChange}
           />
         </div>
+        <div className=''>
+        <label htmlFor="type">Goal Type:</label>
+          <input
+            placeholder="Type your goal here"
+            name="type"
+            type="type"
+            id="type"
+            onChange={handleChange}
+          />
+           </div>
         </form>
       </>
   )
