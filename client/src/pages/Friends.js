@@ -13,7 +13,7 @@ import Auth from '../utils/auth';
 
 //steps, encouragement points, sticker up top,
 const Friends = (props) => {
-    const { username: userParam } = useParams();
+    const { email: userParam } = useParams();
 
     const [addFriend] = useMutation(ADD_FRIEND);
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {

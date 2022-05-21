@@ -1,18 +1,24 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {
   ApolloProvider,
   ApolloClient,
   InMemoryCache,
   createHttpLink,
-} from '@apollo/client'
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
 // import Nav from './components/Nav';
 // import SingleGoal from './pages/SingleGoal';
-import Goals from './pages/Goals';
+
 // import Home from './pages/Home'
-// import Dashboard from './pages/Dashboard'
+
+
+import Goals from './pages/Goals';
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
 
 const httpLink = createHttpLink({
-  uri: '/',
+  uri: 'graphql',
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -36,11 +42,17 @@ const styles = {
 
 function App() {
   return (
-     <>
-             <Goals />
-     </>
-  )
-};
-
+    <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+          <Route exact path="/login" element={<Login/>} />
+          <Route exact path="/dashboard" element={<Dashboard/>} />
+          <Route exact path="/" element={<Goals/>} />
+        </Routes>
+      </Router>
+    </ApolloProvider>
+    
+  );
+}
 
 export default App;
