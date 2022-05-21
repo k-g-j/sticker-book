@@ -5,9 +5,14 @@ import {
   createHttpLink,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+<<<<<<< HEAD
 import Nav from './components/Nav';
 import SingleGoal from './pages/SingleGoal';
 
+=======
+import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
+>>>>>>> develop
 
 const httpLink = createHttpLink({
   uri: '/',
@@ -34,11 +39,21 @@ const styles = {
 
 function App() {
   return (
+<<<<<<< HEAD
      <>
              <SingleGoal />
      </>
   )
 };
 
+=======
+    
+    // <Home />
+    <Dashboard />
+
+    
+  );
+}
+>>>>>>> develop
 
 export default App;

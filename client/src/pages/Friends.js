@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
-//import { ADD_FRIEND } from '../utils/mutations';
+import { ADD_FRIEND } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 //import stickers from '../assets/stickers'
