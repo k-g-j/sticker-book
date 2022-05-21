@@ -23,19 +23,27 @@ const Dashboard = () => {
 
     // call drag and drop functions for the class .drag and the id .drop
     useEffect(() => {
-        
         //drag the stickers, limit to the container and have the dragged sticker at the highest z-index in the stack
         $( ".drag" ).draggable({
             containment: ".container", 
             stack: ".drag",
             start: function(event, ui) {
                 setDraggingState(true);
+                
             },
             stop: function(event, ui) {
                 setDraggingState(false);
+                let positionInfo = this.style.cssText.split('z-index: ')[1].split(';');
+                console.log(this.style.cssText);
+                let z = positionInfo[0].trim();
+                let x = positionInfo[1].split(' left: ')[1];
+                let y = positionInfo[2].split(' top: ')[1];
+                console.log("z-index:", z);
+                console.log("left: ", x);
+                console.log("top: ", y);
+                
             }
         });
-
         // recognize when sticker dropped in the dropzone
         // redirect to that goal page
         $( ".drop-zone" ).droppable({
@@ -71,11 +79,11 @@ const Dashboard = () => {
                     padding: "10px",
                     borderRadius: "15px",
                 }}>
-                    <img className="drag" src={artCross} />
-                    <img className="drag" src={eduBrain} />
-                    <img className="drag" src={piggy} />
-                    <img className="drag" src={mentalHealth} />
-                    <img className="drag" src={physHealth} />
+                    <img className="drag" src={artCross} style={{position: "absolute"}}/>
+                    <img className="drag" src={eduBrain} style={{position: "absolute"}}/>
+                    <img className="drag" src={piggy} style={{position: "absolute"}}/>
+                    <img className="drag" src={mentalHealth} style={{position: "absolute"}}/>
+                    <img className="drag" src={physHealth} style={{position: "absolute"}}/>
 
                     {draggingState ? 
                         <div className="drop-zone container" 
