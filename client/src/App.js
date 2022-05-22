@@ -33,12 +33,12 @@ const styles = {
 
 function App() {
   return (
-    <about/>
+    // <about/>
     //  <Friends/>
   //  <Goals/>
   //  <SingleGoal/>
-    // <Home />
-    <Dashboard />
+    // <Home/>
+    <Dashboard/>
   );
 }
 
