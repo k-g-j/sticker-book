@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts Imported */ 
+/* Fancy Cursive */ 
+@import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap');
+
 html,body
 {
     width: 100%;
