@@ -9,21 +9,39 @@ import { useQuery } from '@apollo/client';
 
 //steps, encouragement points, sticker up top,
 const SingleGoal = () => {
-//   const { id: goalId} = useParams();
+  const { id: goalId} = useParams();
 
-//   const { loading, data } = useQuery( QUERY_GOAL, {
-//     variables: { id: goalId },
-// });
+  const { loading, data } = useQuery( QUERY_GOAL, {
+    variables: { id: goalId },
+});
 
-// const goal = data?.goal || {};
+const goal = data?.goal || {};
 
-// if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-//     return <Nav to="/profile:username" />;
-//   }
+if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    return <Nav to="/profile:username" />;
+  }
   
-// if (loading) {
-//     return <div>Loading...</div>;
-//   }
+if (loading) {
+    return <div>Loading...</div>;
+  }
+const handleDeleteGoal = async (goalId) => {
+  const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+  if (!token) {
+    return false;
+  }
+
+  try {
+    await deleteGoal( {
+      variables : {goalId},
+    });
+
+   
+    removeGoalId(goalId);
+  } catch (err) {
+    console.error(err);
+  }
+};
 
   return (
     <>

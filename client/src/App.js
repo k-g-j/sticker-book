@@ -39,7 +39,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/" element={<Dashboard/>} />
+          <Route exact path="/dashboard" element={<Dashboard/>} />
+          <Route exact path="/" element={<Goals/>} />
         </Routes>
       </Router>
     </ApolloProvider>

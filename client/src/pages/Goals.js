@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
-import { QUERY_ME, QUERY_GOALS } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_GOAL } from '../utils/mutations';
-
 import Auth from '../utils/auth';
-
-// import encouragment commponent
-//import reminder component
 
 
 const GoalsList = (props) => {
 
-    const [formState, setFormState] = useState({ goalText: '', type: '', steps: '' });
+    const [formState, setGoal] = useState({ goalText: '', type: '', steps: '' });
     const [addGoal] = useMutation(ADD_GOAL);
 
-    const { loading, data } = useQuery( QUERY_ME, QUERY_GOALS 
-     );
+    const { loading, data } = useQuery(QUERY_ME);
 
-    const user = data?.me || data?.goals 
-    || {};
-
-  console.log(user);
+    const user = data?.me || {};
+    //const goal = data?.me.goals || {};
 
 if (loading) {
     return <div>Loading...</div>;
@@ -35,23 +28,28 @@ if (loading) {
   }
 const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    if (!formState) {
+      return false;
+    }
+
     const mutationResponse = await addGoal({
       variables: {
         goalText: formState.goalText,
-        type: formState.type,
-        steps:  formState.stepBody ,
+        type: formState.type
       },
     });
+
     const token = mutationResponse.data.addGoal.token;
     Auth.login(token);
-  };
+  }
+  
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
+    setGoal({
       ...formState,
-      [name]: value,
-    });
+      [event.target.name]: event.target.value });
+    console.log(event)
   };
 //edit goal function
 
@@ -71,24 +69,36 @@ const handleFormSubmit = async (event) => {
         <div className=''>
         <label htmlFor="type">Goal Type:</label>
           <input
-            placeholder="Type your goal here"
+            placeholder="Choose a goal type"
             name="type"
             type="type"
             id="type"
             onChange={handleChange}
           />
            </div>
+           <button className="btn d-block w-100" type="submit">
+             Submit
+          </button>
         </form>
-
-      <div className='goalList'>
-    <ul>
-      <li>
-        {user.goals.goalText}
-      </li>
-    </ul>
+      <div className='list'>   
+      <h2>
+          {data && user.goal.length
+            ? `Viewing ${user.goalsList.length} ${user.goal.length === 1 ? 'goal' : 'goals'}:`
+            : 'You have no goals yet!'}
+        </h2> 
+       {/*  link to single goal */}
+         {user.goal.map((goal) => {
+         return (
+          <ul key= {goal.goalId}>
+          <li className='bold'>
+          </li>
+           </ul>
+         )
+         })}
+      
       </div>
       </>
-  )
-};
+  );
+}
 
 export default GoalsList;
