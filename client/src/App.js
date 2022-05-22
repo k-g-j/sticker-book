@@ -35,12 +35,11 @@ const styles = {
 
 function App() {
   return (
-    <ApolloProvider client={client} className= {styles}>
+    <ApolloProvider client={client}>
       <Router>
         <Routes>
           <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/dashboard" element={<Dashboard/>} />
-          <Route exact path="/" element={<Goals/>} />
+          <Route exact path="/" element={<Dashboard/>} />
         </Routes>
       </Router>
     </ApolloProvider>

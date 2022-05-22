@@ -79,11 +79,11 @@ const Dashboard = () => {
                     padding: "10px",
                     borderRadius: "15px",
                 }}>
-                    <img className="drag" src={artCross} style={{position: "absolute"}} alt='paintbrush'/>
-                    <img className="drag" src={eduBrain} style={{position: "absolute"}}alt='paintbrush'/>
-                    <img className="drag" src={piggy} style={{position: "absolute"}}alt='paintbrush'/>
-                    <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt='paintbrush'/>
-                    <img className="drag" src={physHealth} style={{position: "absolute"}}alt='paintbrush'/>
+                    <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
+                    <img className="drag" src={eduBrain} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={piggy} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/>
 
                     {draggingState ? 
                         <div className="drop-zone container" 
