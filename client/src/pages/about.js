@@ -5,10 +5,10 @@ function About() {
 
     return (
         <section className="my-5" >
-            <h1 id="about">About Sticker Book</h1>
+            <h1 id="about" class="font-brush">About Sticker Book</h1>
             <div className="flex-row">
-                <img src={profileImage} className="my-2" style={{ width: "25%" }} alt="cover"  />
-                <div className="my-2">
+                <img src={profileImage} class="my-2" style={{ width: "25%" }} alt="cover"  />
+                <div className="my-2" class="font-hand">
                     <p>
                     We are passionate about helping people achieve their dreams by creating fun acheivable goals.
                     This sticker book allows individuals to celebrate their wins with friends, and also collect stickers 

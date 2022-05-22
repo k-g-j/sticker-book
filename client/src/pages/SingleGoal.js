@@ -22,7 +22,7 @@ if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
   }
   
 if (loading) {
-    return <div>Loading...</div>;
+    return <div class="font-brush">Loading...</div>;
   }
 
   return (
