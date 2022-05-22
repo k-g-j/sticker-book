@@ -1,4 +1,5 @@
 import React from "react";
+import profileImage from "../assets/images/filler-profile.jpeg";
 
 function About() {
 
