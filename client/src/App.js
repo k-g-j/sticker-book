@@ -35,7 +35,7 @@ const styles = {
 
 function App() {
   return (
-    <about/>
+    // <About/>
     //  <Friends/>
   //  <Goals/>
   //  <SingleGoal/>
