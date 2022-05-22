@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 /* Fonts Imported */ 
+
 /* Fancy Cursive */ 
 @import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap');
+/* Paintbrush casual cursive */
+@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
+/* Handwritten Text */
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap');
 
 html,body
 {
