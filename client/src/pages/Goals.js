@@ -14,12 +14,10 @@ const GoalsList = (props) => {
     const [formState, setFormState] = useState({ goalText: '', type: '', steps: '' });
     const [addGoal] = useMutation(ADD_GOAL);
 
-    const { loading, data } = useQuery( QUERY_ME 
-      // QUERY_GOALS, 
+    const { loading, data } = useQuery( QUERY_ME, QUERY_GOALS 
      );
 
-    const user = data?.me 
-    // || data?.goals 
+    const user = data?.me || data?.goals 
     || {};
 
   console.log(user);

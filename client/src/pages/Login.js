@@ -97,7 +97,7 @@ const Login = () => {
             }}
             >           
                 
-                <img className="notebook-img" src={noteBook}
+                <img className="notebook-img" src={noteBook} alt=''
                 onClick={handleClick}
                 />
                 <section>
