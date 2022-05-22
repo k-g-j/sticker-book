@@ -33,7 +33,10 @@ const resolvers = {
       return Goal.find(params).sort({ createdAt: -1 })
     },
     goal: async (parent, { _id }) => {
-      return Goal.findOne({ _id }).populate('steps').populate('encouragements').populate('stickers')
+      return Goal.findOne({ _id })
+        .populate('steps')
+        .populate('encouragements')
+        .populate('stickers')
     },
   },
 
@@ -84,7 +87,10 @@ const resolvers = {
           { _id: goalId },
           { $push: { steps: { stepBody, username: context.user.username } } },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements').populate('stickers')
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
 
         return updatedGoal
       }
@@ -97,7 +103,10 @@ const resolvers = {
           { _id: goalId },
           { x: newX, y: newY, z: newZ },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements').populate('stickers')
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
 
         return updatedGoal
       }
@@ -110,20 +119,37 @@ const resolvers = {
           { _id: goalId },
           { $push: { stickers: imageUrl } },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements').populate('stickers')
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
 
         return updatedGoal
       }
 
       throw new AuthenticationError('You need to be logged in!')
     },
-    giveEncouragement: async (parent, { goalId, encouragementBody }, context) => {
+    giveEncouragement: async (
+      parent,
+      { goalId, encouragementBody },
+      context,
+    ) => {
       if (context.user) {
         const updatedGoal = await Goal.findOneAndUpdate(
           { _id: goalId },
-          { $push: { encouragements: { encouragementBody, username: context.user.username } } },
+          {
+            $push: {
+              encouragements: {
+                encouragementBody,
+                username: context.user.username,
+              },
+            },
+          },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements').populate('stickers')
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
 
         return updatedGoal
       }
@@ -141,6 +167,34 @@ const resolvers = {
         return updatedUser
       }
 
+      throw new AuthenticationError('You need to be logged in!')
+    },
+    completeGoal: async (parent, { goalId }, context) => {
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId },
+          { completed: true },
+          { new: true, runValidators: true },
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
+
+        return updatedGoal
+      }
+      throw new AuthenticationError('You need to be logged in!')
+    },
+    completeStep: async (parent, { goalId, stepId }, context) => {
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId, 'steps._id': stepId },
+          { 'steps.$.completed': true },
+          { new: true, runValidators: true },
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
+      }
       throw new AuthenticationError('You need to be logged in!')
     },
   },

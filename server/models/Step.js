@@ -8,6 +8,10 @@ const stepSchema = new Schema(
       required: [true, 'Step needs to have text'],
       maxlength: 280
     },
+    completed: {
+      type: Boolean,
+      default: false
+    },
     username: {
       type: String,
       required: [true, 'Only users can add steps']

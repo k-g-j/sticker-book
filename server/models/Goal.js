@@ -19,6 +19,10 @@ const goalSchema = new Schema(
         message: '{VALUE} is not supported goal type'
       }
     },
+    completed: {
+      type: Boolean,
+      default: false
+    },
     steps: [stepSchema],
     encouragements: [encouragementSchema],
     stickers: [String],
