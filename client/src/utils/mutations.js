@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -10,7 +10,7 @@ export const LOGIN_USER = gql`
       }
     }
   }
-`;
+`
 
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
@@ -22,7 +22,7 @@ export const ADD_USER = gql`
       }
     }
   }
-`;
+`
 
 export const ADD_FRIEND = gql`
   mutation addFriend($id: ID!) {
@@ -36,7 +36,7 @@ export const ADD_FRIEND = gql`
       }
     }
   }
-`;
+`
 
 // Goal types: 'Physical Health', 'Mental Health', 'Financial', 'Educational', 'Personal'
 export const ADD_GOAL = gql`
@@ -45,6 +45,7 @@ export const ADD_GOAL = gql`
       _id
       goalText
       type
+      completed
       x
       y
       z
@@ -54,10 +55,11 @@ export const ADD_GOAL = gql`
       steps {
         _id
         stepBody
+        completed
       }
     }
   }
-`;
+`
 
 export const ADD_STEP = gql`
   mutation addStep($goalId: ID!, $stepBody: String!) {
@@ -65,10 +67,12 @@ export const ADD_STEP = gql`
       _id
       goalText
       type
+      completed
       stepCount
       steps {
         _id
         stepBody
+        completed
         createdAt
         username
       }
@@ -82,6 +86,7 @@ export const GIVE_ENCOURAGEMENT = gql`
       _id
       goalText
       type
+      completed
       encouragementPoints
       encouragements {
         _id
@@ -99,6 +104,7 @@ export const ADD_STICKER = gql`
     addSticker(goalId: $goalId, imageUrl: $imageUrl) {
       _id
       goalText
+      completed
       type
       stickers
       x
@@ -120,6 +126,7 @@ export const ADD_STICKER = gql`
       steps {
         _id
         stepBody
+        completed
         createdAt
         username
       }
@@ -127,11 +134,12 @@ export const ADD_STICKER = gql`
   }
 `
 export const UPDATE_STICKER = gql`
-  mutation addSticker($goalId: ID!, $newX: Int!, $newY: Int!, newZ: Int!) {
+  mutation addSticker($goalId: ID!, $newX: Int!, $newY: Int!, $newZ: Int!) {
     addSticker(goalId: $goalId, newX: $newX, newY: $newY, newZ: $newZ) {
       _id
       goalText
       type
+      completed
       stickers
       x
       y
@@ -152,8 +160,32 @@ export const UPDATE_STICKER = gql`
       steps {
         _id
         stepBody
+        completed
         createdAt
         username
+      }
+    }
+  }
+`
+
+export const COMPLETE_GOAL = gql`
+  mutation CompleteGoal($goalId: ID!) {
+    completeGoal(goalId: $goalId) {
+      goalText
+      type
+      completed
+    }
+  }
+`
+export const COMPLETE_STEP = gql`
+  mutation CompleteStep($goalId: ID!, $stepId: ID!) {
+    completeStep(goalId: $goalId, stepId: $stepId) {
+      goalText
+      type
+      completed
+      steps {
+        stepBody
+        completed
       }
     }
   }

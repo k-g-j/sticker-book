@@ -7,6 +7,7 @@ const typeDefs = gql`
     _id: ID
     goalText: String
     type: String
+    completed: Boolean
     createdAt: String
     username: String
     reminder: String
@@ -20,6 +21,7 @@ const typeDefs = gql`
   type Step {
     _id: ID
     stepBody: String
+    completed: Boolean
     createdAt: String
     username: String
   }
@@ -58,6 +60,8 @@ const typeDefs = gql`
     updateSticker(goalId: ID!, newX: Int!, newY: Int!, newZ: Int!): Goal
     giveEncouragement(goalId: ID!, points: Int!): Goal
     addFriend(friendId: ID!): User
+    completeGoal(goalId: ID!): Goal
+    completeStep(goalId: ID!, stepId: ID!): Goal
   }
 `;
 
