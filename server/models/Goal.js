@@ -13,7 +13,7 @@ const goalSchema = new Schema(
     },
     type: {
       type: String,
-      required: [true, 'Need to input goal type'],
+      required: [true, 'Need to input type'],
       enum: {
         values: ['Physical Health', 'Mental Health', 'Financial', 'Educational', 'Personal'],
         message: '{VALUE} is not supported goal type'
@@ -22,6 +22,15 @@ const goalSchema = new Schema(
     steps: [stepSchema],
     encouragements: [encouragementSchema],
     stickers: [String],
+    x: {
+      type: Number
+    },
+    y: {
+      type: Number
+    },
+    z: {
+      type: Number
+    },
     createdAt: {
       type: Date,
       default: Date.now,
