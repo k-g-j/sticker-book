@@ -113,28 +113,28 @@ export const QUERY_USER = gql`
 
 export const QUERY_ME = gql`
   {
-    me {
+  me {
+    username
+    email
+    friendCount
+    goals {
       _id
+      type
+      goalText
+      completed
+      x
+      y
+      z
+      createdAt
       username
-      email
-      friendCount
-      goals {
-        _id
-        goalText
-        type
-        completed
-        x
-        y
-        z
-        createdAt
-        reminder
-        completeDate
-        stepCount
-        encouragementPoints
-        stickers
-        steps {
+      reminder
+      completeDate
+      stickers
+      stepCount
+      steps {
           _id
           createdAt
+          completed
           username
           stepBody
           completed
@@ -145,13 +145,17 @@ export const QUERY_ME = gql`
           username
           message
         }
-      }
-      friends {
+      encouragementCount
+      encouragements {
         _id
+        points
+        createdAt
         username
+        message
       }
     }
   }
+}
 `
 
 export const QUERY_ME_BASIC = gql`

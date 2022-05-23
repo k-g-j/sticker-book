@@ -18,9 +18,13 @@ import physHealth from "../assets/stickers/phys-health.png";
 const Dashboard = () => {
 
     // get user profile data
-    const { loading, data } = useQuery(QUERY_ME);
-    const userData = data?.me || {};
-    console.log(data);
+    const { loading, error, data } = useQuery(QUERY_ME);
+
+    console.log(error)
+
+    const userData = data?.me || {}
+    console.log(userData)
+
     // set stickers array based on goals array types.
     const userGoals = userData.goals;
 
