@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
 import { UPDATE_STICKER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
@@ -16,10 +17,15 @@ import physHealth from "../assets/stickers/phys-health.png";
 
 const Dashboard = () => {
 
+    // get user profile data
+    const { loading, data } = useQuery(QUERY_ME);
+    const userData = data?.me || {};
+    console.log(data);
+    // set stickers array based on goals array types.
+    const userGoals = userData.goals;
+
+    // set sticker dragging as State
     const [draggingState, setDraggingState] = useState(false);
-    // const styles = {
-    //     dropzoneDrag: `flex justify-center flex items-center justify-center min-h-screen from-purple-100 via-red-300 to-indigo-500 bg-gradient-to-br`
-    //   }
 
     // call drag and drop functions for the class .drag and the id .drop
     useEffect(() => {
@@ -65,9 +71,14 @@ const Dashboard = () => {
                 alignItems: "center"
             }}>
                 <h1>
-                    {/* {{user.name}} */}
+                    {userData.username}
                     Your Collection!
                 </h1>
+                {Auth.loggedIn() ? (
+                    <h1>Logged in!</h1>
+                ) : (
+                    <h1>Logged out!</h1>
+                )}
                 <div className="container flex flex-col justify-center items-center color-teal-500" 
                 style={{
                     display: "block",
