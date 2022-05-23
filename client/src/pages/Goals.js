@@ -78,13 +78,19 @@ const GoalsList = (props) => {
             id="type"
             onChange={handleChange}
           />
-        </div>
-      </form>
-
-      <div>
-        {user.goals.map((goal, i) => (
-          <GoalList goal={goal} key={i} />
-        ))}
+           </div>
+           <button className="btn d-block w-100" type="submit">
+             Submit
+          </button>
+        </form>
+      <div className='list'>   
+        {/*  link to single goal */}
+       <ul> {user.goals.map((goal, i) => (
+            <li key= {i} >{goal.goalText}
+            </li>
+         )
+         )}
+      </ul>
       </div>
     </>
   )

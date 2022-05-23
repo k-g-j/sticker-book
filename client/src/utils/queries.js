@@ -6,6 +6,7 @@ export const QUERY_GOALS = gql`
       _id
       goalText
       type
+      completed
       x
       y
       z
@@ -21,6 +22,7 @@ export const QUERY_GOALS = gql`
         createdAt
         username
         stepBody
+        completed
       }
       encouragements {
         _id
@@ -38,6 +40,7 @@ export const QUERY_GOAL = gql`
       _id
       goalText
       type
+      completed
       x
       y
       z
@@ -53,6 +56,7 @@ export const QUERY_GOAL = gql`
         createdAt
         username
         stepBody
+        completed
       }
       encouragements {
         _id
@@ -79,6 +83,7 @@ export const QUERY_USER = gql`
         _id
         goalText
         type
+        completed
         x
         y
         z
@@ -93,6 +98,7 @@ export const QUERY_USER = gql`
           createdAt
           username
           stepBody
+          completed
         }
         encouragements {
           _id
@@ -123,9 +129,31 @@ export const QUERY_ME = gql`
       stepCount
       steps {
         _id
-        stepBody
+        goalText
+        type
+        completed
+        x
+        y
+        z
         createdAt
-        username
+        reminder
+        completeDate
+        stepCount
+        encouragementPoints
+        stickers
+        steps {
+          _id
+          createdAt
+          username
+          stepBody
+          completed
+        }
+        encouragements {
+          _id
+          points
+          username
+          message
+        }
       }
       encouragementCount
       encouragements {
@@ -155,6 +183,7 @@ export const QUERY_ME_BASIC = gql`
         _id
         goalText
         type
+        completed
         x
         y
         z
