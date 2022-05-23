@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
-import { UPDATE_STICKER } from "../utils/mutations";
+// import { useQuery, useMutation } from '@apollo/client';
+// import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
+// import { UPDATE_STICKER } from "../utils/mutations";
 
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
@@ -79,11 +79,11 @@ const Dashboard = () => {
                     padding: "10px",
                     borderRadius: "15px",
                 }}>
-                    <img className="drag" src={artCross} style={{position: "absolute"}}/>
-                    <img className="drag" src={eduBrain} style={{position: "absolute"}}/>
-                    <img className="drag" src={piggy} style={{position: "absolute"}}/>
-                    <img className="drag" src={mentalHealth} style={{position: "absolute"}}/>
-                    <img className="drag" src={physHealth} style={{position: "absolute"}}/>
+                    <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
+                    <img className="drag" src={eduBrain} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={piggy} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/>
 
                     {draggingState ? 
                         <div className="drop-zone container" 

@@ -72,7 +72,7 @@ const GoalsList = (props) => {
         <div className="">
           <label htmlFor="type">Goal Type:</label>
           <input
-            placeholder="Type your goal here"
+            placeholder="Choose a goal type"
             name="type"
             type="type"
             id="type"
