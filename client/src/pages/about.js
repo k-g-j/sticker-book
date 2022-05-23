@@ -5,7 +5,7 @@ function About() {
 
     return (
         <section className="my-5" class="display-flex flex-col justify-center items-center">
-            <div class="block relative border-3 border-solid border-gray-900 w-1/3 h-2/3 text-center bg-teal-600 rounded-xl">
+            <div class="block relative border-3 border-solid border-gray-900 w-2/3 h-2/3 text-center bg-teal-600 rounded-xl">
                 <h1 id="about" class="font-brush text-3xl font-bold">About Sticker Book</h1>
                 <div className="flex-wrap">
                     {/* <img src={profileImage} class="my-2" style={{ width: "25%" }} alt="cover"  /> */}

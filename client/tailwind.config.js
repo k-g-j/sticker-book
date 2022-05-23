@@ -12,6 +12,9 @@ module.exports = {
       '3xl': '4rem',
     },
     extend: {
+      backgroundImage: {
+        'hero-pattern': "url('/src/assets/images/woodtexture.jpeg')",
+      },
       fontFamily: {
         // Fancy Cursive
         'culpa': ['"Mea Culpa"', 'cursive'],
