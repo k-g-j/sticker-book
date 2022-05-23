@@ -5,7 +5,7 @@ function About() {
 
     return (
         <section className="my-5" >
-            <h1 id="about" class="font-brush font-bold">About Sticker Book</h1>
+            <h1 id="about" class="font-brush text-3xl font-bold">About Sticker Book</h1>
             <div className="flex-wrap">
                 {/* <img src={profileImage} class="my-2" style={{ width: "25%" }} alt="cover"  /> */}
                 <div className="my-2" class="font-hand">
