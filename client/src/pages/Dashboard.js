@@ -20,13 +20,12 @@ const Dashboard = () => {
     // get user profile data
     const { loading, error, data } = useQuery(QUERY_ME);
 
-    console.log(error)
-
     const userData = data?.me || {}
     console.log(userData)
 
     // set stickers array based on goals array types.
-    const userGoals = userData.goals;
+    const goalLength = userData.goals?.length || 0;
+
 
     // set sticker dragging as State
     const [draggingState, setDraggingState] = useState(false);
@@ -51,7 +50,7 @@ const Dashboard = () => {
                 console.log("z-index:", z);
                 console.log("left: ", x);
                 console.log("top: ", y);
-                
+                console.log("data-goalid: ",$(this).data('goalid'));
             }
         });
         // recognize when sticker dropped in the dropzone
@@ -75,8 +74,7 @@ const Dashboard = () => {
                 alignItems: "center"
             }}>
                 <h1>
-                    {userData.username}
-                    Your Collection!
+                    Hey {userData.username}! Here's Your Collection!
                 </h1>
                 {Auth.loggedIn() ? (
                     <h1>Logged in!</h1>
@@ -94,12 +92,74 @@ const Dashboard = () => {
                     padding: "10px",
                     borderRadius: "15px",
                 }}>
-                    <img className="drag" src={artCross} style={{position: "absolute"}}/>
-                    <img className="drag" src={eduBrain} style={{position: "absolute"}}/>
-                    <img className="drag" src={piggy} style={{position: "absolute"}}/>
-                    <img className="drag" src={mentalHealth} style={{position: "absolute"}}/>
-                    <img className="drag" src={physHealth} style={{position: "absolute"}}/>
 
+                    {/* Default Stickers */}
+                    <img className="drag" data-goalid="artwow" src={artCross} style={{position: "absolute"}}/>
+                    <img className="drag" data-goalid="brainwow" src={eduBrain} style={{position: "absolute"}}/>
+                    <img className="drag" data-goalid="moneywow" src={piggy} style={{position: "absolute"}}/>
+                    <img className="drag" data-goalid="mentalwow" src={mentalHealth} style={{position: "absolute"}}/>
+                    <img className="drag" data-goalid="bodywow" src={physHealth} style={{position: "absolute"}}/>
+
+                    {/* Populate stickers based on goal types */}
+                    {userData.goals?.map((goal) => {
+                        if (goal.type === 'Physical Health') {
+                            return (
+                                <img className="drag" data-goalId={goal._id} src={physHealth} style={{
+                                    position: "absolute",
+                                    left: `${goal.x}`,
+                                    top: `${goal.y}`,
+                                    zIndex: `${goal.z}`,
+                                }}/>
+                            )
+                        }
+                        if (goal.type === 'Mental Health') {
+                            return (
+                                <img className="drag" data-goalId={goal._id} src={mentalHealth} style={{
+                                    position: "absolute",
+                                    left: `${goal.x}`,
+                                    top: `${goal.y}`,
+                                    zIndex: `${goal.z}`,
+                                }}/>
+                            )
+                        }
+                        if (goal.type === 'Financial') {
+                            return (
+                                <img className="drag" data-goalId={goal._id} src={piggy} style={{
+                                    position: "absolute",
+                                    left: `${goal.x}`,
+                                    top: `${goal.y}`,
+                                    zIndex: `${goal.z}`,
+                                }}/>
+                            )
+                        }
+                        if (goal.type === 'Educational') {
+                            return (
+                                <img className="drag" data-goalId={goal._id} src={eduBrain} style={{
+                                    position: "absolute",
+                                    left: `${goal.x}`,
+                                    top: `${goal.y}`,
+                                    zIndex: `${goal.z}`,
+                                }}/>
+                            )
+                        }
+                        if (goal.type === 'Personal') {
+                            return (
+                                <img className="drag" data-goalId={goal._id} src={artCross} style={{
+                                    position: "absolute",
+                                    left: `${goal.x}`,
+                                    top: `${goal.y}`,
+                                    zIndex: `${goal.z}`,
+                                }}/>
+                            )
+                        }
+                        return;
+                    })}
+
+                    {!goalLength > 0 &&
+                        <h1>Add some Goals!</h1>
+                    }
+
+                    {/* Dragging Dropzone */}
                     {draggingState ? 
                         <div className="drop-zone container" 
                             style={{
