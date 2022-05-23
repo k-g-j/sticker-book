@@ -4,11 +4,11 @@ module.exports = {
     fontSize: {
       'xs': '.75rem',
       'sm': '.875rem',
-      'tiny': '.875rem',
+      'tiny': '1rem',
       'base': '1.35rem',
-      'lg': '1.125rem',
-      'xl': '1.25rem',
-      '2xl': '1.5rem',
+      'lg': '1.5rem',
+      'xl': '2rem',
+      '2xl': '3rem',
       '3xl': '4rem',
     },
     extend: {
