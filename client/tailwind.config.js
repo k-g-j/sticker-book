@@ -12,6 +12,7 @@ module.exports = {
       '3xl': '4rem',
     },
     extend: {
+      // Wooden Background across all pages except where it says seperately
       backgroundImage: {
         'hero-pattern': "url('/src/assets/images/woodtexture.jpeg')",
       },
