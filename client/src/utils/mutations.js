@@ -134,8 +134,8 @@ export const ADD_STICKER = gql`
   }
 `
 export const UPDATE_STICKER = gql`
-  mutation addSticker($goalId: ID!, $newX: Int!, $newY: Int!, $newZ: Int!) {
-    addSticker(goalId: $goalId, newX: $newX, newY: $newY, newZ: $newZ) {
+  mutation updateSticker($goalId: ID!, $newX: Int!, $newY: Int!, $newZ: Int!) {
+    updateSticker(goalId: $goalId, newX: $newX, newY: $newY, newZ: $newZ) {
       _id
       goalText
       type
