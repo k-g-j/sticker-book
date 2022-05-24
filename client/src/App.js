@@ -38,21 +38,21 @@ const styles = {
 
 function App() {
   return (
-    // <About/>
+    <About/>
     //  <Friends/>
-   <Goals/>
+  //  <Goals/>
   //  <SingleGoal/>
     // <Home/>
     // <Dashboard/>
 
-    // <ApolloProvider client={client}>
-    //   <Router>
-    //     <Routes>
-    //       <Route exact path="/login" element={<Login/>} />
-    //       <Route exact path="/" element={<Dashboard/>} />
-    //     </Routes>
-    //   </Router>
-    // </ApolloProvider>
+    <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+          <Route exact path="/login" element={<Login/>} />
+          <Route exact path="/" element={<Dashboard/>} />
+        </Routes>
+      </Router>
+    </ApolloProvider>
   );
 }
 
