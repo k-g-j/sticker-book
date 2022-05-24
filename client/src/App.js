@@ -10,6 +10,8 @@ import { setContext } from '@apollo/client/link/context'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import SingleGoal from './pages/SingleGoal'
+import Goals from './pages/Goals'
+import PrivateRoute from './components/PrivateRoute';
 const httpLink = createHttpLink({
   uri: '/graphql',
 })
@@ -40,7 +42,8 @@ function App() {
         <Routes>
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/dashboard" element={<Dashboard/>} />
-          <Route exact path="/" element={<SingleGoal/>} />
+          <Route exact path="/goals" element={<Goals/>} />
+          <Route exact path='/goal/:id' element= {<SingleGoal/>} />
         </Routes>
       </Router>
     </ApolloProvider>

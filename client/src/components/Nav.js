@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //We're extracting the key value pairs from props by giving the href it's current page value
 function Nav({ currentPage, handlePageChange }) {
+
+
   return (
     <header>
     <ul >

@@ -15,16 +15,15 @@ import physHealth from "../assets/stickers/phys-health.png";
 
 
 const SingleGoal = () => {
-  const { id: goalId } = useParams();
-  const { id: stepId } = useParams();
-
+  const { id: goalId, stepId } = useParams();
+  
   const { loading, data } = useQuery( QUERY_GOAL, {
-    variables: { id: goalId },
+    variables: { goalId },
 });
   const [completeGoal] = useMutation(COMPLETE_GOAL);
   const [completeStep] = useMutation(COMPLETE_STEP);
 
-  const user = data?.me || {}
+const user = data?.me || {}
 
 if (Auth.loggedIn() && Auth.getProfile().data.email === useParams) {
     
@@ -36,14 +35,14 @@ if (loading) {
 
   //Party JS click event
   const handleClickGoal = (e) => {
-    party.confetti(e.target, {
+    party.sparkles(e.target, {
       count: party.variation.range(20,40)
-    });
+    })
  const mutationResponse = completeGoal({
   variables: { goalId }
-  },
-})
-  };
+  })
+  console.log(goalId)
+};
 
 // const handleCompleteGoal = async (goalId) => {
 //   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -65,9 +64,17 @@ if (loading) {
 
 //Party JS click event
 const handleClickStep = (e) => {
-  party.confetti(e.target, {
+  party.sparkles(e.target, {
     count: party.variation.range(20,40)
-  });
+  })
+  try {
+        await completeStep( {
+          variables : {goalId, stepId},
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    console.log(stepId)
   // handleCompleteStep();
 };
 
@@ -91,23 +98,17 @@ const handleClickStep = (e) => {
       <div className="card mb-3">
         <div className="card-header">
           <h1 className="text-teal-500">
-       <ul> {user.goals.map((goal, i) => (
-            <li key= {i} >{goal.goalText}
-            </li>
-         )
-         )}
+       <ul> 
+         {user.goals}
+
          </ul>
               </h1>
     <div className="card-body">
-        <h3>
-          {user.goal.type}
-           Mental Health
-        </h3>
-        <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
+        {/* <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
                     <img className="drag" src={eduBrain} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={piggy} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
-                    <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/> */}
          {/* Populate stickers based on goal types */}
          {user.goals?.map((goal) => {
                 if (goal.type === 'Physical Health') {
@@ -141,18 +142,19 @@ const handleClickStep = (e) => {
         <div>
         <ul>
             <li>
-                {user.goal.step} Step 1
+                {user.goals?.steps}
             </li>
         </ul>
-        <button onclick={handleClickStep} type='click'> Complete Step </button>
+        <button className='btn' onClick={(e) => {
+          handleClickStep(e);
+        }} 
+        > Complete Step </button>
         </div>
-        <div>
-          <p>
-            {user.goal.reminder} 
-            You Got this!
-          </p>
-        </div>
-        <button onclick={handleClickGoal} type='click'>Complete Goal</button>
+       
+        <button className='btn' onClick={(e) => {
+          handleClickGoal(e);
+        }} 
+        > Complete Goal </button>
       </div>
       </div>
     </>

@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
 import { useQuery, useMutation } from '@apollo/client'
 import { ADD_GOAL } from '../utils/mutations'
-
+import Navigate from '/react-router-dom'
 import Auth from '../utils/auth'
 import GoalList from '../components/GoalList'
 
-// import encouragment commponent
-//import reminder component
 
 const GoalsList = (props) => {
   const [formState, setFormState] = useState({
@@ -21,18 +19,10 @@ const GoalsList = (props) => {
 
   const user = data?.me || {}
 
-
   if (loading) {
     return <div>Loading...</div>
-  }
-  if (!user?.email) {
-    return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    )
-  }
+  }  
+
   const handleFormSubmit = async (event) => {
     event.preventDefault()
     const mutationResponse = await addGoal({
@@ -54,6 +44,8 @@ const GoalsList = (props) => {
       [name]: value,
     })
   }
+
+  if(!Auth.loggedIn(); )
 
   return (
     <>

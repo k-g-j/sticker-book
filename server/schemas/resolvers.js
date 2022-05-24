@@ -33,6 +33,7 @@ const resolvers = {
       return Goal.find(params).sort({ createdAt: -1 })
     },
     goal: async (parent, { _id }) => {
+      //add user authentication and user authorization Sam said you would know....
       return Goal.findOne({ _id })
         .populate('steps')
         .populate('encouragements')
