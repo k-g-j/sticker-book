@@ -26,13 +26,8 @@ html,body
     filter: drop-shadow(20px 15px 10px rgba(1,1,1,.5));
 }
 
-.drag {
-    width: 20%;
-    cursor: pointer;
-}
-
 .hover-highlight {
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 #notebook-title {

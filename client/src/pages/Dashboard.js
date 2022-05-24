@@ -41,15 +41,14 @@ const Dashboard = () => {
     // Image based on goal's type
     // Position based on last x, y, z coordinates 
     const populateStickers = (goal) => {
-        let goalType = {};
+        let goalType = mentalHealth;
         if (goal.type === 'Physical Health') {goalType = physHealth};
-        if (goal.type === 'Mental Health') {goalType = mentalHealth};
         if (goal.type === 'Financial') {goalType = piggy};
         if (goal.type === 'Educational') {goalType = eduBrain};
         if (goal.type === 'Personal') {goalType = artCross};
 
         return (
-            <img className="drag" key={goal._id} data-goalid={goal._id} alt={goal.goalText} 
+            <img className="drag w-1/5 cursor-pointer" key={goal._id} data-goalid={goal._id} alt={goal.goalText} 
             src={goalType} 
             style={{
                 position: "absolute",
@@ -99,13 +98,6 @@ const Dashboard = () => {
                 let y = positionInfo[2].split(' top: ')[1];
                 y = parseInt(y, 10);
                 let id = $(this).data('goalid');
-                console.log("cssText: ",this.style.cssText);
-                console.log("positionInfo: ", positionInfo);
-                console.log("z-index:", z);
-                console.log("left: ", x);
-                console.log("top: ", y);
-                // console.log("data-goalid: ",$(this).data('goalid'));
-                // console.log("data-goal: ",$(this).data('goal'));
                 handleSave(id, x, y, z);
             }
         });
@@ -147,7 +139,9 @@ const Dashboard = () => {
                     backgroundPosition: "center",
                     padding: "0px 30px 0px 60px",
                 }}>
-
+                    {loading &&
+                        <h1>Loading...</h1>
+                    }
                     {/* Populate stickers based on goal types */}
                     {userData.goals?.map((goal) => {
                         return (
@@ -155,39 +149,22 @@ const Dashboard = () => {
                         )
                     })}
 
-                    {!goalLength > 0 &&
+                    {(!goalLength > 0 && !loading) &&
                         <h1>Add some Goals!</h1>
                     }
 
                     {/* Dragging Dropzone */}
                     {draggingState ? 
-                        <div className="drop-zone container" 
+                        <div className="drop-zone absolute w-5/6 h-36 bottom-2.5 rounded-3xl text-center border-2 border-black border-dashed" 
                             style={{
-                            position: "absolute",
-                            bottom: "10px",
-                            backgroundColor: "rgba(0,300,0, 0)",
-                            height: "150px",
-                            width: "83%",
-                            // overflow: "hidden",
-                            border: "black 3px dashed",
-                            borderRadius: "20px",
-                            textAlign: "center",
                             transition: "border .2s ease"
                             }}
                         > 
                         <h3>View This Goal?</h3> 
                         </div>
                         :
-                        <div className="drop-zone container" 
+                        <div className="drop-zone absolute w-5/6 h-36 bottom-2.5 rounded-3xl text-center border-0 border-black border-dashed" 
                             style={{
-                            position: "absolute",
-                            bottom: "10px",
-                            height: "150px",
-                            width: "83%",
-                            overflow: "hidden",
-                            border: "black 0px dashed",
-                            borderRadius: "20px",
-                            textAlign: "center",
                             transition: "border .2s ease"
                             }}
                         > 

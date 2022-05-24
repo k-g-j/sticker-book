@@ -87,7 +87,7 @@ const handleCompleteSTEP = async (goalId) => {
                     <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/>
          {/* Populate stickers based on goal types */}
-         {userData.goals?.map((goal) => {
+         {/* {data.goals?.map((goal) => {
                 if (goal.type === 'Physical Health') {
                     return (
                         <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth}/>
@@ -114,7 +114,7 @@ const handleCompleteSTEP = async (goalId) => {
                     )
                 }
                 return;
-          } )}
+          } )} */}
         </div>
         <div>
         <ul>
