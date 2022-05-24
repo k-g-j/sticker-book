@@ -23,20 +23,24 @@ import physHealth from "../assets/stickers/phys-health.png";
 
 const Dashboard = () => {
 
-    // get user profile data
     const { loading, data } = useQuery(QUERY_ME);
     const [updateSticker] = useMutation(UPDATE_STICKER);
+    // set goals array as State
+    const [goals, setGoals] = useState([]);
+    // set sticker dragging as State
+    const [draggingState, setDraggingState] = useState(false);
 
     const userData = data?.me || {}
 
     // set stickers array based on goals array types, if undefined, set to 0.
     const goalLength = userData.goals?.length || 0;
 
-    // set sticker dragging as State
-    const [draggingState, setDraggingState] = useState(false);
-
-    let stickerArr = userData.goals || [];
-
+    // populate goals array in State
+    useEffect(() => {
+        setGoals(userData.goals);
+        console.log(goals);
+    }, [userData]);
+    
     // populate the stickers 
     // Image based on goal's type
     // Position based on last x, y, z coordinates 
@@ -48,7 +52,8 @@ const Dashboard = () => {
         if (goal.type === 'Personal') {goalType = artCross};
 
         return (
-            <img className="drag w-1/5 cursor-pointer" key={goal._id} data-goalid={goal._id} alt={goal.goalText} 
+            <img className="drag w-1/5 cursor-pointer" 
+            key={goal._id} data-goalid={goal._id} alt={goal.goalText} 
             src={goalType} 
             style={{
                 position: "absolute",
@@ -62,17 +67,28 @@ const Dashboard = () => {
     // set handle save function
     const handleSave = async (id, x, y, z) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-
         if (!token) { return false; }
     
         try {
             const {data} = await updateSticker({
             variables: { goalId: id, newX: x, newY: y, newZ: z }
             });
-
         } catch (err) {
             console.log(err)
         }
+    }
+
+    const handleSaveBtn = (event) => {
+        // const token = Auth.loggedIn() ? Auth.getToken() : null;
+        // if (!token) { return false; }
+    
+        console.log("saved!")
+        // goals.map((goal) => {
+            
+        //     return(
+        //         handleSave(goal)
+        //     )
+        // })
     }
 
     // call drag and drop functions for the class .drag and the id .drop
@@ -99,6 +115,17 @@ const Dashboard = () => {
                 y = parseInt(y, 10);
                 let id = $(this).data('goalid');
                 handleSave(id, x, y, z);
+                
+                // let tempGoals = [];
+                // tempGoals = goals;
+                // console.log(tempGoals);
+                // const index = tempGoals.findIndex(goal => goal._id = id);
+                // let tempGoal = {...tempGoals[index]};
+                // tempGoal.x = x;
+                // tempGoal.y = y;
+                // tempGoal.z = z;
+                // tempGoals[index] = tempGoal;
+                // this.setGoals({tempGoals});
             }
         });
         // recognize when sticker dropped in the dropzone
@@ -171,7 +198,11 @@ const Dashboard = () => {
                         </div>
                     }
                 </div>    
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 rounded">Save Your Stickers!</button>   
+                <button className="sticker-shadow bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 border-8 border-white border-solid rounded"
+                    onClick={handleSaveBtn}
+                >
+                    Save Your Stickers!
+                </button>   
             </div>
         </section>
     )
