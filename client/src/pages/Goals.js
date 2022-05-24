@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
 import { useQuery, useMutation } from '@apollo/client'
 import { ADD_GOAL } from '../utils/mutations'
-import party from "party-js";
+// import party from "party-js";
 import Auth from '../utils/auth'
 import GoalList from '../components/GoalList'
 
@@ -54,9 +54,9 @@ const GoalsList = (props) => {
     })
   }
   //edit goal function
-  party.confetti(runButton, {
-    count: party.variation.range(20, 40)
-});
+  // party.confetti(runButton, {
+  //   count: party.variation.range(20, 40)
+// });
 
   return (
     <>
