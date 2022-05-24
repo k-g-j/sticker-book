@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
 import { useQuery, useMutation } from '@apollo/client'
 import { ADD_GOAL } from '../utils/mutations'
-import party from "party-js";
+
 import Auth from '../utils/auth'
 import GoalList from '../components/GoalList'
 
@@ -47,16 +47,13 @@ const GoalsList = (props) => {
   }
 
   const handleChange = (event) => {
+    event.preventDefault()
     const { name, value } = event.target
     setFormState({
       ...formState,
       [name]: value,
     })
   }
-  //edit goal function
-  party.confetti(runButton, {
-    count: party.variation.range(20, 40)
-});
 
   return (
     <>
@@ -86,13 +83,9 @@ const GoalsList = (props) => {
           </button>
         </form>
       <div className='list'>   
-        {/*  link to single goal */}
-       <ul> {user.goals.map((goal, i) => (
-            <li key= {i} >{goal.goalText}
-            </li>
-         )
-         )}
-      </ul>
+      
+      <GoalList />
+      
       </div>
     </>
   )

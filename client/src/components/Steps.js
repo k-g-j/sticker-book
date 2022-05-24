@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Steps({ goal }) {
+    
   return (
     <div>
       <ul>

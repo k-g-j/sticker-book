@@ -6,18 +6,16 @@ function Nav({ currentPage, handlePageChange }) {
     <header>
     <ul >
       <li>
-        <a
-          href="#home"
+        <Link to="/"
           onClick={() => handlePageChange('Home')}
       
           //this is a Ternary operator that is checking to see if the Home nav-link is active
           className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'}
         >
           Home
-        </a>
+        </Link>
     
-        <a
-          href="#about"
+        <Link to="/about"
           onClick={() => handlePageChange('About')}
         
           // Determine whether the About nav link is active or not
@@ -25,13 +23,12 @@ function Nav({ currentPage, handlePageChange }) {
           className={currentPage === 'About' ? 'nav-link active' : 'nav-link'}
         >
           About
-        </a>
-        <a
-          href="#contact"
+        </Link>
+        <Link to="/dashboard"
           // Determine whether the Contact nav link is active or not
 
-          onClick={() => handlePageChange('Contact')}
-          className={currentPage === 'Contact' ? 'nav-link active' : 'nav-link'}
+          onClick={() => handlePageChange('Dashboard')}
+          className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'}
         >
           Profile
         </a>
@@ -41,4 +38,4 @@ function Nav({ currentPage, handlePageChange }) {
   );
 }
 
-export default Nav;
+export default Nav

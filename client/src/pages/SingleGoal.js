@@ -4,9 +4,7 @@ import { useParams } from 'react-router-dom';
 import { QUERY_GOAL } from '../utils/queries';
 import { COMPLETE_GOAL, COMPLETE_STEP } from '../utils/mutations';
 import Auth from '../utils/auth';
-
-// import encouragment commponent
-//import reminder component
+import party from 'party-js';
 
 // import stickers
 import artCross from "../assets/stickers/art-cross.png";
@@ -15,7 +13,7 @@ import piggy from "../assets/stickers/finance-piggy.png";
 import mentalHealth from "../assets/stickers/mental-health.png";
 import physHealth from "../assets/stickers/phys-health.png";
 
-//steps, encouragement points, sticker up top,
+
 const SingleGoal = () => {
   const { id: goalId } = useParams();
   const { id: stepId } = useParams();
@@ -26,7 +24,7 @@ const SingleGoal = () => {
   const [completeGoal] = useMutation(COMPLETE_GOAL);
   const [completeStep] = useMutation(COMPLETE_STEP);
 
-const goal = data?.goal || {};
+  const user = data?.me || {}
 
 if (Auth.loggedIn() && Auth.getProfile().data.email === useParams) {
     
@@ -35,50 +33,74 @@ if (Auth.loggedIn() && Auth.getProfile().data.email === useParams) {
 if (loading) {
     return <div>Loading...</div>;
   }
-const handleCompleteGoal = async (goalId) => {
-  const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  if (!token) {
-    return false;
-  }
-
-  try {
-    await completeGoal( {
-      variables : {goalId},
+  //Party JS click event
+  const handleClickGoal = (e) => {
+    party.confetti(e.target, {
+      count: party.variation.range(20,40)
     });
+ const mutationResponse = completeGoal({
+  variables: { goalId }
+  },
+})
+  };
+
+// const handleCompleteGoal = async (goalId) => {
+//   const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+//   if (!token) {
+//     return false;
+//   }
+
+//   try {
+//     await completeGoal( {
+//       variables : {goalId},
+//     });
 
    
-  } catch (err) {
-    console.error(err);
-  }
+//   } catch (err) {
+//     console.error(err);
+//   }
+//    };
+
+//Party JS click event
+const handleClickStep = (e) => {
+  party.confetti(e.target, {
+    count: party.variation.range(20,40)
+  });
+  // handleCompleteStep();
 };
-const handleCompleteSTEP = async (goalId) => {
-  const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  if (!token) {
-    return false;
-  }
+// const handleCompleteStep = async (goalId) => {
+//   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  try {
-    await completeStep( {
-      variables : {goalId, stepId},
-    });
+//   if (!token) {
+//     return false;
+//   }
 
-   
-  } catch (err) {
-    console.error(err);
-  }
-};
+//   try {
+//     await completeStep( {
+//       variables : {goalId, stepId},
+//     });
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
   return (
     <>
       <div className="card mb-3">
         <div className="card-header">
           <h1 className="text-teal-500">
-              Goal Text like running a marathon
+       <ul> {user.goals.map((goal, i) => (
+            <li key= {i} >{goal.goalText}
+            </li>
+         )
+         )}
+         </ul>
               </h1>
     <div className="card-body">
         <h3>
-          {goal.type}
+          {user.goal.type}
            Mental Health
         </h3>
         <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
@@ -87,7 +109,7 @@ const handleCompleteSTEP = async (goalId) => {
                     <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/>
          {/* Populate stickers based on goal types */}
-         {userData.goals?.map((goal) => {
+         {user.goals?.map((goal) => {
                 if (goal.type === 'Physical Health') {
                     return (
                         <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth}/>
@@ -119,18 +141,18 @@ const handleCompleteSTEP = async (goalId) => {
         <div>
         <ul>
             <li>
-                {goal.step} Step 1
+                {user.goal.step} Step 1
             </li>
         </ul>
-        <button onclick={handleCompleteSTEP} type='click'> Complete Step </button>
+        <button onclick={handleClickStep} type='click'> Complete Step </button>
         </div>
         <div>
           <p>
-            {goal.reminder} 
+            {user.goal.reminder} 
             You Got this!
           </p>
         </div>
-        <button onclick={handleCompleteGoal}type='click'>Complete Goal</button>
+        <button onclick={handleClickGoal} type='click'>Complete Goal</button>
       </div>
       </div>
     </>
