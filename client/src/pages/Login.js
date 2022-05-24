@@ -86,18 +86,12 @@ const Login = () => {
 
   return (
     <div
-      className="flex flex-row justify-center items-center"
-      style={{
+    className="flex flex-row justify-center items-center w-screen h-screen bg-cover -center m-0"
+    style={{
         backgroundImage: `url(${woodBg})`,
-        // backgroundColor: "teal",
-        width: '100vw',
-        height: '100vh',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        margin: 0,
-      }}
+    }}
     >
-      <img className="notebook-img" src={noteBook} onClick={handleClick} />
+      <img className="notebook-img drop-shadow-xl cursor-pointer" src={noteBook} onClick={handleClick} />
       <section>
         <div className="container">
           <h2>Login:</h2>
