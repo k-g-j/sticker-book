@@ -10,9 +10,10 @@ import { setContext } from '@apollo/client/link/context'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import About from './pages/about'
+import Goals from './pages/Goals'
 
 const httpLink = createHttpLink({
-  uri: 'graphql',
+  uri: '/graphql',
 })
 
 const authLink = setContext((_, { headers }) => {

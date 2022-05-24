@@ -6,7 +6,13 @@ const typeDefs = gql`
   type Goal {
     _id: ID
     goalText: String
+    x: Int
+    y: Int
+    z: Int
     type: String
+    x: Int
+    y: Int
+    z: Int
     completed: Boolean
     createdAt: String
     username: String
@@ -62,6 +68,11 @@ const typeDefs = gql`
     addFriend(friendId: ID!): User
     completeGoal(goalId: ID!): Goal
     completeStep(goalId: ID!, stepId: ID!): Goal
+<<<<<<< HEAD
+=======
+    deleteGoal(goalId: ID!): Goal
+    deleteStep(goalId: ID!, stepId: ID!): Goal
+>>>>>>> develop
   }
 `;
 

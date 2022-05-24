@@ -87,7 +87,7 @@ export const GIVE_ENCOURAGEMENT = gql`
       goalText
       type
       completed
-      encouragementPoints
+      encouragementCount
       encouragements {
         _id
         points
@@ -114,7 +114,7 @@ export const ADD_STICKER = gql`
       username
       reminder
       completeDate
-      encouragementPoints
+      encouragementCount
       encouragements {
         _id
         points
@@ -134,8 +134,8 @@ export const ADD_STICKER = gql`
   }
 `
 export const UPDATE_STICKER = gql`
-  mutation addSticker($goalId: ID!, $newX: Int!, $newY: Int!, $newZ: Int!) {
-    addSticker(goalId: $goalId, newX: $newX, newY: $newY, newZ: $newZ) {
+  mutation updateSticker($goalId: ID!, $newX: Int!, $newY: Int!, $newZ: Int!) {
+    updateSticker(goalId: $goalId, newX: $newX, newY: $newY, newZ: $newZ) {
       _id
       goalText
       type
@@ -148,7 +148,7 @@ export const UPDATE_STICKER = gql`
       username
       reminder
       completeDate
-      encouragementPoints
+      encouragementCount
       encouragements {
         _id
         points
@@ -180,6 +180,33 @@ export const COMPLETE_GOAL = gql`
 export const COMPLETE_STEP = gql`
   mutation CompleteStep($goalId: ID!, $stepId: ID!) {
     completeStep(goalId: $goalId, stepId: $stepId) {
+      goalText
+      type
+      completed
+      steps {
+        stepBody
+        completed
+      }
+    }
+  }
+`
+export const DELETE_GOAL = gql`
+  mutation DeleteGoal($goalId: ID!) {
+    deleteGoal(goalId: $goalId) {
+      goalText
+      type
+      completed
+      steps {
+        stepBody
+        completed
+      }
+    }
+  }
+`
+
+export const DELETE_STEP = gql`
+  mutation DeleteStep($goalId: ID!, $stepId: ID!) {
+    deleteStep(goalId: $goalId, stepId: $stepId) {
       goalText
       type
       completed

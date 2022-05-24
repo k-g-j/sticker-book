@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
-//import { ADD_FRIEND } from '../utils/mutations';
+import { ADD_FRIEND } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 //import stickers from '../assets/stickers'
@@ -13,7 +13,7 @@ import Auth from '../utils/auth';
 
 //steps, encouragement points, sticker up top,
 const Friends = (props) => {
-    const { username: userParam } = useParams();
+    const { email: userParam } = useParams();
 
     const [addFriend] = useMutation(ADD_FRIEND);
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {

@@ -1,51 +1,101 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
-import { useQuery, useMutation } from '@apollo/client';
-import { ADD_GOAL } from '../utils/mutations';
-import Auth from '../utils/auth';
+import React, { useState } from 'react'
+import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
+import { useQuery, useMutation } from '@apollo/client'
+import { ADD_GOAL } from '../utils/mutations'
+import party from "party-js";
+import Auth from '../utils/auth'
+import GoalList from '../components/GoalList'
 
-//import stickers from '../assets/stickers'
 // import encouragment commponent
 //import reminder component
-//ADD New Goals
 
 const GoalsList = (props) => {
-    const { username: userParam } = useParams();
+  const [formState, setFormState] = useState({
+    goalText: '',
+    type: '',
+    steps: '',
+  })
+  const [addGoal] = useMutation(ADD_GOAL)
 
-    const [addGoal] = useMutation(ADD_GOAL);
-    const { loading, data } = useQuery(userParam ?  QUERY_ME {
-      variables: { username: userParam, goals: goalId },
-    });
+  const { loading, data } = useQuery(QUERY_ME)
 
-    const user = data?.me || data?.goals || {};
+  const user = data?.me || {}
+
 
 if (loading) {
     return <div class="font-brush"> Loading...</div>;
   }
-  if (!user?.username) {
+  if (!user?.email) {
     return (
       <h4 class="font-hand">
         You need to be logged in to see this. Use the navigation links above to
         sign up or log in!
       </h4>
-    );
+    )
+  }
+  const handleFormSubmit = async (event) => {
+    event.preventDefault()
+    const mutationResponse = await addGoal({
+      variables: {
+        goalText: formState.goalText,
+        type: formState.type,
+        steps: formState.stepBody,
+      },
+    })
+    const token = mutationResponse.data.addGoal.token
+    Auth.login(token)
   }
 
-  const handleClick = async () => {
-    try {
-      await addGoal({
-        
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setFormState({
+      ...formState,
+      [name]: value,
+    })
+  }
+  //edit goal function
+  party.confetti(runButton, {
+    count: party.variation.range(20, 40)
+});
 
   return (
-      <>
-      </>
+    <>
+      <form onSubmit={handleFormSubmit}>
+        <div className="">
+          <label htmlFor="goalText">Goal:</label>
+          <input
+            placeholder="Type your goal here"
+            name="goalText"
+            type="goalText"
+            id="goalText"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="">
+          <label htmlFor="type">Goal Type:</label>
+          <input
+            placeholder="Choose a goal type"
+            name="type"
+            type="type"
+            id="type"
+            onChange={handleChange}
+          />
+           </div>
+           <button className="btn d-block w-100" type="submit">
+             Submit
+          </button>
+        </form>
+      <div className='list'>   
+        {/*  link to single goal */}
+       <ul> {user.goals.map((goal, i) => (
+            <li key= {i} >{goal.goalText}
+            </li>
+         )
+         )}
+      </ul>
+      </div>
+    </>
   )
-};
+}
 
-export default GoalsList;
+export default GoalsList

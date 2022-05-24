@@ -2,6 +2,7 @@
 # yarn lockfile v1
 
 
+<<<<<<< HEAD
 "@babel/runtime@7.1.2":
   version "7.1.2"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.1.2.tgz"
@@ -28,6 +29,13 @@
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
   integrity sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==
   dependencies:
+=======
+"@nodelib/fs.scandir@2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
+  integrity sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==
+  dependencies:
+>>>>>>> b62b5f0c5c48f467e4a3d2c1d6f354a6f9263121
     "@nodelib/fs.stat" "2.0.5"
     run-parallel "^1.1.9"
 
@@ -345,9 +353,15 @@ compression@1.7.3:
     vary "~1.1.2"
 
 concurrently@^7.1.0:
+<<<<<<< HEAD
   version "7.2.0"
   resolved "https://registry.npmjs.org/concurrently/-/concurrently-7.2.0.tgz"
   integrity sha512-4KIVY5HopDRhN3ndAgfFOLsMk1PZUPgghlgTMZ5Pb5aTrqYg86RcZaIZC2Cz+qpZ9DsX36WHGjvWnXPqdnblhw==
+=======
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-7.2.1.tgz#88b144060443403060aad46f837dd17451f7e55e"
+  integrity sha512-7cab/QyqipqghrVr9qZmoWbidu0nHsmxrpNqQ7r/67vfl1DWJElexehQnTH1p+87tDkihaAjM79xTZyBQh7HLw==
+>>>>>>> b62b5f0c5c48f467e4a3d2c1d6f354a6f9263121
   dependencies:
     chalk "^4.1.0"
     date-fns "^2.16.1"
@@ -761,6 +775,7 @@ glob-parent@^6.0.2:
   dependencies:
     is-glob "^4.0.3"
 
+<<<<<<< HEAD
 graphql@^16.5.0:
   version "16.5.0"
   resolved "https://registry.npmjs.org/graphql/-/graphql-16.5.0.tgz"
@@ -776,6 +791,8 @@ has-flag@^3.0.0:
   resolved "https://registry.npmjs.org/has-flag/-/has-flag-3.0.0.tgz"
   integrity sha1-tdRU3CGZriJWmfNGfloH87lVuv0=
 
+=======
+>>>>>>> b62b5f0c5c48f467e4a3d2c1d6f354a6f9263121
 has-flag@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz"
@@ -1876,8 +1893,11 @@ yargs@^17.3.1:
     string-width "^4.2.3"
     y18n "^5.0.5"
     yargs-parser "^21.0.0"
+<<<<<<< HEAD
 
 yarn@^1.22.18:
   version "1.22.18"
   resolved "https://registry.npmjs.org/yarn/-/yarn-1.22.18.tgz"
   integrity sha512-oFffv6Jp2+BTUBItzx1Z0dpikTX+raRdqupfqzeMKnoh7WD6RuPAxcqDkMUy9vafJkrB0YaV708znpuMhEBKGQ==
+=======
+>>>>>>> b62b5f0c5c48f467e4a3d2c1d6f354a6f9263121
