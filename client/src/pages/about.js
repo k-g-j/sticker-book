@@ -1,12 +1,19 @@
 import React from "react";
+import woodBg from '../assets/images/woodtexture.jpeg'
 // import profileImage from "../assets/images/filler-profile";
 
 function About() {
 
     return (
-        <section className="my-5" class="flex justify-center items-center 
-        bg-hero
-        ">
+        <section className="my-5" class="flex justify-center items-center"
+            style={{
+            backgroundImage: `url(${woodBg})`,
+            width: '100vw',
+            height: '100vh',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            margin: 0,
+      }}>
             <div class="
             flex justify-center items-center text-center
             border-3 border-solid border-gray-900 

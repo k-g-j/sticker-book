@@ -99,7 +99,7 @@ const Login = () => {
     >
       <img className="notebook-img" src={noteBook} onClick={handleClick} />
       <section>
-        <div className="container">
+        <div className="container" class="text-hand">
           <h2>Login:</h2>
           <form className="flex flex-col" onSubmit={handleLoginSubmit}>
             <input
@@ -122,7 +122,7 @@ const Login = () => {
               value={loginState.password}
               onChange={handleLoginChange}
             />
-            <button className="btn d-block w-100" type="submit">
+            <button className="btn d-block w-100" class="font-brush text-xl" type="submit">
               Submit
             </button>
           </form>
