@@ -7,9 +7,6 @@ const typeDefs = gql`
     _id: ID
     goalText: String
     type: String
-    x: Int
-    y: Int
-    z: Int
     completed: Boolean
     createdAt: String
     username: String
