@@ -53,9 +53,10 @@ const GoalsList = (props) => {
       [name]: value,
     })
   }
-  //edit goal function
+  // edit goal function
   // party.confetti(runButton, {
   //   count: party.variation.range(20, 40)
+
 // });
 
   return (
