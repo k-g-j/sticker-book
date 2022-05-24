@@ -26,19 +26,21 @@ html,body
     object-fit: cover;
     max-width:50vw;
     max-height:900px;
-    width: auto;
+    width: auto; 
     height: auto;
-    cursor: pointer;
     filter: drop-shadow(20px 15px 10px rgba(1,1,1,.5));
 }
 
-.drag {
-    width: 20%;
-    cursor: pointer;
+.page {
+    filter: drop-shadow(20px 15px 10px rgba(1,1,1,.5));
+}
+
+.sticker-shadow {
+    filter: drop-shadow(2px 2px 1px rgba(1,1,1,.2));
 }
 
 .hover-highlight {
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 #notebook-title {

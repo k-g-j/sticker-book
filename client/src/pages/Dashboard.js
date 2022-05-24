@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-
+import { Navigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 import { UPDATE_STICKER } from "../utils/mutations";
-
 
 import Auth from "../utils/auth";
 // import { fortunes } from "../lib/fortunes"
@@ -11,6 +10,9 @@ import Auth from "../utils/auth";
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
+
+import woodBg from "../assets/images/woodtexture.jpeg"
+import page from '../assets/images/page.png'
 
 // import stickers
 import artCross from "../assets/stickers/art-cross.png";
@@ -21,44 +23,72 @@ import physHealth from "../assets/stickers/phys-health.png";
 
 const Dashboard = () => {
 
-    // get user profile data
-    const { loading, error, data } = useQuery(QUERY_ME);
+    const { loading, data } = useQuery(QUERY_ME);
     const [updateSticker] = useMutation(UPDATE_STICKER);
+    // set goals array as State
+    const [goals, setGoals] = useState([]);
+    // set sticker dragging as State
+    const [draggingState, setDraggingState] = useState(false);
 
     const userData = data?.me || {}
-    // console.log(userData);
 
     // set stickers array based on goals array types, if undefined, set to 0.
     const goalLength = userData.goals?.length || 0;
 
-    // set sticker dragging as State
-    const [draggingState, setDraggingState] = useState(false);
+    // populate goals array in State
+    useEffect(() => {
+        setGoals(userData.goals);
+        console.log(goals);
+    }, [userData]);
+    
+    // populate the stickers 
+    // Image based on goal's type
+    // Position based on last x, y, z coordinates 
+    const populateStickers = (goal) => {
+        let goalType = mentalHealth;
+        if (goal.type === 'Physical Health') {goalType = physHealth};
+        if (goal.type === 'Financial') {goalType = piggy};
+        if (goal.type === 'Educational') {goalType = eduBrain};
+        if (goal.type === 'Personal') {goalType = artCross};
 
-    let stickerArr = userData.goals || [];
+        return (
+            <img className="drag w-1/5 cursor-pointer" 
+            key={goal._id} data-goalid={goal._id} alt={goal.goalText} 
+            src={goalType} 
+            style={{
+                position: "absolute",
+                left: `${goal.x}px`,
+                top: `${goal.y}px`,
+                zIndex: `${goal.z}`,
+            }}/>
+        )
+    }
 
+    // set handle save function
     const handleSave = async (id, x, y, z) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        if (!token) {
-            return false;
-        }
-
-        // let positionInfo = this.style.cssText.split('z-index: ')[1].split(';');
-        // let z = positionInfo[0].trim();
-        // let x = positionInfo[1].split(' left: ')[1];
-        // let y = positionInfo[2].split(' top: ')[1];
+        if (!token) { return false; }
     
+        
         try {
-    
             const {data} = await updateSticker({
-            variables: { goalId: id, newX: x, newY: y, newZ: z }
+                variables: { goalId: id, newX: x, newY: y, newZ: z }
             });
-    
-            console.log(data);
-
         } catch (err) {
             console.log(err)
         }
+    }
+
+    const handleSaveBtn = (event) => {
+        // const token = Auth.loggedIn() ? Auth.getToken() : null;
+        // if (!token) { return false; }
+    
+        console.log("saved!")
+        goals.map((goal) => {
+            return(
+                handleSave(goal)
+            )
+        })
     }
 
     // call drag and drop functions for the class .drag and the id .drop
@@ -69,7 +99,7 @@ const Dashboard = () => {
 
         //drag the stickers, limit to the container and have the dragged sticker at the highest z-index in the stack
         $( ".drag" ).draggable({
-            containment: ".container", 
+            containment: ".page", 
             stack: ".drag",
             start: function(event, ui) {
                 setDraggingState(true);
@@ -77,19 +107,25 @@ const Dashboard = () => {
             },
             stop: function(event, ui) {
                 setDraggingState(false);
-                let positionInfo = this.style.cssText.split('z-index: ')[1].split(';');
-                let z = parseInt(positionInfo[0].trim());
+                let positionInfo = this.style.cssText.split(';');
+                let z = parseInt(positionInfo[3].split(' z-index: ')[1]);
                 let x = positionInfo[1].split(' left: ')[1];
                 x = parseInt(x, 10);
                 let y = positionInfo[2].split(' top: ')[1];
                 y = parseInt(y, 10);
                 let id = $(this).data('goalid');
-                console.log("z-index:", z);
-                console.log("left: ", x);
-                console.log("top: ", y);
-                console.log("data-goalid: ",$(this).data('goalid'));
-                // console.log("data-goal: ",$(this).data('goal'));
                 handleSave(id, x, y, z);
+                
+                // let tempGoals = [];
+                // tempGoals = goals;
+                // console.log(tempGoals);
+                // const index = tempGoals.findIndex(goal => goal._id = id);
+                // let tempGoal = {...tempGoals[index]};
+                // tempGoal.x = x;
+                // tempGoal.y = y;
+                // tempGoal.z = z;
+                // tempGoals[index] = tempGoal;
+                // this.setGoals({tempGoals});
             }
         });
         // recognize when sticker dropped in the dropzone
@@ -103,6 +139,11 @@ const Dashboard = () => {
             }
         })
     })
+
+    // if not logged in, redirect to the login page
+    if (!Auth.loggedIn()) {
+        return <Navigate to="/login" replace={true}/>
+    }
 
     return (
         <section>
@@ -121,120 +162,62 @@ const Dashboard = () => {
                     <h1 class="font-hand text-base">Logged out!</h1>
                 )}
                 <div className="container flex flex-col justify-center items-center color-teal-500" 
+            <div
+                className="flex flex-col justify-center items-center w-screen h-screen bg-cover -center m-0"
                 style={{
-                    display: "block",
+                    backgroundImage: `url(${woodBg})`,
+                }}
+            >
+                <h1 className="m-5 text-3xl font-semibold text-blue-500">
+                    Hey {userData.username}! Here's Your Collection!
+                </h1>
+
+                <div className="page color-teal-500" 
+                style={{
                     position: "relative",
-                    border: "3px solid black",
-                    width: "500px",
-                    height: "647px",
-                    backgroundColor: "whitesmoke",
-                    padding: "10px",
-                    borderRadius: "15px",
+                    width: "550px",
+                    height: "657px",
+                    backgroundImage: `url(${page})`,
+                    backgroundPosition: "center",
+                    padding: "0px 30px 0px 60px",
                 }}>
-
-                    {/* Default Stickers */}
-                    {/* <img className="drag" data-goalid="artwow" src={artCross} style={{position: "absolute"}}/>
-                    <img className="drag" data-goalid="brainwow" src={eduBrain} style={{position: "absolute"}}/>
-                    <img className="drag" data-goalid="moneywow" src={piggy} style={{position: "absolute"}}/>
-                    <img className="drag" data-goalid="mentalwow" src={mentalHealth} style={{position: "absolute"}}/>
-                    <img className="drag" data-goalid="bodywow" src={physHealth} style={{position: "absolute"}}/> */}
-
+                    {loading &&
+                        <h1>Loading...</h1>
+                    }
                     {/* Populate stickers based on goal types */}
                     {userData.goals?.map((goal) => {
-                        if (goal.type === 'Physical Health') {
-                            return (
-                                <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth} style={{
-                                    position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
-                                    zIndex: `${goal.z}`,
-                                }}/>
-                            )
-                        }
-                        if (goal.type === 'Mental Health') {
-                            return (
-                                <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={mentalHealth} style={{
-                                    position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
-                                    zIndex: `${goal.z}`,
-                                }}/>
-                            )
-                        }
-                        if (goal.type === 'Financial') {
-                            return (
-                                <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={piggy} style={{
-                                    position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
-                                    zIndex: `${goal.z}`,
-                                }}/>
-                            )
-                        }
-                        if (goal.type === 'Educational') {
-                            return (
-                                <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={eduBrain} style={{
-                                    position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
-                                    zIndex: `${goal.z}`,
-                                }}/>
-                            )
-                        }
-                        if (goal.type === 'Personal') {
-                            return (
-                                <img className="drag" key={goal.goalId} data-goalid={goal._id}  data-goal={goal.goalText} src={artCross} style={{
-                                    position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
-                                    zIndex: `${goal.z}`,
-                                }}/>
-                            )
-                        }
-                        return;
+                        return (
+                            populateStickers(goal)
+                        )
                     })}
 
-                    {!goalLength > 0 &&
-                        <h1 class="font-brush text-2xl">Add some Goals!</h1>
+                    {(!goalLength > 0 && !loading) &&
+                        <h1>Add some Goals!</h1>
                     }
 
                     {/* Dragging Dropzone */}
                     {draggingState ? 
-                        <div className="drop-zone container" 
+                        <div className="drop-zone absolute w-5/6 h-36 bottom-2.5 rounded-3xl text-center border-2 border-black border-dashed" 
                             style={{
-                            position: "absolute",
-                            bottom: "10px",
-                            backgroundColor: "rgba(0,300,0, 0)",
-                            height: "150px",
-                            width: "95%",
-                            overflow: "hidden",
-                            border: "black 3px dashed",
-                            borderRadius: "20px",
-                            textAlign: "center",
                             transition: "border .2s ease"
                             }}
                         > 
                         <h3 class="font-hand text-base">View This Goal?</h3> 
                         </div>
                         :
-                        <div className="drop-zone container" 
+                        <div className="drop-zone absolute w-5/6 h-36 bottom-2.5 rounded-3xl text-center border-0 border-black border-dashed" 
                             style={{
-                            position: "absolute",
-                            bottom: "10px",
-                            // backgroundColor: "rgba(0,300,0, 0)",
-                            height: "150px",
-                            width: "95%",
-                            overflow: "hidden",
-                            border: "black 0px dashed",
-                            borderRadius: "20px",
-                            textAlign: "center",
                             transition: "border .2s ease"
                             }}
                         > 
                         </div>
                     }
                 </div>    
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save Your Stickers!</button>   
+                <button className="sticker-shadow bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 border-8 border-white border-solid rounded"
+                    onClick={handleSaveBtn}
+                >
+                    Save Your Stickers!
+                </button>   
             </div>
         </section>
     )
