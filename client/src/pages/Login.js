@@ -5,7 +5,7 @@ import { LOGIN_USER, ADD_USER } from '../utils/mutations'
 import Auth from '../utils/auth'
 
 import woodBg from '../assets/images/woodtexture.jpeg'
-import noteBook from '../assets/stickers/sticker-book-home.png'
+import noteBook from '../assets/images/sticker-book-home.png'
 
 const Login = () => {
   // set login from state, and signup form state
