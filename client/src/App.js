@@ -7,6 +7,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
+import Home from './pages/HomePage'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import About from './pages/about'
@@ -37,9 +38,9 @@ const styles = {
 
 function App() {
   return (
-    <About/>
+    // <About/>
     //  <Friends/>
-  //  <Goals/>
+   <Goals/>
   //  <SingleGoal/>
     // <Home/>
     // <Dashboard/>
