@@ -15,8 +15,7 @@ function Nav({ currentPage, handlePageChange }) {
           Home
         </Link>
     
-        <a
-          href="#about"
+        <Link to="/about"
           onClick={() => handlePageChange('About')}
         
           // Determine whether the About nav link is active or not
@@ -24,13 +23,12 @@ function Nav({ currentPage, handlePageChange }) {
           className={currentPage === 'About' ? 'nav-link active' : 'nav-link'}
         >
           About
-        </a>
-        <a
-          href="#contact"
+        </Link>
+        <Link to="/dashboard"
           // Determine whether the Contact nav link is active or not
 
-          onClick={() => handlePageChange('Contact')}
-          className={currentPage === 'Contact' ? 'nav-link active' : 'nav-link'}
+          onClick={() => handlePageChange('Dashboard')}
+          className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'}
         >
           Profile
         </a>
