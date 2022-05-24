@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
 import { UPDATE_STICKER } from "../utils/mutations";
+
+
 import Auth from "../utils/auth";
 // import { fortunes } from "../lib/fortunes"
 

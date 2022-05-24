@@ -194,6 +194,7 @@ const resolvers = {
           .populate('steps')
           .populate('encouragements')
           .populate('stickers')
+
         return updatedGoal
       }
       throw new AuthenticationError('You need to be logged in!')
@@ -217,6 +218,7 @@ const resolvers = {
           .populate('stickers')
         return updatedGoal
       }
+
     },
   },
 }
