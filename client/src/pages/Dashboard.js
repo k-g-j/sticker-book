@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-// import { useQuery, useMutation } from '@apollo/client';
-// import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
-// import { UPDATE_STICKER } from "../utils/mutations";
-=======
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
 import { UPDATE_STICKER } from "../utils/mutations";
-<<<<<<< Updated upstream
->>>>>>> develop
-=======
+
 import Auth from "../utils/auth";
->>>>>>> Stashed changes
+
 
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";

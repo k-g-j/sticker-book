@@ -6,15 +6,14 @@ function Nav({ currentPage, handlePageChange }) {
     <header>
     <ul >
       <li>
-        <a
-          href="#home"
+        <Link to="/"
           onClick={() => handlePageChange('Home')}
       
           //this is a Ternary operator that is checking to see if the Home nav-link is active
           className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'}
         >
           Home
-        </a>
+        </Link>
     
         <a
           href="#about"

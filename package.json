@@ -15,10 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^7.1.0",
-    "graphql": "^16.5.0",
-    "jquery": "^3.6.0",
-    "party-js": "^2.1.2"
+    "concurrently": "^7.1.0"
   },
   "devDependencies": {
     "tailwindcss": "^3.0.24"

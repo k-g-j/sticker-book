@@ -5,9 +5,6 @@ import { QUERY_GOAL } from '../utils/queries';
 import { COMPLETE_GOAL, COMPLETE_STEP } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-// import encouragment commponent
-//import reminder component
-
 // import stickers
 import artCross from "../assets/stickers/art-cross.png";
 import eduBrain from "../assets/stickers/edu-brain.png";
@@ -35,6 +32,14 @@ if (Auth.loggedIn() && Auth.getProfile().data.email === useParams) {
 if (loading) {
     return <div>Loading...</div>;
   }
+
+  const handleClickGoal = (e) => {
+    party.confetti(e.target, {
+      count: party.variation.range(20,40)
+    });
+    handleCompleteGoal();
+  };
+
 const handleCompleteGoal = async (goalId) => {
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -51,8 +56,17 @@ const handleCompleteGoal = async (goalId) => {
   } catch (err) {
     console.error(err);
   }
+   };
+
+
+const handleClickSTEP = (e) => {
+  party.confetti(e.target, {
+    count: party.variation.range(20,40)
+  });
+  handleCompleteStep();
 };
-const handleCompleteSTEP = async (goalId) => {
+
+const handleCompleteStep = async (goalId) => {
   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
   if (!token) {
@@ -63,8 +77,6 @@ const handleCompleteSTEP = async (goalId) => {
     await completeStep( {
       variables : {goalId, stepId},
     });
-
-   
   } catch (err) {
     console.error(err);
   }
@@ -122,7 +134,7 @@ const handleCompleteSTEP = async (goalId) => {
                 {goal.step} Step 1
             </li>
         </ul>
-        <button onclick={handleCompleteSTEP} type='click'> Complete Step </button>
+        <button onclick={handleClickSTEP} type='click'> Complete Step </button>
         </div>
         <div>
           <p>
@@ -130,7 +142,7 @@ const handleCompleteSTEP = async (goalId) => {
             You Got this!
           </p>
         </div>
-        <button onclick={handleCompleteGoal}type='click'>Complete Goal</button>
+        <button onclick={handleClickGoal} type='click'>Complete Goal</button>
       </div>
       </div>
     </>
