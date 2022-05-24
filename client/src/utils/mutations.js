@@ -192,7 +192,7 @@ export const COMPLETE_STEP = gql`
 `
 export const DELETE_GOAL = gql`
   mutation DeleteGoal($goalId: ID!) {
-    deleteGoal(goalId: $goalId {
+    deleteGoal(goalId: $goalId) {
       goalText
       type
       completed

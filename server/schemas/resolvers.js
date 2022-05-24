@@ -194,11 +194,7 @@ const resolvers = {
           .populate('steps')
           .populate('encouragements')
           .populate('stickers')
-<<<<<<< HEAD
-      }
-      throw new AuthenticationError('You need to be logged in!')
-    },
-=======
+
         return updatedGoal
       }
       throw new AuthenticationError('You need to be logged in!')
@@ -210,7 +206,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!')
     },
-    deleteStep: async (parent, { goalId, stepId }, context) {
+    deleteStep: async (parent, { goalId, stepId }, context) => {
       if (context.user) {
         const updatedGoal = await Goal.findOneAndUpdate(
           { _id: goalId },
@@ -222,8 +218,8 @@ const resolvers = {
           .populate('stickers')
         return updatedGoal
       }
-    }
->>>>>>> develop
+
+    },
   },
 }
 
