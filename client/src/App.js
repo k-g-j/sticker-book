@@ -48,9 +48,9 @@ function App() {
           <Route exact path="/" element={<Goals/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/dashboard" element={<Dashboard/>} />
-          <Route exact path="/" element={<Goals />} />
           <Route exact path="/feed" element={<Feed/>} />
           <Route exact path="/goal" element={<SingleGoal/>} />
+          <Route exact path="/about" element={<About/>} />
 
         </Routes>
       </Router>
