@@ -83,7 +83,7 @@ const Dashboard = () => {
                 console.log("z-index:", z);
                 console.log("left: ", x);
                 console.log("top: ", y);
-                // console.log("data-goalid: ",$(this).data('goalid'));
+                console.log("data-goalid: ",$(this).data('goalid'));
                 // console.log("data-goal: ",$(this).data('goal'));
                 handleSave(id, x, y, z);
             }
