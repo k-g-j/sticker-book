@@ -87,7 +87,7 @@ export const GIVE_ENCOURAGEMENT = gql`
       goalText
       type
       completed
-      encouragementPoints
+      encouragementCount
       encouragements {
         _id
         points
@@ -114,7 +114,7 @@ export const ADD_STICKER = gql`
       username
       reminder
       completeDate
-      encouragementPoints
+      encouragementCount
       encouragements {
         _id
         points
@@ -148,7 +148,7 @@ export const UPDATE_STICKER = gql`
       username
       reminder
       completeDate
-      encouragementPoints
+      encouragementCount
       encouragements {
         _id
         points

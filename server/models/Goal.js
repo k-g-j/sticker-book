@@ -63,7 +63,7 @@ goalSchema.virtual('stepCount').get(function() {
   return this.steps.length;
 });
 
-goalSchema.virtual('encouragementPoints').get(function () {
+goalSchema.virtual('encouragementCount').get(function () {
   return this.encouragements.length;
 });
 

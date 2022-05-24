@@ -15,7 +15,7 @@ export const QUERY_GOALS = gql`
       reminder
       completeDate
       stepCount
-      encouragementPoints
+      encouragementCount
       stickers
       steps {
         _id
@@ -49,7 +49,7 @@ export const QUERY_GOAL = gql`
       reminder
       completeDate
       stepCount
-      encouragementPoints
+      encouragementCount
       stickers
       steps {
         _id
@@ -91,7 +91,7 @@ export const QUERY_USER = gql`
         reminder
         completeDate
         stepCount
-        encouragementPoints
+        encouragementCount
         stickers
         steps {
           _id
@@ -179,7 +179,7 @@ export const QUERY_ME_BASIC = gql`
         z
         createdAt
         stepCount
-        encouragementPoints
+        encouragementCount
         stickers
       }
     }
