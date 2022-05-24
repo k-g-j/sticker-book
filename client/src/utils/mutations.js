@@ -190,3 +190,30 @@ export const COMPLETE_STEP = gql`
     }
   }
 `
+export const DELETE_GOAL = gql`
+  mutation DeleteGoal($goalId: ID!) {
+    deleteGoal(goalId: $goalId {
+      goalText
+      type
+      completed
+      steps {
+        stepBody
+        completed
+      }
+    }
+  }
+`
+
+export const DELETE_STEP = gql`
+  mutation DeleteStep($goalId: ID!, $stepId: ID!) {
+    deleteStep(goalId: $goalId, stepId: $stepId) {
+      goalText
+      type
+      completed
+      steps {
+        stepBody
+        completed
+      }
+    }
+  }
+`

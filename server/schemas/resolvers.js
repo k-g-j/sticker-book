@@ -194,9 +194,36 @@ const resolvers = {
           .populate('steps')
           .populate('encouragements')
           .populate('stickers')
+<<<<<<< HEAD
       }
       throw new AuthenticationError('You need to be logged in!')
     },
+=======
+        return updatedGoal
+      }
+      throw new AuthenticationError('You need to be logged in!')
+    },
+    deleteGoal: async (parent, { goalId }, context) => {
+      if (context.user) {
+        const deletedGoal = await Goal.findOneAndDelete({ _id: goalId })
+        return deletedGoal
+      }
+      throw new AuthenticationError('You need to be logged in!')
+    },
+    deleteStep: async (parent, { goalId, stepId }, context) {
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId },
+          { $pull: { steps: { _id: stepId } } },
+          { new: true }
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
+        return updatedGoal
+      }
+    }
+>>>>>>> develop
   },
 }
 
