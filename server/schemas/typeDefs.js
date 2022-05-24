@@ -10,6 +10,9 @@ const typeDefs = gql`
     y: Int
     z: Int
     type: String
+    x: Int
+    y: Int
+    z: Int
     completed: Boolean
     createdAt: String
     username: String

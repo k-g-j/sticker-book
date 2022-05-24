@@ -4,10 +4,16 @@ import { useParams } from 'react-router-dom';
 import { QUERY_GOAL } from '../utils/queries';
 import { COMPLETE_GOAL, COMPLETE_STEP } from '../utils/mutations';
 import Auth from '../utils/auth';
-//import stickers from '../assets/stickers'
+
 // import encouragment commponent
 //import reminder component
 
+// import stickers
+import artCross from "../assets/stickers/art-cross.png";
+import eduBrain from "../assets/stickers/edu-brain.png";
+import piggy from "../assets/stickers/finance-piggy.png";
+import mentalHealth from "../assets/stickers/mental-health.png";
+import physHealth from "../assets/stickers/phys-health.png";
 
 //steps, encouragement points, sticker up top,
 const SingleGoal = () => {
@@ -75,6 +81,41 @@ const handleCompleteSTEP = async (goalId) => {
           {goal.type}
            Mental Health
         </h3>
+        <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
+                    <img className="drag" src={eduBrain} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={piggy} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
+                    <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/>
+         {/* Populate stickers based on goal types */}
+         {userData.goals?.map((goal) => {
+                if (goal.type === 'Physical Health') {
+                    return (
+                        <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth}/>
+                    )
+                }
+                if (goal.type === 'Mental Health') {
+                    return (
+                        <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={mentalHealth}/>
+                    )
+                }
+                if (goal.type === 'Financial') {
+                    return (
+                        <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={piggy}/>
+                    )
+                }
+                if (goal.type === 'Educational') {
+                    return (
+                        <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={eduBrain}/>
+                    )
+                }
+                if (goal.type === 'Personal') {
+                    return (
+                        <img className="drag" key={goal.goalId} data-goalid={goal._id}  data-goal={goal.goalText} src={artCross} />
+                    )
+                }
+                return;
+          } )}
+        </div>
         <div>
         <ul>
             <li>
@@ -83,6 +124,7 @@ const handleCompleteSTEP = async (goalId) => {
         </ul>
         <button onclick={handleCompleteSTEP} type='click'> Complete Step </button>
         </div>
+        <div>
           <p>
             {goal.reminder} 
             You Got this!
