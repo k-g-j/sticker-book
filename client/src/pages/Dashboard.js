@@ -112,13 +112,13 @@ const Dashboard = () => {
                 justifyContent: "center",
                 alignItems: "center"
             }}>
-                <h1>
+                <h1 class="font-hand text-lg">
                     Hey {userData.username}! Here's Your Collection!
                 </h1>
                 {Auth.loggedIn() ? (
-                    <h1>Logged in!</h1>
+                    <h1 class="font-hand text-base">Logged in!</h1>
                 ) : (
-                    <h1>Logged out!</h1>
+                    <h1 class="font-hand text-base">Logged out!</h1>
                 )}
                 <div className="container flex flex-col justify-center items-center color-teal-500" 
                 style={{
@@ -195,7 +195,7 @@ const Dashboard = () => {
                     })}
 
                     {!goalLength > 0 &&
-                        <h1>Add some Goals!</h1>
+                        <h1 class="font-brush text-2xl">Add some Goals!</h1>
                     }
 
                     {/* Dragging Dropzone */}
@@ -214,7 +214,7 @@ const Dashboard = () => {
                             transition: "border .2s ease"
                             }}
                         > 
-                        <h3>View This Goal?</h3> 
+                        <h3 class="font-hand text-base">View This Goal?</h3> 
                         </div>
                         :
                         <div className="drop-zone container" 
