@@ -77,17 +77,19 @@ const Dashboard = () => {
             },
             stop: function(event, ui) {
                 setDraggingState(false);
-                let positionInfo = this.style.cssText.split('z-index: ')[1].split(';');
-                let z = parseInt(positionInfo[0].trim());
+                let positionInfo = this.style.cssText.split(';');
+                let z = parseInt(positionInfo[3].split(' z-index: ')[1]);
                 let x = positionInfo[1].split(' left: ')[1];
                 x = parseInt(x, 10);
                 let y = positionInfo[2].split(' top: ')[1];
                 y = parseInt(y, 10);
                 let id = $(this).data('goalid');
+                console.log("cssText: ",this.style.cssText);
+                console.log("positionInfo: ", positionInfo);
                 console.log("z-index:", z);
                 console.log("left: ", x);
                 console.log("top: ", y);
-                console.log("data-goalid: ",$(this).data('goalid'));
+                // console.log("data-goalid: ",$(this).data('goalid'));
                 // console.log("data-goal: ",$(this).data('goal'));
                 handleSave(id, x, y, z);
             }
@@ -143,10 +145,10 @@ const Dashboard = () => {
                     {userData.goals?.map((goal) => {
                         if (goal.type === 'Physical Health') {
                             return (
-                                <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth} style={{
+                                <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} data-x={goal.x} src={physHealth} style={{
                                     position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
+                                    left: `${goal.x}px`,
+                                    top: `${goal.y}px`,
                                     zIndex: `${goal.z}`,
                                 }}/>
                             )
@@ -155,8 +157,8 @@ const Dashboard = () => {
                             return (
                                 <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={mentalHealth} style={{
                                     position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
+                                    left: `${goal.x}px`,
+                                    top: `${goal.y}px`,
                                     zIndex: `${goal.z}`,
                                 }}/>
                             )
@@ -165,8 +167,8 @@ const Dashboard = () => {
                             return (
                                 <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={piggy} style={{
                                     position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
+                                    left: `${goal.x}px`,
+                                    top: `${goal.y}px`,
                                     zIndex: `${goal.z}`,
                                 }}/>
                             )
@@ -175,8 +177,8 @@ const Dashboard = () => {
                             return (
                                 <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={eduBrain} style={{
                                     position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
+                                    left: `${goal.x}px`,
+                                    top: `${goal.y}px`,
                                     zIndex: `${goal.z}`,
                                 }}/>
                             )
@@ -185,8 +187,8 @@ const Dashboard = () => {
                             return (
                                 <img className="drag" key={goal.goalId} data-goalid={goal._id}  data-goal={goal.goalText} src={artCross} style={{
                                     position: "absolute",
-                                    left: `${goal.x}`,
-                                    top: `${goal.y}`,
+                                    left: `${goal.x}px`,
+                                    top: `${goal.y}px`,
                                     zIndex: `${goal.z}`,
                                 }}/>
                             )
