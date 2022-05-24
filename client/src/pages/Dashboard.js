@@ -3,7 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, QUERY_USER, QUERY_GOALS } from "../utils/queries";
 import { UPDATE_STICKER } from "../utils/mutations";
 import Auth from "../utils/auth";
-// import { fortunes } from "../lib/fortunes"
+import Fortunes from "../components/Fortunes";
 
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
@@ -103,6 +103,7 @@ const Dashboard = () => {
 
     return (
         <section>
+            <Fortunes />
             <div style={{
                 display: "flex",
                 flexDirection: "column",
