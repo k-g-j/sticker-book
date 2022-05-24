@@ -39,13 +39,6 @@ const styles = {
 
 function App() {
   return (
-    <About/>
-    //  <Friends/>
-  //  <Goals/>
-  //  <SingleGoal/>
-    // <Home/>
-    // <Dashboard/>
-
     <ApolloProvider client={client}>
       <Router>
         <Nav />
