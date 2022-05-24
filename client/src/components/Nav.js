@@ -8,7 +8,7 @@ function Nav({ currentPage, handlePageChange }) {
     <header className='w-screen'>
       <div className='flex flex-row justify-between w-screen absolute p-5'>
         <Link to="/">
-          <img className="w-10 h-10" src={Star} alt="Sticker Book Star" />
+          <img className="w-12 h-12" src={Star} alt="Sticker Book Star" />
         </Link>
         <ul className='flex flex-row justify-end w-1/2 px-5'>
           <li className='pl-5'>

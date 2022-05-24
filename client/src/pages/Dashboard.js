@@ -69,9 +69,10 @@ const Dashboard = () => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         if (!token) { return false; }
     
+        
         try {
             const {data} = await updateSticker({
-            variables: { goalId: id, newX: x, newY: y, newZ: z }
+                variables: { goalId: id, newX: x, newY: y, newZ: z }
             });
         } catch (err) {
             console.log(err)
@@ -83,12 +84,11 @@ const Dashboard = () => {
         // if (!token) { return false; }
     
         console.log("saved!")
-        // goals.map((goal) => {
-            
-        //     return(
-        //         handleSave(goal)
-        //     )
-        // })
+        goals.map((goal) => {
+            return(
+                handleSave(goal)
+            )
+        })
     }
 
     // call drag and drop functions for the class .drag and the id .drop
