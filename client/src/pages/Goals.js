@@ -54,9 +54,9 @@ if (loading) {
     })
   }
   //edit goal function
-  party.confetti(runButton, {
-    count: party.variation.range(20, 40)
-});
+//   party.confetti(runButton, {
+//     count: party.variation.range(20, 40)
+// });
 
   return (
     <>

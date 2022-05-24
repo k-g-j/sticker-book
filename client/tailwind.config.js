@@ -14,7 +14,7 @@ module.exports = {
     extend: {
       // Wooden Background across all pages except where it says seperately
       backgroundImage: {
-        'hero-pattern': "url('/src/assets/images/woodtexture.jpeg')",
+        'hero': "url('/src/assets/images/woodtexture.jpeg')"
       },
       fontFamily: {
         // Fancy Cursive

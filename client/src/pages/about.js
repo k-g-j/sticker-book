@@ -4,8 +4,14 @@ import React from "react";
 function About() {
 
     return (
-        <section className="my-5" class="display-flex flex-col justify-center items-center hero-pattern">
-            <div class="block relative border-3 border-solid border-gray-900 w-2/3 h-2/3 text-center bg-teal-600 rounded-xl">
+        <section className="my-5" class="flex justify-center items-center 
+        bg-hero
+        ">
+            <div class="
+            flex justify-center items-center text-center
+            border-3 border-solid border-gray-900 
+            w-2/3
+            bg-teal-600 rounded-xl">
                 <h1 id="about" class="font-brush text-3xl font-bold">About Sticker Book</h1>
                 <div className="flex-wrap">
                     {/* <img src={profileImage} class="my-2" style={{ width: "25%" }} alt="cover"  /> */}
