@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useStateg } from 'react';
 import { useQuery } from '@apollo/client'
 import { QUERY_GOALS } from '../utils/queries'
 import Auth from '../utils/auth'
@@ -14,12 +14,6 @@ export default function Feed() {
   const goals = data?.goals || [];
 
   const loggedIn = Auth.loggedIn();
-
-  useEffect(() => {
-    setGoals(goals)
-  }, [goals])
-
-
 
   return (
     <div>
@@ -40,13 +34,6 @@ export default function Feed() {
           {showModal && <Modal id={goal._id} setShowModal={setShowModal} showModal={showModal} message={message} setMessage={setMessage} />}
         </div>
       ))}
-        <input
-                  type="text"
-                  placeholder="friendly message here..."
-                  value={message}
-                  className="h-10 pl-2 color-black"
-                  onChange={(e) => setMessage(e.target.value)}
-                />
     </div>
   )
 }
