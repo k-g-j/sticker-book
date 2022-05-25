@@ -22,12 +22,12 @@ const GoalsList = (props) => {
   const user = data?.me || {}
 
 
-  if (loading) {
-    return <div>Loading...</div>
+if (loading) {
+    return <div class="font-brush text-2xl"> Loading...</div>;
   }
   if (!user?.email) {
     return (
-      <h4>
+      <h4 class="font-hand text-lg">
         You need to be logged in to see this. Use the navigation links above to
         sign up or log in!
       </h4>
@@ -62,9 +62,9 @@ const GoalsList = (props) => {
   return (
     <>
       <form onSubmit={handleFormSubmit}>
-        <div className="">
+        <div className="" class="font-hand text-xl">
           <label htmlFor="goalText">Goal:</label>
-          <input
+          <input class="font-hand text-base"
             placeholder="Type your goal here"
             name="goalText"
             type="goalText"
@@ -72,9 +72,9 @@ const GoalsList = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div className="">
+        <div className="" class="font-hand text-xl">
           <label htmlFor="type">Goal Type:</label>
-          <input
+          <input class="font-hand text-base"
             placeholder="Choose a goal type"
             name="type"
             type="type"
@@ -82,7 +82,7 @@ const GoalsList = (props) => {
             onChange={handleChange}
           />
            </div>
-           <button className="btn d-block w-100" type="submit">
+           <button className="btn d-block w-100" type="submit" class="font-brush text-xl">
              Submit
           </button>
         </form>
