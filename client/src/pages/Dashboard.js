@@ -153,7 +153,7 @@ const Dashboard = () => {
                     backgroundImage: `url(${woodBg})`,
                 }}
             >
-                <h1 className="m-5 text-3xl font-semibold text-blue-500">
+                <h1 className="m-5 text-3xl font-bold font-brush">
                     Hey {userData.username}! Here's Your Collection!
                 </h1>
 
