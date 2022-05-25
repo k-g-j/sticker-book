@@ -61,7 +61,7 @@ const typeDefs = gql`
     addStep(goalId: ID!, stepBody: String!): Goal
     addSticker(goalId: ID!, imageUrl: String!): Goal
     updateSticker(goalId: ID!, newX: Int!, newY: Int!, newZ: Int!): Goal
-    giveEncouragement(goalId: ID!, points: Int!): Goal
+    giveEncouragement(goalId: ID!, points: Int!, message: String): Goal
     addFriend(friendId: ID!): User
     completeGoal(goalId: ID!): Goal
     completeStep(goalId: ID!, stepId: ID!): Goal
