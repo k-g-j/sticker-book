@@ -94,7 +94,7 @@ const handleClickStep = (e) => {
 // };
   return (
     <>
-      <div className="card mb-3">
+      <div className="card mb-3 nav-padding">
         <div className="card-header">
           <h1 className="text-teal-500">
        <ul> 
