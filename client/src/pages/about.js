@@ -5,7 +5,7 @@ import woodBg from '../assets/images/woodtexture.jpeg'
 function About() {
 
     return (
-        <section className="my-5" class="flex justify-center items-center"
+        <section className="my-5" class="flex justify-center items-center pt-10"
             style={{
             backgroundImage: `url(${woodBg})`,
             width: '100vw',
@@ -16,7 +16,7 @@ function About() {
       }}>
             <div class="
             flex justify-center items-center text-center
-            border-3 border-solid border-gray-900 
+            border-8 border-solid border-gray-900 
             w-2/3
             bg-teal-600 rounded-xl">
                 <h1 id="about" class="font-brush text-3xl font-bold">About Sticker Book</h1>
