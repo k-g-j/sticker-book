@@ -33,7 +33,7 @@ if (Auth.loggedIn() && Auth.getProfile().data.email === useParams) {
   }
   
 if (loading) {
-    return <div>Loading...</div>;
+    return <div class="font-brush">Loading...</div>;
   }
 const handleCompleteGoal = async (goalId) => {
   const token = Auth.loggedIn() ? Auth.getToken() : null;

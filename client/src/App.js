@@ -7,8 +7,10 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
+import Home from './pages/HomePage'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import About from './pages/about'
 import Goals from './pages/Goals'
 import Feed from './pages/Feed';
 import SingleGoal from './pages/SingleGoal'
@@ -46,14 +48,13 @@ function App() {
           <Route exact path="/" element={<Goals/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/dashboard" element={<Dashboard/>} />
-          <Route exact path="/" element={<Goals />} />
           <Route exact path="/feed" element={<Feed/>} />
           <Route exact path="/goal" element={<SingleGoal/>} />
+          <Route exact path="/about" element={<About/>} />
 
         </Routes>
       </Router>
     </ApolloProvider>
-    
   );
 }
 
