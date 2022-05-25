@@ -19,7 +19,7 @@ const SingleGoal = () => {
   
   const { loading, data } = useQuery( QUERY_GOAL, {
     variables: { goalId },
-});
+  });
   const [completeGoal] = useMutation(COMPLETE_GOAL);
   const [completeStep] = useMutation(COMPLETE_STEP);
 
@@ -41,7 +41,6 @@ if (loading) {
  const mutationResponse = completeGoal({
   variables: { goalId }
   })
-  console.log(goalId)
 };
 
 // const handleCompleteGoal = async (goalId) => {
@@ -109,8 +108,8 @@ const handleClickStep = (e) => {
                     <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/> */}
          {/* Populate stickers based on goal types */}
-         {/* {user.goals.type ((goal) => 
-                if (goal.type === 'Physical Health') {
+         {/* {data.map((goal) => 
+                if (data.type === 'Physical Health') {
                     return (
                         <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth}/>
                     )
