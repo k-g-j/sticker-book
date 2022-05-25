@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from "../utils/queries";
 import { UPDATE_STICKER } from "../utils/mutations";
+import Draggable from 'react-draggable';
 
 import Auth from "../utils/auth";
 // import { fortunes } from "../lib/fortunes"
@@ -10,6 +11,7 @@ import Auth from "../utils/auth";
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
+// import "jquery-ui-touch-punch";
 
 import woodBg from "../assets/images/woodtexture.jpeg"
 import page from '../assets/images/page.png'
@@ -172,7 +174,11 @@ const Dashboard = () => {
                     {/* Populate stickers based on goal types */}
                     {userData.goals?.map((goal) => {
                         return (
-                            populateStickers(goal)
+                            <Draggable
+                                bounds="parent"
+                            >
+                                {populateStickers(goal)}
+                            </Draggable>
                         )
                     })}
 
