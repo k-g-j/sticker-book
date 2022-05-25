@@ -19,7 +19,7 @@ const SingleGoal = () => {
   
   const { loading, data } = useQuery( QUERY_GOAL, {
     variables: { goalId },
-});
+  });
   const [completeGoal] = useMutation(COMPLETE_GOAL);
   const [completeStep] = useMutation(COMPLETE_STEP);
 
@@ -41,7 +41,6 @@ if (loading) {
  const mutationResponse = completeGoal({
   variables: { goalId }
   })
-  console.log(goalId)
 };
 
 //Party JS click event
@@ -61,11 +60,11 @@ const handleClickStep = (e) => {
 
   return (
     <>
-      <div className="card mb-3">
+      <div className="card mb-3 nav-padding">
         <div className="card-header">
           <h1 className="text-teal-500">
        <ul> 
-         {user.goals}
+         {data.goal}
 
          </ul>
               </h1>
@@ -76,35 +75,33 @@ const handleClickStep = (e) => {
                     <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/> */}
          {/* Populate stickers based on goal types */}
-      
                 if (data.type === 'Physical Health') {
-                    return (
+                     (
                         <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth}/>
                     )
                 }
                 if (data.type === 'Mental Health') {
-                    return (
+                     (
                         <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={mentalHealth}/>
                     )
                 }
                 if (data.type === 'Financial') {
-                    return (
+                     (
                         <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={piggy}/>
                     )
                 }
-                if (goal.type === 'Educational') {
-                    return (
+                if (data.type === 'Educational') {
+                     (
                         <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={eduBrain}/>
                     )
                 }
-                if (goal.type === 'Personal') {
+                if (data.type === 'Personal') {
                      (
                         <img className="drag" key={goal.goalId} data-goalid={goal._id}  data-goal={goal.goalText} src={artCross} />
                     )
                 }
-                return; 
-        
-        <div>
+               
+           <div>
         <ul>
             <li>
                 {data.steps}

@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 
 
-function GoalList({ props }) {
+function GoalList({ goals }) {
  
   return (
     <div>
        <ul >
-         {props.goals.map((goal) => {
+         {goals.map((goal) => {
             return (
         <li>
-            <Link to={`/goal/${goal.goalId}` }>
+            <Link to={`/goal/${goal._id}` }>
             <h1>{goal.goalText}</h1> 
              </Link>
              <h3> {goal.type} </h3> <br /> 
