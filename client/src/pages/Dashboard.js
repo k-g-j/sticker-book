@@ -64,7 +64,7 @@ const Dashboard = () => {
                 justifyContent: "center",
                 alignItems: "center"
             }}>
-                <h1 class="font-brush text-3xl py-9">
+                <h1 class="font-brush text-3xl pt-14 py-6 font-bold">
                     {/* {{user.name}} */}
                     Your Collection!
                 </h1>
@@ -100,7 +100,7 @@ const Dashboard = () => {
                             transition: "border .2s ease"
                             }}
                         > 
-                        <h3>View This Goal?</h3> 
+                        <h3 class="font-hand text-xl pt-9">View This Goal?</h3> 
                         </div>
                         :
                         <div className="drop-zone container" 
