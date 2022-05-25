@@ -130,18 +130,15 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!')
     },
-    giveEncouragement: async (
-      parent,
-      { goalId, encouragementBody },
-      context,
-    ) => {
+    giveEncouragement: async (parent, { goalId, points, message }, context) => {
       if (context.user) {
         const updatedGoal = await Goal.findOneAndUpdate(
           { _id: goalId },
           {
             $push: {
               encouragements: {
-                encouragementBody,
+                points,
+                message,
                 username: context.user.username,
               },
             },
@@ -212,14 +209,13 @@ const resolvers = {
         const updatedGoal = await Goal.findOneAndUpdate(
           { _id: goalId },
           { $pull: { steps: { _id: stepId } } },
-          { new: true }
+          { new: true },
         )
           .populate('steps')
           .populate('encouragements')
           .populate('stickers')
         return updatedGoal
       }
-
     },
   },
 }

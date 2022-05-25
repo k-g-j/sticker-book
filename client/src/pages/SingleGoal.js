@@ -67,13 +67,12 @@ const handleClickStep = (e) => {
   party.sparkles(e.target, {
     count: party.variation.range(20,40)
   })
-  try {
-        await completeStep( {
+  completeStep( {
           variables : {goalId, stepId},
         });
-      } catch (err) {
-        console.error(err);
-      }
+      // } catch (err) {
+      //   console.error(err);
+      
     console.log(stepId)
   // handleCompleteStep();
 };
@@ -103,14 +102,14 @@ const handleClickStep = (e) => {
 
          </ul>
               </h1>
-    <div className="card-body">
+    {/* <div className="card-body">
         {/* <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
                     <img className="drag" src={eduBrain} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={piggy} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/> */}
          {/* Populate stickers based on goal types */}
-         {user.goals?.map((goal) => {
+         {/* {user.goals.type ((goal) => 
                 if (goal.type === 'Physical Health') {
                     return (
                         <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth}/>
@@ -136,9 +135,8 @@ const handleClickStep = (e) => {
                         <img className="drag" key={goal.goalId} data-goalid={goal._id}  data-goal={goal.goalText} src={artCross} />
                     )
                 }
-                return;
-          } )}
-        </div>
+                return; */}
+        
         <div>
         <ul>
             <li>

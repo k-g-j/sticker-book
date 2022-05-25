@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
-import { useQuery, useMutation } from '@apollo/client'
-import { ADD_GOAL } from '../utils/mutations'
-import Navigate from '/react-router-dom'
+import React, { useState } from 'react';
+import { QUERY_ME, QUERY_GOALS } from '../utils/queries';
+import { useQuery, useMutation } from '@apollo/client';
+import { ADD_GOAL } from '../utils/mutations';
+import { Navigate } from 'react-router-dom';
+
 import Auth from '../utils/auth'
 import GoalList from '../components/GoalList'
 
@@ -45,11 +46,12 @@ const GoalsList = (props) => {
     })
   }
 
-  if(!Auth.loggedIn(); )
-
+  if (!Auth.loggedIn()) {
+    return <Navigate to="/login" replace={true}/>
+}
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
+      <form  className="p-20 " onSubmit={handleFormSubmit}>
         <div className="">
           <label htmlFor="goalText">Goal:</label>
           <input
