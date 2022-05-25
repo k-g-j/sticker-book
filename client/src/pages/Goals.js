@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QUERY_ME, QUERY_GOALS } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_GOAL } from '../utils/mutations';
@@ -17,24 +17,34 @@ const GoalsList = (props) => {
   const [addGoal] = useMutation(ADD_GOAL)
 
   const { loading, data } = useQuery(QUERY_ME)
-
+  const [allGoalsState, setAllGoalsState] = setState([])
   const user = data?.me || {}
+//pass the state through the goallist as a prop through when a new 
+//goal is added then we will have to update the state with that new goal
 
-  if (loading) {
+  useEffect(() => {
+    setGoals(user.goals);
+    console.log(goals);
+}, [user]);
+
+    if (loading) {
     return <div>Loading...</div>
   }  
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    const mutationResponse = await addGoal({
+    const mutationResponse = addGoal({
+      
       variables: {
         goalText: formState.goalText,
         type: formState.type,
         steps: formState.stepBody,
       },
     })
-    const token = mutationResponse.data.addGoal.token
-    Auth.login(token)
+    .then(() =>{
+
+    })
+    
   }
 
   const handleChange = (event) => {

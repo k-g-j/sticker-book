@@ -4,18 +4,12 @@ import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client'
 
 
-
-
-function GoalList({ goal }) {
-  const { data } = useQuery(QUERY_ME)
- const user = data?.me || {}
-
+function GoalList({ props }) {
  
-
   return (
     <div>
        <ul >
-         {user.goals?.map((goal) => {
+         {props.goals.map((goal) => {
             return (
         <li>
             <Link to={`/goal/${goal.goalId}` }>
