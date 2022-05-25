@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
-import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
-import { useParams, Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client'
+
+import { Link } from 'react-router-dom';
+
 
 
 function GoalList({ props }) {

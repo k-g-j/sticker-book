@@ -44,24 +44,6 @@ if (loading) {
   console.log(goalId)
 };
 
-// const handleCompleteGoal = async (goalId) => {
-//   const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-//   if (!token) {
-//     return false;
-//   }
-
-//   try {
-//     await completeGoal( {
-//       variables : {goalId},
-//     });
-
-   
-//   } catch (err) {
-//     console.error(err);
-//   }
-//    };
-
 //Party JS click event
 const handleClickStep = (e) => {
   party.sparkles(e.target, {
@@ -74,24 +56,9 @@ const handleClickStep = (e) => {
       //   console.error(err);
       
     console.log(stepId)
-  // handleCompleteStep();
+  
 };
 
-// const handleCompleteStep = async (goalId) => {
-//   const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-//   if (!token) {
-//     return false;
-//   }
-
-//   try {
-//     await completeStep( {
-//       variables : {goalId, stepId},
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
   return (
     <>
       <div className="card mb-3">
@@ -102,25 +69,25 @@ const handleClickStep = (e) => {
 
          </ul>
               </h1>
-    {/* <div className="card-body">
-        {/* <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
+     <div className="card-body">
+       <img className="drag" src={artCross} style={{position: "absolute"}} alt=''/>
                     <img className="drag" src={eduBrain} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={piggy} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={mentalHealth} style={{position: "absolute"}}alt=''/>
                     <img className="drag" src={physHealth} style={{position: "absolute"}}alt=''/> */}
          {/* Populate stickers based on goal types */}
-         {/* {user.goals.type ((goal) => 
-                if (goal.type === 'Physical Health') {
+      
+                if (data.type === 'Physical Health') {
                     return (
                         <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={physHealth}/>
                     )
                 }
-                if (goal.type === 'Mental Health') {
+                if (data.type === 'Mental Health') {
                     return (
                         <img className="drag" key={goal._id} data-goalid={goal._id} data-goal={goal.goalText} src={mentalHealth}/>
                     )
                 }
-                if (goal.type === 'Financial') {
+                if (data.type === 'Financial') {
                     return (
                         <img className="drag" key={goal._id} data-goalid={goal._id}  data-goal={goal.goalText} src={piggy}/>
                     )
@@ -131,16 +98,16 @@ const handleClickStep = (e) => {
                     )
                 }
                 if (goal.type === 'Personal') {
-                    return (
+                     (
                         <img className="drag" key={goal.goalId} data-goalid={goal._id}  data-goal={goal.goalText} src={artCross} />
                     )
                 }
-                return; */}
+                return; 
         
         <div>
         <ul>
             <li>
-                {user.goals?.steps}
+                {data.steps}
             </li>
         </ul>
         <button className='btn' onClick={(e) => {
