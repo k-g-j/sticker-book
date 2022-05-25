@@ -1,4 +1,4 @@
-import { useStateg } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@apollo/client'
 import { QUERY_GOALS } from '../utils/queries'
 import Auth from '../utils/auth'
@@ -9,7 +9,6 @@ export default function Feed() {
   const [message, setMessage] = useState('');
 
   const [showModal, setShowModal] = useState(false);
-  const [goalsList, setGoals] = useState([]);
   
   const goals = data?.goals || [];
 
@@ -17,7 +16,7 @@ export default function Feed() {
 
   return (
     <div>
-      {goalsList.map((goal, i) => (
+      {goals.map((goal, i) => (
         <div key={i} className="flex ml-4 mb-3 flex-col">
           <h2>{goal.goalText}</h2>
           {!goal.completed ? 
@@ -28,6 +27,7 @@ export default function Feed() {
           {goal.encouragements.map((encouragement, i) => (
             <div key={i}>
               <p>{encouragement.message}</p>
+              <p>From: {encouragement.username}</p>
           </div>
           ))}
           <span>{goal.encouragementCount}{loggedIn && <button className="ml-2" onClick={() => setShowModal(true)}>Give Encouragement!</button>}</span>

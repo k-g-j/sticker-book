@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
-import { GIVE_ENCOURAGEMENT } from '../utils/mutations';
+import { GIVE_ENCOURAGEMENT } from '../utils/mutations'
+import { QUERY_GOALS, QUERY_ME } from '../utils/queries'
 
 export default function Modal({ id, setShowModal, showModal, message, setMessage }) {
   
   const [giveEncouragement, { error }] = useMutation(GIVE_ENCOURAGEMENT)
-  
   
   const handleClick = async (id) => {
     try {
