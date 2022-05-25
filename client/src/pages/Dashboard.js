@@ -64,7 +64,7 @@ const Dashboard = () => {
                 justifyContent: "center",
                 alignItems: "center"
             }}>
-                <h1>
+                <h1 class="font-brush text-3xl py-9">
                     {/* {{user.name}} */}
                     Your Collection!
                 </h1>

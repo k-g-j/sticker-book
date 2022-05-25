@@ -29,7 +29,7 @@ export default function Feed() {
         <div key={i} className="flex ml-4 mb-3 flex-col">
           <h2>{goal.goalText}</h2>
           {!goal.completed ? 
-            <p>Work in progress!</p>
+            <p className="font-hand">Work in progress!</p>
             : <p>All done 🌟</p>
           }
           <p>{goal.username}</p>
