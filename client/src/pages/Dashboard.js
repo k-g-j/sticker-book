@@ -81,6 +81,10 @@ const Dashboard = () => {
         }
     }
 
+    const handleDragStart = (event) => {
+        
+    }
+
     const handleSaveBtn = (event) => {
         // const token = Auth.loggedIn() ? Auth.getToken() : null;
         // if (!token) { return false; }
@@ -161,12 +165,7 @@ const Dashboard = () => {
 
                 <div className="page color-teal-500" 
                 style={{
-                    position: "relative",
-                    width: "550px",
-                    height: "657px",
                     backgroundImage: `url(${page})`,
-                    backgroundPosition: "center",
-                    padding: "0px 30px 0px 60px",
                 }}>
                     {loading &&
                         <h1>Loading...</h1>
