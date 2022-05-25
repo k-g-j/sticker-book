@@ -60,7 +60,7 @@ const GoalsList = (props) => {
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
+      <form className="nav-padding" onSubmit={handleFormSubmit}>
         <div className="">
           <label htmlFor="goalText">Goal:</label>
           <input
