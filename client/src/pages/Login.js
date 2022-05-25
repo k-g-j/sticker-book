@@ -94,7 +94,7 @@ const Login = () => {
       <img className="notebook-img drop-shadow-xl cursor-pointer" src={noteBook} onClick={handleClick} />
       <section>
         <div className="container" class="text-hand">
-          <h2>Login:</h2>
+          <h2 class="font-brush text-xl">Login:</h2>
           <form className="flex flex-col" onSubmit={handleLoginSubmit}>
             <input
               className="form-input"
@@ -116,14 +116,14 @@ const Login = () => {
               value={loginState.password}
               onChange={handleLoginChange}
             />
-            <button className="btn d-block w-100" class="font-brush text-xl" type="submit">
+            <button className="btn d-block w-100" class="font-hand text-base" type="submit">
               Submit
             </button>
           </form>
-          {loginError && <div>Login failed</div>}
+          {loginError && <div class="font-hand text-base">Login failed</div>}
         </div>
-        <div className="container">
-          <h2>Sign Up:</h2>
+        <div className="container" class="pt-10">
+          <h2 class="font-brush text-xl">Sign Up:</h2>
           <form className="flex flex-col" onSubmit={handleSignupSubmit}>
             <input
               className="form-input"
@@ -155,11 +155,11 @@ const Login = () => {
               value={signupState.password}
               onChange={handleSignupChange}
             />
-            <button className="btn d-block w-100" type="submit">
+            <button className="btn d-block w-100" type="submit" class="font-hand text-base">
               Submit
             </button>
           </form>
-          {signupError && <div>Sign Up failed</div>}
+          {signupError && <div class="font-hand text-base">Sign Up failed</div>}
         </div>
       </section>
     </div>
