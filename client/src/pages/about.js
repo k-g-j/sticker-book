@@ -16,7 +16,7 @@ function About() {
       }}>
             <div class="
             flex justify-center items-center text-center
-            border-8 border-solid border-gray-900 
+            border-8 border-solid border-white-900 
             w-2/3
             bg-teal-600 rounded-xl">
                 <h1 id="about" class="font-brush text-3xl font-bold pr-6">About Sticker Book</h1>
