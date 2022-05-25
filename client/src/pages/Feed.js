@@ -26,6 +26,7 @@ export default function Feed() {
   return (
     <div class="p-12">
       {goals.map((goal, i) => (
+        <div class="p-8">
         <div key={i} className="flex ml-4 mb-3 flex-col" class="border-8 border-solid rounded-lg p-5">
           <h2 class="font-hand text-xl font-bold bg-white p-4 rounded-lg text-center">{goal.goalText}</h2>
           {!goal.completed ? 
@@ -34,6 +35,7 @@ export default function Feed() {
           }
           <p class="font-brush text-base font-medium">{goal.username}</p>
           <span class="font-hand font-bold text-xl">{goal.encouragementCount}{loggedIn && <button className="ml-2" class="text-base hover:text-lg hover:font-bold" onClick={() => handleClick(goal._id)}>Give Encouragement!</button>}</span>
+        </div>
         </div>
       ))}
     </div>
