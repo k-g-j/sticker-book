@@ -116,7 +116,7 @@ const Login = () => {
               value={loginState.password}
               onChange={handleLoginChange}
             />
-            <button className="btn d-block w-100" class="font-hand text-base" type="submit">
+            <button className="btn d-block w-100" class="font-hand text-base hover:bg-blue-600 rounded-xl" type="submit">
               Submit
             </button>
           </form>
@@ -155,7 +155,7 @@ const Login = () => {
               value={signupState.password}
               onChange={handleSignupChange}
             />
-            <button className="btn d-block w-100" type="submit" class="font-hand text-base">
+            <button className="btn d-block w-100" type="submit" class="font-hand text-base hover:bg-blue-600 rounded-xl">
               Submit
             </button>
           </form>
