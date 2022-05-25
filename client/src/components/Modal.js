@@ -3,7 +3,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import { GIVE_ENCOURAGEMENT } from '../utils/mutations'
 import { QUERY_GOALS, QUERY_ME } from '../utils/queries'
 
-export default function Modal({ id, setShowModal, showModal, message, setMessage }) {
+export default function Modal({ goal, setShowModal, showModal, message, setMessage }) {
   
   const [giveEncouragement, { error }] = useMutation(GIVE_ENCOURAGEMENT)
   
@@ -13,6 +13,7 @@ export default function Modal({ id, setShowModal, showModal, message, setMessage
         variables: { goalId: id, message, points: 1 },
       })
       setShowModal(false)
+      setMessage('');
     } catch (e) {
       console.error(e)
     }
@@ -37,7 +38,8 @@ export default function Modal({ id, setShowModal, showModal, message, setMessage
                       ×
                     </span>
                   </button>
-                </div>
+              </div>
+              <h3 className="p-5">{goal.goalText}</h3>
               <div className="relative p-4 flex flex-col justify-center">
                 <input
                   type="text"
@@ -59,7 +61,7 @@ export default function Modal({ id, setShowModal, showModal, message, setMessage
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => handleClick(id)}
+                    onClick={() => handleClick(goal._id)}
                   >
                     Give encouragement! 
                   </button>
