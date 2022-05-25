@@ -18,7 +18,7 @@ const Login = () => {
 
   // set login and signup mutations
   const [login, { loginError }] = useMutation(LOGIN_USER)
-  const [signup, { signupError }] = useMutation(ADD_USER)
+  const [addUser, { signupError }] = useMutation(ADD_USER)
 
   // Update login state when the form changes
   const handleLoginChange = (event) => {
@@ -63,11 +63,11 @@ const Login = () => {
   const handleSignupSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await signup({
+      const { data } = await addUser({
         variables: { ...signupState },
       })
 
-      Auth.login(data.signup.token)
+      Auth.login(data.addUser.token)
     } catch (e) {
       console.error(e)
     }
