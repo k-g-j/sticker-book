@@ -86,7 +86,7 @@ const Login = () => {
 
   return (
     <div
-    className="flex flex-row justify-center items-center w-screen h-screen bg-cover -center m-0"
+    className=" login flex flex-row justify-center items-center w-screen h-screen bg-cover -center m-0"
     style={{
         backgroundImage: `url(${woodBg})`,
     }}

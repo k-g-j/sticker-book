@@ -41,17 +41,17 @@ const styles = {
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <Router
+      basename='/'
+      >
         <Nav />
         <Routes>
-          <Route exact path="/" element={<Goals/>} />
+          <Route exact path="/" element={<Feed/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/dashboard" element={<Dashboard/>} />
+          <Route exact path="/about" element={<About/>} />
           <Route exact path="/goals" element={<Goals/>} />
           <Route exact path='/goal/:id' element= {<SingleGoal/>} />
-          <Route exact path="/feed" element={<Feed/>} />
-          <Route exact path="/about" element={<About/>} />
-
         </Routes>
       </Router>
     </ApolloProvider>

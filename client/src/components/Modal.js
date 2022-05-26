@@ -3,25 +3,29 @@ import { useQuery, useMutation } from '@apollo/client'
 import { GIVE_ENCOURAGEMENT } from '../utils/mutations'
 import { QUERY_GOALS, QUERY_ME } from '../utils/queries'
 import party from 'party-js';
-import hands from "../assets/images/handsclapping.png";
+import { idbPromise } from '../utils/idb'
 
-export default function Modal({ goal, setShowModal, showModal, message, setMessage }) {
-  
+
+export default function Modal({
+  goal,
+  setShowModal,
+  showModal,
+  message,
+  setMessage,
+}) {
   const [giveEncouragement, { error }] = useMutation(GIVE_ENCOURAGEMENT)
-
-  party.resolvableShapes["hands"] = `<img src="${hands}"/>`;
 
   const handleClick = async (id, e) => {
     party.confetti(e.target, {
-      shapes: ["hands"],
-    speed: party.variation.range(60,80)
+      count: party.variation.range(70, 40),
     })
     try {
       await giveEncouragement({
         variables: { goalId: id, message, points: 1 },
       })
       setShowModal(false)
-      setMessage('');
+      setMessage('')
+      idbPromise('goals', 'put', { ...goal, encouragements: { message, points: 1} })
     } catch (error) {
       console.error(error)
     }
@@ -31,13 +35,13 @@ export default function Modal({ goal, setShowModal, showModal, message, setMessa
 
   return (
     <>
-      {showModal &&
+      {showModal && (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">
+                  <h3 className="text-3xl pl-5 font-hand text-center font-semibold">
                     Encourage others! 😸
                   </h3>
                   <button
@@ -48,40 +52,39 @@ export default function Modal({ goal, setShowModal, showModal, message, setMessa
                       ×
                     </span>
                   </button>
-              </div>
-              <h3 className="p-5">{goal.goalText}</h3>
-              <div className="relative p-4 flex flex-col justify-center">
-                <input
-                  type="text"
-                  placeholder="friendly message here..."
-                  value={message}
-                  className="h-10 pl-2 color-black"
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-                
+                </div>
+                <h3 className="p-5 font-hand text-center text-xl">{goal.goalText}</h3>
+                <div className="relative p-4 flex flex-col justify-center">
+                  <input
+                    type="text"
+                    placeholder="friendly message here..."
+                    value={message}
+                    className="h-10 pl-2 color-black font-hand text-lg"
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="text-red-500 font-hand text-base background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
                     Close
                   </button>
                   <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="bg-teal-500 font-hand text-base text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={(e) => handleClick(goal._id, e)}
                   >
-                    Give encouragement! 
+                    Give encouragement!
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="fixed inset-0 z-40 bg-black"></div>
+          <div className="fixed inset-0 z-40 bg-black/50"></div>
         </>
-      }
+      )}
     </>
   )
 }
