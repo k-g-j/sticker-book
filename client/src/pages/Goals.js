@@ -61,7 +61,7 @@ if (loading) {
 
   return (
     <>
-      <form onSubmit={handleFormSubmit} class="object-center text-left p-20">
+      <form onSubmit={handleFormSubmit} class="object-center text-left flex items-center justify-center pt-40">
         <div className="" class="font-hand text-xl">
           <label htmlFor="goalText">Goal:</label>
           <input class="font-hand text-base"
