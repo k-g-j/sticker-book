@@ -16,7 +16,7 @@ import SingleGoal from './pages/SingleGoal'
 import Nav from './components/Nav';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'graphql',
 })
 
 const authLink = setContext((_, { headers }) => {
