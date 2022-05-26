@@ -1,10 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Star from '../assets/stickers/goldstar.png';
+import Auth from "../utils/auth";
 
 //We're extracting the key value pairs from props by giving the href it's current page value
 function Nav({ currentPage, handlePageChange }) {
 
+  const loggedIn = Auth.loggedIn();
+
+  const location = useLocation();
+  
+  if (location.pathname === '/login') {
+    return (
+      <div className='flex flex-row justify-start w-screen absolute p-5'>
+        <Link to="/">
+          <img className="w-12 h-12" src={Star} alt="Sticker Book Star" />
+        </Link>
+      </div>
+    )
+    
+  }
 
   return (
     <header className='w-screen pb-10'>
@@ -34,24 +49,31 @@ function Nav({ currentPage, handlePageChange }) {
             About
           </Link>
         </li>
-        <li className='pl-5'>
-          <Link
-            to="/goals"
-          className={currentPage === 'Add' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold hover:text-teal-600"
-          >
-            Goals
-          </Link>
-        </li>
-        <li className='pl-5'>
-          <Link
-            to="/dashboard"
-            // Determine whether the Contact nav link is active or not
-            // onClick={() => handlePageChange('Dashboard')}
-            className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold text-center hover:text-teal-600"
-          >     
-           Stickers
+        {loggedIn && 
+            <li className='pl-5'>
+            <Link
+              to="/dashboard"
+              // onClick={() => handlePageChange('Dashboard')}
+              className={`${currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} font-hand text-lg hover:font-bold`}
+            >     
+              Stickers
             </Link>
           </li>
+          }
+          {loggedIn && 
+            <li className='pl-5'>
+              <Link to="/goals" className={`${currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} font-hand text-lg hover:font-bold`}>
+                Goals
+              </Link>
+            </li>
+          }
+          {!loggedIn && 
+            <li className='pl-5'>
+            <Link to="/login" className={"font-hand text-lg hover:font-bold"}>
+              Login
+            </Link>
+          </li>
+          }
          </ul>
       </div>
     </header>
