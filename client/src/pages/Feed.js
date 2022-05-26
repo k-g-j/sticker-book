@@ -21,16 +21,16 @@ export default function Feed() {
   }
 
   return (
-    <div>
+    <div class="p-10">
       {goals.map((goal, i) => (
         <div key={i} className="flex ml-4 mb-3 flex-col border-8 border-solid rounded-lg p-5">
           <h2 className="font-hand text-xl font-bold bg-white p-4 rounded-lg text-center">{goal.goalText}</h2>
           {!goal.completed ? <p className="font-hand text-base text-center p-3 bg-gray-200/50 rounded-lg">Status: Work in progress!</p> : <p>Status: All done 🌟</p>}
-          <p className="font-hand text-base text-center p-3 bg-gray-200/50 rounded-lg">{goal.username}</p>
+          <p className="font-brush text-lg text-center p-3 bg-gray-200/20 rounded-lg">{goal.username}</p>
           {goal.encouragements.map((encouragement, i) => (
             <div key={i}>
-              <p className="font-hand text-base text-center p-3">{encouragement.message}</p>
-              <p className="font-brush text-base text-lg font-bold text-center p-2">From: {encouragement.username}</p>
+              <p className="font-hand text-base text-center bg-gray-200/10 rounded-lg p-2">{encouragement.message}</p>
+              <p className="font-hand text-base text-xs font-bold text-center">From: {encouragement.username}</p>
             </div>
           ))}
           <div>
