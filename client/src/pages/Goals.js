@@ -65,7 +65,7 @@ if (loading) {
         {/* Master Goals Box */}
         <div className="border-solid p-5 border-white border-8 rounded-lg flex justify-center items-center">
         {/* Goal */}
-        <div className="" class="font-hand text-xl">
+        <div className="font-hand text-xl text-center">
           <label htmlFor="goalText" className="p-5">Goal:</label>
           <input className="font-hand p-2 rounded-lg text-base text-center"
             placeholder="Type your goal here"
@@ -76,7 +76,7 @@ if (loading) {
           />
         </div>
         {/* Goal Type */}
-        <div className="" class="font-hand text-xl">
+        <div className="font-hand text-xl text-center">
           <label htmlFor="type" className="p-5">Goal Type:</label>
           <input class="font-hand text-base p-2 rounded-lg text-center"
             placeholder="Choose a goal type"
@@ -88,7 +88,7 @@ if (loading) {
           {/* Submit Button */}
            </div>
            <button className="btn d-block w-100" type="submit" 
-           class="font-brush text-xl hover:bg-teal-200/50 hover:rounded-lg p-2">
+           class="font-brush text-xl hover:bg-teal-200/50 hover:rounded-lg p-4 text-center">
              Submit
           </button>
           </div>
