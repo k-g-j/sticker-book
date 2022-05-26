@@ -30,7 +30,7 @@ export default function Feed() {
           {goal.encouragements.map((encouragement, i) => (
             <div key={i}>
               <p className="font-hand text-base text-center p-3">{encouragement.message}</p>
-              <p className="font-brush text-base text-lg font-bold text-center p-2">From: {encouragement.username}</p>
+              <p className="font-hand text-base text-center p-2">From: {encouragement.username}</p>
             </div>
           ))}
           <div>
