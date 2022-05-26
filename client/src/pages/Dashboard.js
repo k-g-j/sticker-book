@@ -22,7 +22,7 @@ import physHealth from "../assets/stickers/phys-health.png";
 
 const Dashboard = () => {
 
-    let smallWidth = false;
+    
     const { loading, data } = useQuery(QUERY_ME);
     const [updateSticker] = useMutation(UPDATE_STICKER);
     // set goals array as State
@@ -34,6 +34,9 @@ const Dashboard = () => {
 
     // set stickers array based on goals array types, if undefined, set to 0.
     const goalLength = userData.goals?.length || 0;
+
+    let smallWidth = false;
+    const [currentId, setCurrentId] = useState('');
 
     // populate goals array in State
     useEffect(() => {
@@ -115,7 +118,8 @@ const Dashboard = () => {
             stack: ".drag",
             start: function(event, ui) {
                 setDraggingState(true);
-                
+                let id = $(this).data('goalid');
+                setCurrentId(id);
             },
             stop: function(event, ui) {
                 setDraggingState(false);
@@ -148,7 +152,8 @@ const Dashboard = () => {
                 "ui-droppable-active": "hover-highlight"
             },
             drop: function( event, ui ) {
-                console.log("dropped in the dropzone!");
+                // console.log("Current Id: ", currentId);
+                window.location.assign(`/goal/${currentId}`);
             }
         })
 
