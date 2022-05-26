@@ -15,7 +15,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^7.1.0",
+    "graphql": "^16.5.0",
+    "react-router-dom": "^6.3.0",
+    "tailwind": "^4.0.0",
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "tailwindcss": "^3.0.24"

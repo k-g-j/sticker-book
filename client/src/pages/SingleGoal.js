@@ -12,7 +12,6 @@ import eduBrain from "../assets/stickers/edu-brain.png";
 import piggy from "../assets/stickers/finance-piggy.png";
 import mentalHealth from "../assets/stickers/mental-health.png";
 import physHealth from "../assets/stickers/phys-health.png";
-import hands from "../assets/images/handsclapping.png";
 
 const imageMap = {
   "Personal": artCross,
@@ -53,7 +52,7 @@ if (Auth.loggedIn() && Auth.getProfile().data.email === useParams) {
   }
   
 if (loading) {
-    return <div>Loading...</div>;
+    return <div class="font-brush">Loading...</div>;
   }
   //Party JS click event
 const handleClickGoal = (e) => {

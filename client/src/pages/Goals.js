@@ -60,7 +60,7 @@ const GoalsList = (props) => {
       <form  className="p-20 " onSubmit={handleFormSubmit}>
         <div className="">
           <label htmlFor="goalText">Goal:</label>
-          <input
+          <input class="font-hand text-base"
             placeholder="Type your goal here"
             name="goalText"
             type="goalText"
@@ -68,9 +68,9 @@ const GoalsList = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div className="">
+        <div className="" class="font-hand text-xl">
           <label htmlFor="type">Goal Type:</label>
-          <input
+          <input class="font-hand text-base"
             placeholder="Choose a goal type"
             name="type"
             type="type"

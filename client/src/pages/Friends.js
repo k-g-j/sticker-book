@@ -23,11 +23,11 @@ const Friends = (props) => {
     const user = data?.me || data?.user || {};
 
 if (loading) {
-    return <div>Loading...</div>;
+    return <div class="font-brush text-2xl">Loading...</div>;
   }
   if (!user?.username) {
     return (
-      <h4>
+      <h4 class="font-hand text-base">
         You need to be logged in to see this. Use the navigation links above to
         sign up or log in!
       </h4>
@@ -56,12 +56,12 @@ if (loading) {
             </div>
 
             <div className="flex-row">
-            <h2 className="display-inline-block">
+            <h2 className="display-inline-block" class="font-hand text-base">
             Viewing {userParam ? `${user.username}'s` : 'your'} profile.
             </h2>
 
             {userParam && (
-            <button className="btn ml-auto" onClick={handleClick}>
+            <button className="btn ml-auto" class="font-brush text-xl" onClick={handleClick}>
                 Add Friend
             </button>
             )}

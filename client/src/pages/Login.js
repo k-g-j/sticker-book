@@ -18,7 +18,7 @@ const Login = () => {
 
   // set login and signup mutations
   const [login, { loginError }] = useMutation(LOGIN_USER)
-  const [signup, { signupError }] = useMutation(ADD_USER)
+  const [addUser, { signupError }] = useMutation(ADD_USER)
 
   // Update login state when the form changes
   const handleLoginChange = (event) => {
@@ -63,11 +63,11 @@ const Login = () => {
   const handleSignupSubmit = async (event) => {
     event.preventDefault()
     try {
-      const { data } = await signup({
+      const { data } = await addUser({
         variables: { ...signupState },
       })
 
-      Auth.login(data.signup.token)
+      Auth.login(data.addUser.token)
     } catch (e) {
       console.error(e)
     }
@@ -93,8 +93,8 @@ const Login = () => {
     >
       <img className="notebook-img drop-shadow-xl cursor-pointer" src={noteBook} onClick={handleClick} />
       <section>
-        <div className="container">
-          <h2>Login:</h2>
+        <div className="container" class="text-hand">
+          <h2 class="font-brush text-xl">Login:</h2>
           <form className="flex flex-col" onSubmit={handleLoginSubmit}>
             <input
               className="form-input"
@@ -116,14 +116,14 @@ const Login = () => {
               value={loginState.password}
               onChange={handleLoginChange}
             />
-            <button className="btn d-block w-100" type="submit">
+            <button className="btn d-block w-100" class="font-hand text-base hover:bg-blue-600 rounded-xl" type="submit">
               Submit
             </button>
           </form>
-          {loginError && <div>Login failed</div>}
+          {loginError && <div class="font-hand text-base">Login failed</div>}
         </div>
-        <div className="container">
-          <h2>Sign Up:</h2>
+        <div className="container" class="pt-10">
+          <h2 class="font-brush text-xl">Sign Up:</h2>
           <form className="flex flex-col" onSubmit={handleSignupSubmit}>
             <input
               className="form-input"
@@ -155,11 +155,11 @@ const Login = () => {
               value={signupState.password}
               onChange={handleSignupChange}
             />
-            <button className="btn d-block w-100" type="submit">
+            <button className="btn d-block w-100" type="submit" class="font-hand text-base hover:bg-blue-600 rounded-xl">
               Submit
             </button>
           </form>
-          {signupError && <div>Sign Up failed</div>}
+          {signupError && <div class="font-hand text-base">Sign Up failed</div>}
         </div>
       </section>
     </div>

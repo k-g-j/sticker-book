@@ -9,6 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import About from './pages/about'
 import Goals from './pages/Goals'
 import Feed from './pages/Feed';
 import SingleGoal from './pages/SingleGoal'
@@ -48,10 +49,12 @@ function App() {
           <Route exact path="/dashboard" element={<Dashboard/>} />
           <Route exact path="/goals" element={<Goals/>} />
           <Route exact path='/goal/:id' element= {<SingleGoal/>} />
+          <Route exact path="/feed" element={<Feed/>} />
+          <Route exact path="/about" element={<About/>} />
+
         </Routes>
       </Router>
     </ApolloProvider>
-    
   );
 }
 

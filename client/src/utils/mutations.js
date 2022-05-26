@@ -81,8 +81,8 @@ export const ADD_STEP = gql`
 `
 
 export const GIVE_ENCOURAGEMENT = gql`
-  mutation giveEncouragement($goalId: ID!, $points: Int!) {
-    giveEncouragement(goalId: $goalId, points: $points) {
+  mutation giveEncouragement($goalId: ID!, $points: Int!, $message: String) {
+    giveEncouragement(goalId: $goalId, points: $points, message: $message) {
       _id
       goalText
       type
