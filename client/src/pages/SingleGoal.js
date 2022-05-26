@@ -43,7 +43,7 @@ const SingleGoal = () => {
   const step = data?.goal || {}
 
   function Image({ type }) {
-    return <img src={imageMap[type]} />
+    return <img style={{width: "150px" }} src={imageMap[type]} />
   }
 
   if (Auth.loggedIn() && Auth.getProfile().data.email === useParams) {
@@ -53,7 +53,7 @@ const SingleGoal = () => {
     return <div className="font-brush">Loading...</div>
   }
   //Party JS click event
-  const handleClickGoal = (e) => {
+const handleClickGoal = (e) => {
     party.sparkles(e.target, {
       count: party.variation.range(20, 40),
     })
@@ -72,14 +72,8 @@ const SingleGoal = () => {
     window.location.replace("/goals")
   }
 
-  // party.resolvableShapes["hands"] = `<img src="${hands}"/>`;
   // Party JS click event
   // const handleCompleteStep = (e) => {
-  //   //       party.confetti(e.target, {
-  //   //       shapes: ["hands"],
-  //   //       speed: party.variation.range(60,80)
-  //   //     });
-  //   // }
   //   party.sparkles(e.target, {
   //     count: party.variation.range(20, 40),
   //   })
@@ -107,17 +101,17 @@ const SingleGoal = () => {
 
   return (
     <>
-      <div className="card mb-3 nav-padding">
-        <div className="card-header">
-          <h1 className="text-bold">{goal.goalText}</h1>
-          <div className="card-body border">
+      <div className="card w-full mb-3 flex justify-center">
+        <div className="card-header my-24 rounded-lg border-solid border-8 border-white bg-teal-600 w-1/2 text-center object-center">
+          <h1 className="font-bold m-5 font-hand text-2xl">{goal.goalText}</h1>
+          <div className="card-body items-center object-center flex flex-col justify-center">
             {/* Populate stickers based on goal types */}
-            <h2>{goal.type}</h2>
-            {/* <Image type={goal.type} /> */}
+            <h2 className='text-center font-hand flex text-xl'>Goal Type: {goal.type}</h2>
+             <Image className="items-center flex justify-center"type={goal.type} /> 
           </div>
-          <div className="steps">
+          <div >
             {goal.steps.map((step, i) => (
-              <p key={i}>{step.stepBody}</p>
+              <p className="steps font-hand flex justify-center text-xl" key={i}>  Step {i+1}: {step.stepBody}</p>
             ))}
             {/* <button
               className="btn"
@@ -131,7 +125,7 @@ const SingleGoal = () => {
           </div>
           <div>
             <button
-              className="btn"
+              className="btn m-5 hover:bg-teal-400/50 p-3 text-xl rounded-lg font-hand border"
               onClick={(e) => {
                 handleClickGoal(e)
               }}
@@ -139,9 +133,9 @@ const SingleGoal = () => {
               {' '}
               Complete Goal{' '}
             </button>{' '}
-            <br />
+            
             <button
-              className="btn"
+              className="btn m-5 hover:bg-teal-400/50 p-3 text-xl  rounded-lg font-hand border"
               onClick={(e) => {
                 handleDeleteGoal(e)
               }}
@@ -150,25 +144,28 @@ const SingleGoal = () => {
               Delete Entire Goal{' '}
             </button>
           </div>
-        </div>
         <div>
           <form className="p-20 " onSubmit={handleAddStep}>
-            <div className="">
-              <label htmlFor="stepBody">Add a step to your goal!</label>
+            <div className="font-hand text-xl text-center">
+              <label className="m-5" htmlFor="stepBody">Add a step to your goal!</label>
               <input
-                placeholder="Type your step here"
+               className='text-center'
+                placeholder="Another step"
                 name="stepBody"
                 type="stepBody"
                 id="stepBody"
                 onChange={e => setStepState(e.target.value)}
               />
             </div>
-            <button className="btn border-black w-100" type="submit">
+            <div className="card w-full items-center object-center">
+            <button className="btn m-5 text-xl hover:bg-teal-400/50 p-3 rounded-lg font-hand border" type="submit">
               Submit New Step
             </button>
+            </div>
           </form>
-        </div>
+          </div>
       </div>
+    </div> 
     </>
   )
 }

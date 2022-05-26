@@ -23,18 +23,13 @@ const GoalsList = (props) => {
   const [addStep] = useMutation(ADD_STEP)
 
   const { loading, data } = useQuery(QUERY_ME)
-  // const [allGoalsState, setAllGoalsState] = useState([])
+ 
   const user = data?.me || {}
-  //pass the state through the goallist as a prop through when a new
-  //goal is added then we will have to update the state with that new goal
 
-  //   useEffect(() => {
-  //     setAllGoalsState(user.goals);
-  // }, [user]);
 
-  if (loading) {
+    if (loading) {
     return <div>Loading...</div>
-  }
+  }  
 
   const handleFormSubmit = async (event) => {
     console.log(formState)
@@ -65,6 +60,7 @@ const GoalsList = (props) => {
   const handleDone = async () => {
     window.location.reload()
   }
+ 
 
   const handleChange = (event) => {
     event.preventDefault()
@@ -80,11 +76,12 @@ const GoalsList = (props) => {
   }
   return (
     <>
-      <form className="p-20 nav-padding" onSubmit={handleFormSubmit}>
-        <div className="pt-20">
-          <label htmlFor="goalText">Goal:</label>
+      <form className="object-center text-left flex items-center justify-center pt-40" onSubmit={handleFormSubmit}>
+        <div className="border-solid p-5 border-white border-8 rounded-lg flex justify-center items-center bg-teal-600">
+        <div className="font-hand text-xl text-center p-4">
+          <label htmlFor="goalText" className="p-5">Goal:</label>
           <input
-            className="font-hand text-base"
+            className="font-hand bg-white p-2 rounded-lg text-base text-center"
             placeholder="Type your goal here"
             name="goalText"
             type="goalText"
@@ -92,9 +89,9 @@ const GoalsList = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div className="font-hand text-xl">
-          <label htmlFor="type">Goal Type:</label>
-          <select
+        <div className="font-hand text-xl text-center px-4">
+          <label htmlFor="type" className="px-5">Goal Type:</label>
+          <select className="font-hand p-2.5 bg-white rounded-lg text-base text-center"
             value={formState.type}
             onChange={(e) =>
               setFormState({ ...formState, type: e.target.value })
@@ -108,9 +105,9 @@ const GoalsList = (props) => {
           </select>
         </div>
         {goalSubmitted && (
-          <div className="">
-            <label htmlFor="stepBody">First Step:</label>
-            <input
+          <div className="font-hand text-center">
+            <label htmlFor="stepBody" className="font-hand text-xl text-center px-4">First Step:</label>
+            <input className="font-hand text-lg rounded-lg p-2 mx-5"
               placeholder="What's the first step?"
               name="steps"
               type="steps"
@@ -120,25 +117,22 @@ const GoalsList = (props) => {
           </div>
         )}
         {!goalSubmitted && (
-          <button
-            className="btn d-block w-100"
-            type="button"
-            onClick={handleFormSubmit}
-          >
-            Submit
+            <button onClick={handleFormSubmit}
+            className="btn border-2 rounded-lg d-block w-100 font-brush text-xl hover:bg-teal-200/50 hover:rounded-lg px-5 text-center">
+             Submit
           </button>
         )}
         {goalSubmitted && (
           <div className='flex flex-col'>
             <button
-              className="btn d-block w-100"
+              className="btn border-2 m-3 rounded-lg d-block w-100 font-brush text-xl hover:bg-teal-200/50 hover:rounded-lg px-5 text-center"
               type="button"
               onClick={handleStepSubmit}
             >
               Submit
             </button>
             <button
-              className="btn d-block w-100"
+              className="btn border-2 m-3 rounded-lg d-block w-100 font-brush text-lg hover:bg-teal-200/50 hover:rounded-lg px-5 text-center"
               type="button"
               onClick={handleDone}
             >
@@ -146,9 +140,10 @@ const GoalsList = (props) => {
             </button>
           </div>
         )}
+        </div>
       </form>
       <div className="list">
-        <GoalList goals={user.goals} />
+        <GoalList className="flex justify-center"goals={user.goals} />
       </div>
     </>
   )
