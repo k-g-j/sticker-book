@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Stickers",
+  "name": "Sticker Book",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,15 +8,67 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "page-small.png",
+      "sizes": "300x382",
+      "type": "image/png"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "page-medium.png",
+      "sizes": "450x573",
+      "type": "image/png"
+    },
+    {
+      "src": "page.png",
+      "sizes": "550x700",
+      "type": "image/png"
+    },
+    {
+      "src": "sticker-book-home.png",
+      "sizes": "1000x1200",
+      "type": "image/png"
+    },
+    {
+      "src": "woodtexture.jpeg",
+      "sizes": "600x450",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "art-cross.png",
+      "sizes": "200x200",
+      "type": "image/png"
+    },
+    {
+      "src": "edu-brain.png",
+      "sizes": "200x200",
+      "type": "image/png"
+    },
+    {
+      "src": "finance-piggy.png",
+      "sizes": "400x400",
+      "type": "image/png"
+    },
+    {
+      "src": "goldstar.png",
+      "sizes": "400x400",
+      "type": "image/png"
+    },
+    {
+      "src": "mental-health.png",
+      "sizes": "200x200",
+      "type": "image/png"
+    },
+    {
+      "src": "pencil.png",
+      "sizes": "100x600",
+      "type": "image/png"
+    },
+    {
+      "src": "phys-health.png",
+      "sizes": "200x200",
+      "type": "image/png"
     }
+    
+    
   ],
   "start_url": ".",
   "display": "standalone",

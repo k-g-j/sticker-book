@@ -6,6 +6,7 @@ export const QUERY_GOALS = gql`
       _id
       goalText
       type
+      completed
       x
       y
       z
@@ -14,13 +15,14 @@ export const QUERY_GOALS = gql`
       reminder
       completeDate
       stepCount
-      encouragementPoints
+      encouragementCount
       stickers
       steps {
         _id
         createdAt
         username
         stepBody
+        completed
       }
       encouragements {
         _id
@@ -38,6 +40,7 @@ export const QUERY_GOAL = gql`
       _id
       goalText
       type
+      completed
       x
       y
       z
@@ -46,13 +49,14 @@ export const QUERY_GOAL = gql`
       reminder
       completeDate
       stepCount
-      encouragementPoints
+      encouragementCount
       stickers
       steps {
         _id
         createdAt
         username
         stepBody
+        completed
       }
       encouragements {
         _id
@@ -79,6 +83,7 @@ export const QUERY_USER = gql`
         _id
         goalText
         type
+        completed
         x
         y
         z
@@ -86,13 +91,14 @@ export const QUERY_USER = gql`
         reminder
         completeDate
         stepCount
-        encouragementPoints
+        encouragementCount
         stickers
         steps {
           _id
           createdAt
           username
           stepBody
+          completed
         }
         encouragements {
           _id
@@ -107,29 +113,31 @@ export const QUERY_USER = gql`
 
 export const QUERY_ME = gql`
   {
-    me {
+  me {
+    username
+    email
+    friendCount
+    goals {
       _id
+      type
+      goalText
+      completed
+      x
+      y
+      z
+      createdAt
       username
-      email
-      friendCount
-      goals {
-        _id
-        goalText
-        type
-        x
-        y
-        z
-        createdAt
-        reminder
-        completeDate
-        stepCount
-        encouragementPoints
-        stickers
-        steps {
+      reminder
+      completeDate
+      stickers
+      stepCount
+      steps {
           _id
           createdAt
+          completed
           username
           stepBody
+          completed
         }
         encouragements {
           _id
@@ -137,13 +145,17 @@ export const QUERY_ME = gql`
           username
           message
         }
-      }
-      friends {
+      encouragementCount
+      encouragements {
         _id
+        points
+        createdAt
         username
+        message
       }
     }
   }
+}
 `
 
 export const QUERY_ME_BASIC = gql`
@@ -161,12 +173,13 @@ export const QUERY_ME_BASIC = gql`
         _id
         goalText
         type
+        completed
         x
         y
         z
         createdAt
         stepCount
-        encouragementPoints
+        encouragementCount
         stickers
       }
     }

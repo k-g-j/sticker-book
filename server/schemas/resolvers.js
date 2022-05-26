@@ -32,9 +32,15 @@ const resolvers = {
       const params = email ? { email } : {}
       return Goal.find(params).sort({ createdAt: -1 })
     },
-    goal: async (parent, { _id }) => {
-      return Goal.findOne({ _id }).populate('steps').populate('encouragements').populate('stickers')
-    },
+    goal: async (parent, { _id }, context) => {
+      if (context.user) {
+        return Goal.findOne({ _id })
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
+      }
+      throw new AuthenticationError('Not logged in')
+    }
   },
 
   Mutation: {
@@ -84,7 +90,10 @@ const resolvers = {
           { _id: goalId },
           { $push: { steps: { stepBody, username: context.user.username } } },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements').populate('stickers')
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
 
         return updatedGoal
       }
@@ -97,7 +106,10 @@ const resolvers = {
           { _id: goalId },
           { x: newX, y: newY, z: newZ },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements').populate('stickers')
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
 
         return updatedGoal
       }
@@ -110,20 +122,34 @@ const resolvers = {
           { _id: goalId },
           { $push: { stickers: imageUrl } },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements').populate('stickers')
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
 
         return updatedGoal
       }
 
       throw new AuthenticationError('You need to be logged in!')
     },
-    giveEncouragement: async (parent, { goalId, encouragementBody }, context) => {
+    giveEncouragement: async (parent, { goalId, points, message }, context) => {
       if (context.user) {
         const updatedGoal = await Goal.findOneAndUpdate(
           { _id: goalId },
-          { $push: { encouragements: { encouragementBody, username: context.user.username } } },
+          {
+            $push: {
+              encouragements: {
+                points,
+                message,
+                username: context.user.username,
+              },
+            },
+          },
           { new: true, runValidators: true },
-        ).populate('steps').populate('encouragements').populate('stickers')
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
 
         return updatedGoal
       }
@@ -142,6 +168,56 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!')
+    },
+    completeGoal: async (parent, { goalId }, context) => {
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId },
+          { completed: true },
+          { new: true, runValidators: true },
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
+
+        return updatedGoal
+      }
+      throw new AuthenticationError('You need to be logged in!')
+    },
+    completeStep: async (parent, { goalId, stepId }, context) => {
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId, 'steps._id': stepId },
+          { 'steps.$.completed': true },
+          { new: true, runValidators: true },
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
+
+        return updatedGoal
+      }
+      throw new AuthenticationError('You need to be logged in!')
+    },
+    deleteGoal: async (parent, { goalId }, context) => {
+      if (context.user) {
+        const deletedGoal = await Goal.findOneAndDelete({ _id: goalId })
+        return deletedGoal
+      }
+      throw new AuthenticationError('You need to be logged in!')
+    },
+    deleteStep: async (parent, { goalId, stepId }, context) => {
+      if (context.user) {
+        const updatedGoal = await Goal.findOneAndUpdate(
+          { _id: goalId },
+          { $pull: { steps: { _id: stepId } } },
+          { new: true },
+        )
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
+        return updatedGoal
+      }
     },
   },
 }

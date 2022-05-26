@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts Imported */ 
+
+/* Fancy Cursive */ 
+@import url('https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap');
+/* Paintbrush casual cursive */
+@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
+/* Handwritten Text */
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap');
+
 html,body
 {
     width: 100%;
@@ -9,7 +18,9 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: visible; 
-    background-color: teal;
+    background-position: center;
+    background-image: url("./assets/images/woodtexture.jpeg");
+    background-size: cover;
 }
 
 .notebook-img {
@@ -17,19 +28,40 @@ html,body
     object-fit: cover;
     max-width:50vw;
     max-height:900px;
-    width: auto;
+    /* min-height: 600px; */
+    width: auto; 
     height: auto;
-    cursor: pointer;
+    filter: drop-shadow(20px 15px 10px rgba(1,1,1,.5));
+}
+.dashboard-container {
+    min-height: 700px;
+}
+
+.dashboard-header {
+    text-align: center;
+    padding: 0 10vw;
+    margin-top: 50px;
+}
+
+.page {
+    position: relative;
+    width: 550px;
+    height: 657px;
+    
+    background-position: center;
+    background-image: url("./assets/images/page.png");
+    background-size: cover;
+    padding: 0px 30px 0px 60px;
     filter: drop-shadow(20px 15px 10px rgba(1,1,1,.5));
 }
 
-.drag {
-    width: 20%;
-    cursor: pointer;
+
+.sticker-shadow {
+    filter: drop-shadow(2px 2px 1px rgba(1,1,1,.2));
 }
 
-.hover-highlight {
-    background-color: blue;
+.nav-padding {
+    padding-top: 12%;
 }
 
 #notebook-title {
@@ -37,4 +69,49 @@ html,body
     position: absolute;
     z-index: 10;
     bottom: 64%;
+}
+
+@media screen and (max-height: 900px) {
+
+    .page {
+        width: 450px;
+        height: 573px;
+        background-image: url("./assets/images/page-medium.png");
+        background-size: 450px 573px;
+        background-repeat: no-repeat;
+        background-position: top;
+        padding: 15px 30px 15px 40px;
+    }
+
+    .drop-zone {
+        height: 22.5%;
+        margin: 10px 25px 15px 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .dashboard-header {
+        font-size: 3em;
+    }
+
+    .page {
+        width: 350px;
+        height: 418px;
+        background-size: 350px 418px;
+        background-image: url("./assets/images/page-small.png");
+        padding: 0px 30px 0px 30px;
+    }
+    
+    .login {
+        flex-direction: column;
+        gap: 5%;
+    }
+
+    .notebook-img {
+        max-width: 80vw;
+    }
+
+    .drop-zone {
+        height: 20%;
+    }
 }

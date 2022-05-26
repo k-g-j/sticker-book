@@ -9,9 +9,14 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import About from './pages/about'
+import Goals from './pages/Goals'
+import Feed from './pages/Feed';
+import SingleGoal from './pages/SingleGoal'
+import Nav from './components/Nav';
 
 const httpLink = createHttpLink({
-  uri: 'graphql',
+  uri: '/graphql',
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -36,14 +41,20 @@ const styles = {
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <Router
+      basename='/'
+      >
+        <Nav />
         <Routes>
+          <Route exact path="/" element={<Feed/>} />
           <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/" element={<Dashboard/>} />
+          <Route exact path="/dashboard" element={<Dashboard/>} />
+          <Route exact path="/about" element={<About/>} />
+          <Route exact path="/goals" element={<Goals/>} />
+          <Route exact path='/goal/:id' element= {<SingleGoal/>} />
         </Routes>
       </Router>
     </ApolloProvider>
-    
   );
 }
 
