@@ -61,8 +61,8 @@ if (loading) {
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
-        <div className="" class="font-hand text-xl">
+      <form className="nav-padding" onSubmit={handleFormSubmit}>
+        <div className="font-hand text-xl">
           <label htmlFor="goalText">Goal:</label>
           <input class="font-hand text-base"
             placeholder="Type your goal here"
@@ -72,9 +72,9 @@ if (loading) {
             onChange={handleChange}
           />
         </div>
-        <div className="" class="font-hand text-xl">
+        <div className="font-hand text-xl">
           <label htmlFor="type">Goal Type:</label>
-          <input class="font-hand text-base"
+          <input className="font-hand text-base"
             placeholder="Choose a goal type"
             name="type"
             type="type"
@@ -82,7 +82,7 @@ if (loading) {
             onChange={handleChange}
           />
            </div>
-           <button className="btn d-block w-100" type="submit" class="font-brush text-xl">
+           <button className="btn d-block w-100 font-brush text-xl" type="submit">
              Submit
           </button>
         </form>
