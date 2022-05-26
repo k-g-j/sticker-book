@@ -132,15 +132,15 @@ const GoalsList = (props) => {
           )}
           {goalSubmitted && (
           <div className='flex flex-col'>
-            <button
-              className="btn d-block w-100"
+            {/* <button
+              className="btn d-block w-100 font-hand text-base"
               type="button"
               onClick={handleStepSubmit}
             >
               Submit
-            </button>
+            </button> */}
             <button
-              className="btn d-block w-100"
+              className="btn d-block w-100 font-hand text-lg hover:font-bold hover:bg-teal-400/50 hover:p-2 hover:rounded-lg"
               type="button"
               onClick={handleDone}
             >
