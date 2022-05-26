@@ -10,7 +10,6 @@ import {
 } from '../utils/mutations'
 import Auth from '../utils/auth'
 import party from 'party-js'
-import { Navigate } from 'react-router-dom';
 
 // import stickers
 import artCross from '../assets/stickers/art-cross.png'
@@ -84,7 +83,6 @@ const handleClickGoal = (e) => {
   // }
 
   const handleAddStep = async (e) => {
-    e.preventDefault();
     const mutationResponse = await addStep({
       variables: {
         goalId,
@@ -93,18 +91,13 @@ const handleClickGoal = (e) => {
     })
   }
   const handleChange = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     const { name, value } = event.target
     setStepState({
       ...stepState,
       [name]: value,
     })
   }
-
-    // if not logged in, redirect to the login page
-    if (!Auth.loggedIn()) {
-        return <Navigate to="/login" replace={true}/>
-    }
 
   return (
     <>

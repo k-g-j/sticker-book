@@ -16,7 +16,7 @@ import SingleGoal from './pages/SingleGoal'
 import Nav from './components/Nav';
 
 const httpLink = createHttpLink({
-  uri: 'graphql',
+  uri: '/graphql',
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -51,8 +51,7 @@ function App() {
           <Route exact path="/dashboard" element={<Dashboard/>} />
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/goals" element={<Goals/>} />
-          <Route exact path='/goal/:id' element={<SingleGoal />} />
-          <Route path="/*" element= {<Feed/>} />
+          <Route exact path='/goal/:id' element= {<SingleGoal/>} />
         </Routes>
       </Router>
     </ApolloProvider>
