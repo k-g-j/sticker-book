@@ -42,6 +42,14 @@ function Nav({ currentPage, handlePageChange }) {
           </li>
           <li className='pl-5'>
             <Link
+              to="/"
+            className={currentPage === 'Add' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+            >
+              Add Goal
+            </Link>
+          </li>
+          <li className='pl-5'>
+            <Link
               to="/dashboard"
               // Determine whether the Contact nav link is active or not
               // onClick={() => handlePageChange('Dashboard')}
