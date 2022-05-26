@@ -10,6 +10,7 @@ import {
 } from '../utils/mutations'
 import Auth from '../utils/auth'
 import party from 'party-js'
+import { Navigate } from 'react-router-dom';
 
 // import stickers
 import artCross from '../assets/stickers/art-cross.png'

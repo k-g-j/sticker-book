@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import { ADD_GOAL, ADD_STEP } from '../utils/mutations'
 import { Navigate } from 'react-router-dom'
 import { idbPromise } from '../utils/idb'
+import { Navigate } from 'react-router-dom';
 
 import Auth from '../utils/auth'
 import GoalList from '../components/GoalList'
