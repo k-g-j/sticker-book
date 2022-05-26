@@ -152,10 +152,10 @@ const SingleGoal = () => {
           </div>
         </div>
         <div>
-          <form className="p-20 " onSubmit={handleAddStep}>
+          <form className="p-20" onSubmit={handleAddStep}>
             <div className="">
-              <label htmlFor="stepBody">Add a step to your goal!</label>
-              <input
+              <label className="font-hand text-xl p-5 "htmlFor="stepBody">Add a step to your goal!</label>
+              <input className="rounded-lg p-3 font-hand text-lg text-center"
                 placeholder="Type your step here"
                 name="stepBody"
                 type="stepBody"
@@ -163,7 +163,7 @@ const SingleGoal = () => {
                 onChange={e => setStepState(e.target.value)}
               />
             </div>
-            <button className="btn border-black w-100" type="submit">
+            <button className="btn border-black w-100 bg-teal-600 p-3 rounded-lg font-hand font-bold hover:bg-teal-400" type="submit">
               Submit New Step
             </button>
           </form>
