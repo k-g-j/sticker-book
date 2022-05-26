@@ -16,7 +16,7 @@ function Nav({ currentPage, handlePageChange }) {
               to="/"
               // onClick={() => handlePageChange('Home')}
               //this is a Ternary operator that is checking to see if the Home nav-link is active
-              className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+              className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold hover:text-teal-600"
             >
               Home
             </Link>
@@ -27,7 +27,7 @@ function Nav({ currentPage, handlePageChange }) {
               // onClick={() => handlePageChange('About')}
               // Determine whether the About nav link is active or not
 
-            className={currentPage === 'About' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+            className={currentPage === 'About' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:text-teal-600 hover:font-bold"
             >
               About
             </Link>
@@ -35,7 +35,7 @@ function Nav({ currentPage, handlePageChange }) {
           <li className='pl-5'>
             <Link
               to="/feed"
-            className={currentPage === 'Feed' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+            className={currentPage === 'Feed' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold hover:text-teal-600"
             >
               Feed
             </Link>
@@ -43,7 +43,7 @@ function Nav({ currentPage, handlePageChange }) {
           <li className='pl-5'>
             <Link
               to="/"
-            className={currentPage === 'Add' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+            className={currentPage === 'Add' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold hover:text-teal-600"
             >
               Add Goal
             </Link>
@@ -53,7 +53,7 @@ function Nav({ currentPage, handlePageChange }) {
               to="/dashboard"
               // Determine whether the Contact nav link is active or not
               // onClick={() => handlePageChange('Dashboard')}
-              className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold text-center"
+              className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold text-center hover:text-teal-600"
             >     
               Your Stickers
             </Link>
