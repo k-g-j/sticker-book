@@ -80,7 +80,12 @@ html,body
         background-size: 450px 573px;
         background-repeat: no-repeat;
         background-position: top;
-        padding: 0px 30px 0px 30px;
+        padding: 15px 30px 15px 40px;
+    }
+
+    .drop-zone {
+        height: 22.5%;
+        margin: 10px 25px 15px 10px;
     }
 }
 
