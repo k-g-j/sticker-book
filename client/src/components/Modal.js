@@ -3,6 +3,8 @@ import { useQuery, useMutation } from '@apollo/client'
 import { GIVE_ENCOURAGEMENT } from '../utils/mutations'
 import { QUERY_GOALS, QUERY_ME } from '../utils/queries'
 import party from 'party-js';
+import { idbPromise } from '../utils/idb'
+
 
 export default function Modal({
   goal,
@@ -23,6 +25,7 @@ export default function Modal({
       })
       setShowModal(false)
       setMessage('')
+      idbPromise('goals', 'put', { ...goal, encouragements: { message, points: 1} })
     } catch (error) {
       console.error(error)
     }

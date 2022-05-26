@@ -3,6 +3,7 @@ import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
 import { useQuery, useMutation } from '@apollo/client'
 import { ADD_GOAL, ADD_STEP } from '../utils/mutations'
 import { Navigate } from 'react-router-dom'
+import { idbPromise } from '../utils/idb'
 
 import Auth from '../utils/auth'
 import GoalList from '../components/GoalList'
@@ -46,7 +47,7 @@ const GoalsList = (props) => {
     })
     setGoalSubmitted(true)
     setCurrentGoal(data.addGoal._id)
-    
+    idbPromise('goals', 'put',  data.addGoal)
   }
 
   const handleStepSubmit = async (event) => {
