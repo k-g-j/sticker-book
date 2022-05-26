@@ -1,12 +1,26 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
+import { useParams, Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client'
 
-function GoalList({ goal }) {
+
+function GoalList({ goals }) {
+ 
   return (
     <div>
-      <ul>
-        <li>{goal.goalText}</li>
-        <li>{goal.completed}</li>
-      </ul>
+       <ul >
+         {goals.map((goal) => {
+            return (
+        <li>
+            <Link to={`/goal/${goal._id}` }>
+            <h1>{goal.goalText}</h1> 
+             </Link>
+             <h3> {goal.type} </h3> <br /> 
+             <p> {goal.completeGoal} </p> <br /> 
+      
+          </li>
+         )})}
+        </ul>
     </div>
   )
 }

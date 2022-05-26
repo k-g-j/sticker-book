@@ -32,12 +32,15 @@ const resolvers = {
       const params = email ? { email } : {}
       return Goal.find(params).sort({ createdAt: -1 })
     },
-    goal: async (parent, { _id }) => {
-      return Goal.findOne({ _id })
-        .populate('steps')
-        .populate('encouragements')
-        .populate('stickers')
-    },
+    goal: async (parent, { _id }, context) => {
+      if (context.user) {
+        return Goal.findOne({ _id })
+          .populate('steps')
+          .populate('encouragements')
+          .populate('stickers')
+      }
+      throw new AuthenticationError('Not logged in')
+    }
   },
 
   Mutation: {

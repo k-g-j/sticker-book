@@ -1,70 +1,89 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { QUERY_ME, QUERY_GOALS } from '../utils/queries'
 import { useQuery, useMutation } from '@apollo/client'
-import { ADD_GOAL } from '../utils/mutations'
-// import party from "party-js";
+import { ADD_GOAL, ADD_STEP } from '../utils/mutations'
+import { Navigate } from 'react-router-dom'
+
 import Auth from '../utils/auth'
 import GoalList from '../components/GoalList'
-
-// import encouragment commponent
-//import reminder component
 
 const GoalsList = (props) => {
   const [formState, setFormState] = useState({
     goalText: '',
-    type: '',
-    steps: '',
+    type: 'Physical Health',
   })
+  const [goalSubmitted, setGoalSubmitted] = useState(false)
+  const [currentGoal, setCurrentGoal] = useState('')
+
+  const [step, setStep] = useState('')
+
   const [addGoal] = useMutation(ADD_GOAL)
 
+  const [addStep] = useMutation(ADD_STEP)
+
   const { loading, data } = useQuery(QUERY_ME)
-
+  // const [allGoalsState, setAllGoalsState] = useState([])
   const user = data?.me || {}
+  //pass the state through the goallist as a prop through when a new
+  //goal is added then we will have to update the state with that new goal
 
+  //   useEffect(() => {
+  //     setAllGoalsState(user.goals);
+  // }, [user]);
 
-if (loading) {
-    return <div class="font-brush text-2xl"> Loading...</div>;
+  if (loading) {
+    return <div>Loading...</div>
   }
-  if (!user?.email) {
-    return (
-      <h4 class="font-hand text-lg">
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    )
-  }
+
   const handleFormSubmit = async (event) => {
+    console.log(formState)
     event.preventDefault()
-    const mutationResponse = await addGoal({
+    const {data } = await addGoal({
       variables: {
         goalText: formState.goalText,
         type: formState.type,
-        steps: formState.stepBody,
       },
     })
-    const token = mutationResponse.data.addGoal.token
-    Auth.login(token)
+    setGoalSubmitted(true)
+    setCurrentGoal(data.addGoal._id)
+    
+  }
+
+  const handleStepSubmit = async (event) => {
+    event.preventDefault()
+    console.log(step)
+    const mutationResponse = await addStep({
+      variables: {
+        goalId: currentGoal,
+        stepBody: step,
+      },
+    })
+    setStep('')
+  }
+
+  const handleDone = async () => {
+    window.location.reload()
   }
 
   const handleChange = (event) => {
+    event.preventDefault()
     const { name, value } = event.target
     setFormState({
       ...formState,
       [name]: value,
     })
   }
-  // edit goal function
-  // party.confetti(runButton, {
-  //   count: party.variation.range(20, 40)
 
-// });
-
+  if (!Auth.loggedIn()) {
+    return <Navigate to="/login" replace={true} />
+  }
   return (
     <>
-      <form className="nav-padding" onSubmit={handleFormSubmit}>
-        <div className="font-hand text-xl">
+      <form className="p-20 nav-padding" onSubmit={handleFormSubmit}>
+        <div className="pt-20">
           <label htmlFor="goalText">Goal:</label>
-          <input class="font-hand text-base"
+          <input
+            className="font-hand text-base"
             placeholder="Type your goal here"
             name="goalText"
             type="goalText"
@@ -74,26 +93,61 @@ if (loading) {
         </div>
         <div className="font-hand text-xl">
           <label htmlFor="type">Goal Type:</label>
-          <input className="font-hand text-base"
-            placeholder="Choose a goal type"
-            name="type"
-            type="type"
-            id="type"
-            onChange={handleChange}
-          />
-           </div>
-           <button className="btn d-block w-100 font-brush text-xl" type="submit">
-             Submit
+          <select
+            value={formState.type}
+            onChange={(e) =>
+              setFormState({ ...formState, type: e.target.value })
+            }
+          >
+            <option value="Physical Health">Physical Health</option>
+            <option value="Mental Health">Mental Health</option>
+            <option value="Financial">Financial</option>
+            <option value="Personal">Personal</option>
+            <option value="Educational">Educational</option>
+          </select>
+        </div>
+        {goalSubmitted && (
+          <div className="">
+            <label htmlFor="stepBody">First Step:</label>
+            <input
+              placeholder="What's the first step?"
+              name="steps"
+              type="steps"
+              id="steps"
+              onChange={(e) => setStep(e.target.value)}
+            />
+          </div>
+        )}
+        {!goalSubmitted && (
+          <button
+            className="btn d-block w-100"
+            type="button"
+            onClick={handleFormSubmit}
+          >
+            Submit
           </button>
-        </form>
-      <div className='list'>   
-        {/*  link to single goal */}
-       <ul> {user.goals.map((goal, i) => (
-            <li key= {i} >{goal.goalText}
-            </li>
-         )
-         )}
-      </ul>
+        )}
+        {goalSubmitted && (
+          <div className='flex flex-col'>
+            <button
+              className="btn d-block w-100"
+              type="button"
+              onClick={handleStepSubmit}
+            >
+              Submit
+            </button>
+            <button
+              className="btn d-block w-100"
+              type="button"
+              onClick={handleDone}
+            >
+              All done!
+            </button>
+          </div>
+        )}
+      </form>
+      <div className="list">
+        <GoalList goals={user.goals} />
       </div>
     </>
   )

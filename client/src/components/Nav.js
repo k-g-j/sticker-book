@@ -4,6 +4,8 @@ import Star from '../assets/stickers/goldstar.png';
 
 //We're extracting the key value pairs from props by giving the href it's current page value
 function Nav({ currentPage, handlePageChange }) {
+
+
   return (
     <header className='w-screen'>
       <div className='flex flex-row justify-between w-screen absolute p-5'>
@@ -16,7 +18,7 @@ function Nav({ currentPage, handlePageChange }) {
               to="/"
               // onClick={() => handlePageChange('Home')}
               //this is a Ternary operator that is checking to see if the Home nav-link is active
-              className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+              className={`${currentPage === 'Home' ? 'nav-link active' : 'nav-link'} font-hand text-lg hover:font-bold`}
             >
               Home
             </Link>
@@ -27,7 +29,7 @@ function Nav({ currentPage, handlePageChange }) {
               // onClick={() => handlePageChange('About')}
               // Determine whether the About nav link is active or not
 
-            className={currentPage === 'About' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+              className={`${currentPage === 'About' ? 'nav-link active' : 'nav-link'} font-hand text-lg hover:font-bold`}
             >
               About
             </Link>
@@ -37,9 +39,14 @@ function Nav({ currentPage, handlePageChange }) {
               to="/dashboard"
               // Determine whether the Contact nav link is active or not
               // onClick={() => handlePageChange('Dashboard')}
-              className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+              className={`${currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} font-hand text-lg hover:font-bold`}
             >     
-              Profile
+              Stickers
+            </Link>
+          </li>
+          <li className='pl-5'>
+            <Link to="/goals" className={`${currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} font-hand text-lg hover:font-bold`}>
+              Goals
             </Link>
           </li>
         </ul>
@@ -48,4 +55,4 @@ function Nav({ currentPage, handlePageChange }) {
   );
 }
 
-export default Nav;
+export default Nav

@@ -21,7 +21,7 @@ export default function Feed() {
   }
 
   return (
-    <div>
+    <div className="nav-padding">
       {goals.map((goal, i) => (
         <div key={i} className="flex ml-4 mb-3 flex-col border-8 border-solid rounded-lg p-5">
           <h2 className="font-hand text-xl font-bold bg-white p-4 rounded-lg text-center">{goal.goalText}</h2>

@@ -22,10 +22,11 @@ module.exports = {
     }
     try {
       // decode and attach user data to request object
+      console.log(token)
       const { data } = jwt.verify(token, secret, { maxAge: expiration })
       req.user = data
-    } catch {
-      console.log('Invalid token')
+    } catch (e){
+      console.log('Invalid token', e)
     }
     // return updated request object
     return req
