@@ -11,8 +11,7 @@ import Auth from "../utils/auth";
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 
-import woodBg from "../assets/images/woodtexture.jpeg"
-import page from '../assets/images/page.png'
+import woodBg from "../assets/images/woodtexture.jpeg";
 
 // import stickers
 import artCross from "../assets/stickers/art-cross.png";
@@ -23,6 +22,7 @@ import physHealth from "../assets/stickers/phys-health.png";
 
 const Dashboard = () => {
 
+    let smallWidth = false;
     const { loading, data } = useQuery(QUERY_ME);
     const [updateSticker] = useMutation(UPDATE_STICKER);
     // set goals array as State
@@ -45,11 +45,27 @@ const Dashboard = () => {
     // Image based on goal's type
     // Position based on last x, y, z coordinates 
     const populateStickers = (goal) => {
+
+        // checks size of the document, if the page is small or large
+        let width = $(document).width();
+        if (width <= 600) {
+            smallWidth = true;
+        }
+        
+        // checks the type of goal and thus which sticker to use
         let goalType = mentalHealth;
         if (goal.type === 'Physical Health') {goalType = physHealth};
         if (goal.type === 'Financial') {goalType = piggy};
         if (goal.type === 'Educational') {goalType = eduBrain};
         if (goal.type === 'Personal') {goalType = artCross};
+
+        // sets smaller coordinates for small page
+        let x = goal.x;
+        let y = goal.y;
+        if (smallWidth) {
+            x = Math.round(x*7/11);
+            y = Math.round(y*7/11);
+        }
 
         return (
             <img className="drag w-1/5 cursor-pointer" 
@@ -57,8 +73,8 @@ const Dashboard = () => {
             src={goalType} 
             style={{
                 position: "absolute",
-                left: `${goal.x}px`,
-                top: `${goal.y}px`,
+                left: `${x}px`,
+                top: `${y}px`,
                 zIndex: `${goal.z}`,
             }}/>
         )
@@ -68,7 +84,6 @@ const Dashboard = () => {
     const handleSave = async (id, x, y, z) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         if (!token) { return false; }
-    
         
         try {
             const {data} = await updateSticker({
@@ -79,23 +94,20 @@ const Dashboard = () => {
         }
     }
 
-    const handleSaveBtn = (event) => {
-        // const token = Auth.loggedIn() ? Auth.getToken() : null;
-        // if (!token) { return false; }
-    
-        console.log("saved!")
-        goals.map((goal) => {
-            return(
-                handleSave(goal)
-            )
-        })
-    }
+    // const handleSaveBtn = (event) => {
+    //     console.log("saved!")
+    //     goals.map((goal) => {
+    //         return(
+    //             handleSave(goal)
+    //         )
+    //     })
+    // }
 
     // call drag and drop functions for the class .drag and the id .drop
     useEffect(() => {
         // get container height and width
-        const maxWidth = $(".container").width();
-        const maxHeight = $(".container").height();
+        const maxWidth = $(".page").width();
+        console.log(maxWidth);
 
         //drag the stickers, limit to the container and have the dragged sticker at the highest z-index in the stack
         $( ".drag" ).draggable({
@@ -113,6 +125,7 @@ const Dashboard = () => {
                 x = parseInt(x, 10);
                 let y = positionInfo[2].split(' top: ')[1];
                 y = parseInt(y, 10);
+                console.log(x, " , ", y);
                 let id = $(this).data('goalid');
                 handleSave(id, x, y, z);
                 
@@ -136,6 +149,14 @@ const Dashboard = () => {
             },
             drop: function( event, ui ) {
                 console.log("dropped in the dropzone!");
+            }
+        })
+
+        // resets the stickers when @media query would change the page size
+        $(window).on('resize', () => {
+            let width = $(document).width();
+            if (width = 600) {
+                window.location.reload();
             }
         })
     })
@@ -162,7 +183,7 @@ const Dashboard = () => {
                     
                 }}>
                     {loading &&
-                        <h1>Loading...</h1>
+                        <h1 className="font-hand text-center m-5">Loading...</h1>
                     }
                     {/* Populate stickers based on goal types */}
                     {userData.goals?.map((goal) => {
@@ -171,8 +192,9 @@ const Dashboard = () => {
                         )
                     })}
 
+                    {/* if no goals exist  */}
                     {(!goalLength > 0 && !loading) &&
-                        <h1>Add some Goals!</h1>
+                        <h1 className="font-hand text-center m-5">Add some Goals!</h1>
                     }
 
                     {/* Dragging Dropzone */}
@@ -193,11 +215,11 @@ const Dashboard = () => {
                         </div>
                     }
                 </div>    
-                <button className="sticker-shadow bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 border-8 border-white border-solid rounded"
+                {/* <button className="sticker-shadow bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 border-8 border-white border-solid rounded"
                     onClick={handleSaveBtn}
                 >
                     Save Your Stickers!
-                </button>   
+                </button>    */}
             </div>
         </section>
     )
