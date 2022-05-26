@@ -17,14 +17,9 @@ const GoalsList = (props) => {
   const [addGoal] = useMutation(ADD_GOAL)
 
   const { loading, data } = useQuery(QUERY_ME)
-  // const [allGoalsState, setAllGoalsState] = useState([])
+ 
   const user = data?.me || {}
-//pass the state through the goallist as a prop through when a new 
-//goal is added then we will have to update the state with that new goal
 
-//   useEffect(() => {
-//     setAllGoalsState(user.goals);
-// }, [user]);
 
     if (loading) {
     return <div>Loading...</div>
