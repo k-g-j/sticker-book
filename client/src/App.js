@@ -41,7 +41,9 @@ const styles = {
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <Router
+      basename='/'
+      >
         <Nav />
         <Routes>
           <Route exact path="/" element={<Feed/>} />

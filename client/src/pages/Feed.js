@@ -34,33 +34,34 @@ export default function Feed() {
 
   const loggedIn = Auth.loggedIn()
 
-  const handleSelect = (goal) => {
+   const handleSelect = (goal) => {
     setCurrentGoal(goal)
     setShowModal(true)
-  }
+}
 
   return (
-    <div className="nav-padding">
+    <div className="nav-padding flex flex-col justify-center items-center">
       {goals.map((goal, i) => (
         <div
           key={i}
-          className="flex ml-4 mb-3 flex-col border-8 border-solid rounded-lg p-5"
+          className="flex w-1/2 ml-4 mb-3 flex-col border-8 border-solid bg-teal-600 rounded-lg p-5"
         >
-          <h2 className="font-hand text-xl font-bold bg-white p-4 rounded-lg text-center">
+          <h2 className=" my-1 font-hand text-xl font-bold bg-white p-4 rounded-lg text-center">
             {goal.goalText}
           </h2>
           {!goal.completed ? (
-            <p className="font-hand text-base text-center p-3 bg-gray-200/50 rounded-lg">
+            <p className="my-1 border-2 font-hand text-base text-center p-3 bg-gray-200/50 rounded-lg">
               Status: Work in progress!
             </p>
           ) : (
-            <p>Status: All done 🌟</p>
+            <p className="my-1 border-2 font-hand text-base text-center p-3 bg-gray-200/50 rounded-lg">Status: All done 🌟</p>
           )}
-          <p className="font-hand text-base text-center p-3 bg-gray-200/50 rounded-lg">
-            {goal.username}
+          <p className="font-hand border-2 text-base text-center p-3 bg-gray-200/50 rounded-lg">
+            Username: {goal.username}
           </p>
+          
           {goal.encouragements.map((encouragement, i) => (
-            <div key={i}>
+            <div key={i} className="bg-gray-400/50 border-2 rounded-lg my-1">
               <p className="font-hand text-base text-center p-3">
                 {encouragement.message}
               </p>
@@ -69,20 +70,20 @@ export default function Feed() {
               </p>
             </div>
           ))}
-          <div>
-            <span className="font-hand font-bold text-xl">
+          <div className="flex-wrap flex justify-around mt-3">
+            <span className="font-hand text-center flex font-bold text-lg">
               Encouragements: {goal.encouragementCount}
             </span>
             {loggedIn && (
               <button
-                className="ml-4 text-base hover:text-lg hover:font-bold"
+                className="ml-4 text-base hover:text-lg hover:font-bold border-2 rounded-lg d-block w-100 font-hand hover:bg-teal-200/50 hover:rounded-lg px-5 text-center"
                 onClick={() => handleSelect(goal)}
               >
                 Give Encouragement!
               </button>
             )}
+            </div>
           </div>
-        </div>
       ))}
       {showModal && (
         <Modal
