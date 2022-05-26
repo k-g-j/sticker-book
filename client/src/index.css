@@ -28,11 +28,11 @@ html,body
     object-fit: cover;
     max-width:50vw;
     max-height:900px;
-    /* min-height: 600px; */
     width: auto; 
     height: auto;
     filter: drop-shadow(20px 15px 10px rgba(1,1,1,.5));
 }
+
 .dashboard-container {
     min-height: 700px;
 }
@@ -72,6 +72,10 @@ html,body
 }
 
 @media screen and (max-height: 900px) {
+
+    .notebook-img {
+        max-height:700px;
+    }
 
     .page {
         width: 450px;

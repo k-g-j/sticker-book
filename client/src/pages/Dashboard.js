@@ -71,8 +71,8 @@ const Dashboard = () => {
         if (goal.type === 'Personal') {goalType = artCross};
 
         // sets smaller coordinates for small page
-        let x = goal.x || 0;
-        let y = goal.y || 0;
+        let x = goal.x || 60;
+        let y = goal.y || 10;
         let z = goal.z || 0;
         if (smallHeight) {
             x = Math.round(x*9/11);
@@ -230,12 +230,7 @@ const Dashboard = () => {
                         > 
                         </div>
                     }
-                </div>    
-                {/* <button className="sticker-shadow bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 border-8 border-white border-solid rounded"
-                    onClick={handleSaveBtn}
-                >
-                    Save Your Stickers!
-                </button>    */}
+                </div>
             </div>
         </section>
     )
