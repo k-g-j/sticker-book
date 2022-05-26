@@ -54,7 +54,7 @@ export default function Feed() {
               Status: Work in progress!
             </p>
           ) : (
-            <p>Status: All done 🌟</p>
+            <p className="my-1 border-2 font-hand text-base text-center p-3 bg-gray-200/50 rounded-lg">Status: All done 🌟</p>
           )}
           <p className="font-hand border-2 text-base text-center p-3 bg-gray-200/50 rounded-lg">
             Username: {goal.username}

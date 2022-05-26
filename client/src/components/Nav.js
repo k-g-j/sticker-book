@@ -54,7 +54,7 @@ function Nav({ currentPage, handlePageChange }) {
             <Link
               to="/dashboard"
               // onClick={() => handlePageChange('Dashboard')}
-              className={`${currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} font-hand text-lg hover:font-bold`}
+              className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold text-center hover:text-teal-600"
             >     
               Stickers
             </Link>
@@ -62,7 +62,7 @@ function Nav({ currentPage, handlePageChange }) {
           }
           {loggedIn && 
             <li className='pl-5'>
-              <Link to="/goals" className={`${currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} font-hand text-lg hover:font-bold`}>
+              <Link to="/goals" className={currentPage === 'Add' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold hover:text-teal-600">
                 Goals
               </Link>
             </li>
