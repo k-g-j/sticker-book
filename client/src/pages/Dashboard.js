@@ -63,8 +63,8 @@ const Dashboard = () => {
         if (goal.type === 'Personal') {goalType = artCross};
 
         // sets smaller coordinates for small page
-        let x = goal.x;
-        let y = goal.y;
+        let x = goal.x || 0;
+        let y = goal.y || 0;
         if (smallWidth) {
             x = Math.round(x*7/11);
             y = Math.round(y*7/11);
@@ -87,6 +87,18 @@ const Dashboard = () => {
     const handleSave = async (id, x, y, z) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         if (!token) { return false; }
+
+        // checks size of the document, if the page is small or large
+        let width = $(document).width();
+        if (width <= 600) {
+            smallWidth = true;
+        }
+
+        // sets smaller coordinates for small page
+        if (smallWidth) {
+            x = Math.round(x*11/7);
+            y = Math.round(y*11/7);
+        }
         
         try {
             const {data} = await updateSticker({
@@ -97,20 +109,8 @@ const Dashboard = () => {
         }
     }
 
-    // const handleSaveBtn = (event) => {
-    //     console.log("saved!")
-    //     goals.map((goal) => {
-    //         return(
-    //             handleSave(goal)
-    //         )
-    //     })
-    // }
-
     // call drag and drop functions for the class .drag and the id .drop
     useEffect(() => {
-        // get container height and width
-        const maxWidth = $(".page").width();
-        console.log(maxWidth);
 
         //drag the stickers, limit to the container and have the dragged sticker at the highest z-index in the stack
         $( ".drag" ).draggable({
@@ -124,10 +124,10 @@ const Dashboard = () => {
             stop: function(event, ui) {
                 setDraggingState(false);
                 let positionInfo = this.style.cssText.split(';');
-                let z = parseInt(positionInfo[3].split(' z-index: ')[1]);
-                let x = positionInfo[1].split(' left: ')[1];
+                let z = parseInt(positionInfo[3].split(' z-index: ')[1]) || 0;
+                let x = positionInfo[1].split(' left: ')[1] || 0;
                 x = parseInt(x, 10);
-                let y = positionInfo[2].split(' top: ')[1];
+                let y = positionInfo[2].split(' top: ')[1] || 0;
                 y = parseInt(y, 10);
                 console.log(x, " , ", y);
                 let id = $(this).data('goalid');
