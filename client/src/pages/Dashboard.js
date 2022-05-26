@@ -5,7 +5,6 @@ import { QUERY_ME } from "../utils/queries";
 import { UPDATE_STICKER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
-// import { fortunes } from "../lib/fortunes"
 
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
@@ -21,7 +20,6 @@ import mentalHealth from "../assets/stickers/mental-health.png";
 import physHealth from "../assets/stickers/phys-health.png";
 
 const Dashboard = () => {
-
     
     const { loading, data } = useQuery(QUERY_ME);
     const [updateSticker] = useMutation(UPDATE_STICKER);
@@ -35,7 +33,12 @@ const Dashboard = () => {
     // set stickers array based on goals array types, if undefined, set to 0.
     const goalLength = userData.goals?.length || 0;
 
+    // set paramters to correct positions in case of small width or small height viewports
     let smallWidth = false;
+    let smallHeight = false;
+
+    // set most recently dragged goal/sticker to be the current goalId in the state
+    // used for linking to the singleGoal when dragged to the drop-zone
     const [currentId, setCurrentId] = useState('');
 
     // populate goals array in State
@@ -50,9 +53,14 @@ const Dashboard = () => {
     const populateStickers = (goal) => {
 
         // checks size of the document, if the page is small or large
+        let height = $(document).height();
         let width = $(document).width();
+        if (height <= 900) {
+            smallHeight = true;
+        }
         if (width <= 600) {
             smallWidth = true;
+            smallHeight = false;
         }
         
         // checks the type of goal and thus which sticker to use
@@ -63,9 +71,13 @@ const Dashboard = () => {
         if (goal.type === 'Personal') {goalType = artCross};
 
         // sets smaller coordinates for small page
-        let x = goal.x || 0;
-        let y = goal.y || 0;
+        let x = goal.x || 60;
+        let y = goal.y || 10;
         let z = goal.z || 0;
+        if (smallHeight) {
+            x = Math.round(x*9/11);
+            y = Math.round(y*9/11);
+        }
         if (smallWidth) {
             x = Math.round(x*7/11);
             y = Math.round(y*7/11);
@@ -90,12 +102,21 @@ const Dashboard = () => {
         if (!token) { return false; }
 
         // checks size of the document, if the page is small or large
+        let height = $(document).height();
         let width = $(document).width();
+        if (height <= 900) {
+            smallHeight = true;
+        }
         if (width <= 600) {
             smallWidth = true;
+            smallHeight = false;
         }
 
         // sets smaller coordinates for small page
+        if (smallHeight) {
+            x = Math.round(x*11/9);
+            y = Math.round(y*11/9);
+        }
         if (smallWidth) {
             x = Math.round(x*11/7);
             y = Math.round(y*11/7);
@@ -133,17 +154,6 @@ const Dashboard = () => {
                 console.log(x, " , ", y);
                 let id = $(this).data('goalid');
                 handleSave(id, x, y, z);
-                
-                // let tempGoals = [];
-                // tempGoals = goals;
-                // console.log(tempGoals);
-                // const index = tempGoals.findIndex(goal => goal._id = id);
-                // let tempGoal = {...tempGoals[index]};
-                // tempGoal.x = x;
-                // tempGoal.y = y;
-                // tempGoal.z = z;
-                // tempGoals[index] = tempGoal;
-                // this.setGoals({tempGoals});
             }
         });
         // recognize when sticker dropped in the dropzone
@@ -153,14 +163,17 @@ const Dashboard = () => {
                 "ui-droppable-active": "hover-highlight"
             },
             drop: function( event, ui ) {
-                // console.log("Current Id: ", currentId);
                 window.location.assign(`/goal/${currentId}`);
             }
         })
 
         // resets the stickers when @media query would change the page size
         $(window).on('resize', () => {
+            let height = $(document).height();
             let width = $(document).width();
+            if (height = 900) {
+                window.location.reload();
+            }
             if (width = 600) {
                 window.location.reload();
             }
@@ -175,19 +188,16 @@ const Dashboard = () => {
     return (
         <section>
             <div
-                className="flex flex-col justify-center items-center w-screen h-screen bg-cover -center m-0"
+                className="dashboard-container flex flex-col justify-around items-center w-screen h-screen bg-cover p-5"
                 style={{
                     backgroundImage: `url(${woodBg})`,
                 }}
             >
-                <h1 className="m-5 text-3xl font-bold font-brush">
-                    Hey {userData.username}! Here's Your Collection!
+                <h1 className="dashboard-header text-2xl font-bold font-brush">
+                    Hey {userData.username}! Here's Your Sticker Collection!
                 </h1>
 
-                <div className="page color-teal-500" 
-                style={{
-                    
-                }}>
+                <div className="page color-teal-500">
                     {loading &&
                         <h1 className="font-hand text-center m-5">Loading...</h1>
                     }
@@ -220,12 +230,7 @@ const Dashboard = () => {
                         > 
                         </div>
                     }
-                </div>    
-                {/* <button className="sticker-shadow bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 border-8 border-white border-solid rounded"
-                    onClick={handleSaveBtn}
-                >
-                    Save Your Stickers!
-                </button>    */}
+                </div>
             </div>
         </section>
     )
