@@ -85,7 +85,7 @@ const GoalsList = (props) => {
         {/* Master Goals Box */}
         <div className="border-solid p-5 border-white border-8 rounded-lg flex justify-center items-center bg-teal-600">
         {/* Goal */}
-        <div className="font-hand text-xl text-center">
+        <div className="font-hand text-xl text-center p-4">
           <label htmlFor="goalText" className="p-5">Goal:</label>
           <input className="font-hand p-2 rounded-lg text-base text-center"
             placeholder="Type your goal here"
@@ -96,7 +96,7 @@ const GoalsList = (props) => {
           />
         </div>
         {/* Goal Type */}
-        <div className="font-hand text-xl text-center">
+        <div className="font-hand text-xl text-center p-4">
           <label htmlFor="type" className="p-5">Goal Type:</label>
           <select
             value={formState.type}
@@ -113,10 +113,10 @@ const GoalsList = (props) => {
           </div>
           {/* Submit Button */}
           {goalSubmitted && (
-          <div>
+          <div className="p-4">
             <label htmlFor="stepBody" class="font-hand text-xl">First Step:</label>
-              <input class="font-hand text-lg rounded-lg p-1"
-              placeholder="What's the first step?"
+              <input class="font-hand text-lg rounded-lg p-3"
+              placeholder="What's the 1st step?"
               name="steps"
               type="steps"
               id="steps"
@@ -150,7 +150,7 @@ const GoalsList = (props) => {
           )}
           </div>
         </form>
-        <div className="list">
+        <div className="list font-hand pl-10 pt-2 text-lg">
         <GoalList goals={user.goals} />
         </div>
     </>
