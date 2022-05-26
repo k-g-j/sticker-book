@@ -96,8 +96,8 @@ const Login = () => {
         <div className="container" class="text-hand">
           <h2 class="font-brush text-xl">Login:</h2>
           <form className="flex flex-col" onSubmit={handleLoginSubmit}>
-            <input
-              className="form-input"
+            <input 
+              className="form-input font-hand rounded-lg p-1"
               placeholder="Your email"
               name="email"
               type="email"
@@ -107,7 +107,7 @@ const Login = () => {
               onChange={handleLoginChange}
             />
             <input
-              className="form-input"
+              className="form-input font-hand rounded-lg p-1"
               placeholder="******"
               name="password"
               type="password"
@@ -126,7 +126,7 @@ const Login = () => {
           <h2 class="font-brush text-xl">Sign Up:</h2>
           <form className="flex flex-col" onSubmit={handleSignupSubmit}>
             <input
-              className="form-input"
+              className="form-input font-hand rounded-lg p-1"
               placeholder="Your username"
               name="username"
               type="name"
@@ -136,7 +136,7 @@ const Login = () => {
               onChange={handleSignupChange}
             />
             <input
-              className="form-input"
+              className="form-input rounded-lg p-1 font-hand"
               placeholder="Your email"
               name="email"
               type="email"
@@ -146,7 +146,7 @@ const Login = () => {
               onChange={handleSignupChange}
             />
             <input
-              className="form-input"
+              className="form-input font-hand rounded-lg p-1"
               placeholder="******"
               name="password"
               type="password"
