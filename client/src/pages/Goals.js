@@ -114,7 +114,7 @@ const GoalsList = (props) => {
           {/* Submit Button */}
           {goalSubmitted && (
           <div className="">
-            <label htmlFor="stepBody">First Step:</label>
+            <label htmlFor="stepBody" className="">First Step:</label>
             <input
               placeholder="What's the first step?"
               name="steps"
