@@ -33,18 +33,15 @@ const GoalsList = (props) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault()
     const mutationResponse = addGoal({
-      
       variables: {
         goalText: formState.goalText,
         type: formState.type,
-        steps: formState.stepBody,
+        steps: formState.steps.stepBody,
       },
-    })
-    .then(() =>{
-
     })
     
   }
+ 
 
   const handleChange = (event) => {
     event.preventDefault()
@@ -78,6 +75,16 @@ const GoalsList = (props) => {
             name="type"
             type="type"
             id="type"
+            onChange={handleChange}
+          />
+           </div>
+           <div className="">
+          <label htmlFor="stepBody">First Step:</label>
+          <input
+            placeholder="Choose a goal type"
+            name="steps"
+            type="steps"
+            id="steps"
             onChange={handleChange}
           />
            </div>
