@@ -108,11 +108,11 @@ const SingleGoal = () => {
   return (
     <>
       <div className="card mb-3 nav-padding">
-        <div className="card-header">
-          <h1 className="text-bold">{goal.goalText}</h1>
-          <div className="card-body border">
+        <div className="card-header border-solid border-8 border-white bg-teal-600 w-1/3 text-center">
+          <h1 className="font-bold font-hand text-xl">{goal.goalText}</h1>
+          <div className="card-body">
             {/* Populate stickers based on goal types */}
-            <h2>{goal.type}</h2>
+            <h2 className="">{goal.type}</h2>
             {/* <Image type={goal.type} /> */}
           </div>
           <div className="steps">
@@ -131,7 +131,7 @@ const SingleGoal = () => {
           </div>
           <div>
             <button
-              className="btn"
+              className="btn hover:bg-teal-400/50 p-1 rounded-lg font-hand"
               onClick={(e) => {
                 handleClickGoal(e)
               }}
@@ -141,7 +141,7 @@ const SingleGoal = () => {
             </button>{' '}
             <br />
             <button
-              className="btn"
+              className="btn hover:bg-teal-400/50 p-1 rounded-lg font-hand"
               onClick={(e) => {
                 handleDeleteGoal(e)
               }}
