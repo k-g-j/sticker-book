@@ -65,6 +65,7 @@ const Dashboard = () => {
         // sets smaller coordinates for small page
         let x = goal.x || 0;
         let y = goal.y || 0;
+        let z = goal.z || 0;
         if (smallWidth) {
             x = Math.round(x*7/11);
             y = Math.round(y*7/11);
@@ -78,7 +79,7 @@ const Dashboard = () => {
                 position: "absolute",
                 left: `${x}px`,
                 top: `${y}px`,
-                zIndex: `${goal.z}`,
+                zIndex: `${z}`,
             }}/>
         )
     }
