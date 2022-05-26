@@ -34,15 +34,7 @@ function Nav({ currentPage, handlePageChange }) {
           </li>
           <li className='pl-5'>
             <Link
-              to="/feed"
-            className={currentPage === 'Feed' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold hover:text-teal-600"
-            >
-              Feed
-            </Link>
-          </li>
-          <li className='pl-5'>
-            <Link
-              to="/"
+              to="/goals"
             className={currentPage === 'Add' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold hover:text-teal-600"
             >
               Add Goal
