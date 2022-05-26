@@ -32,6 +32,11 @@ const GoalsList = (props) => {
   //     setAllGoalsState(user.goals);
   // }, [user]);
 
+    // if not logged in, redirect to the login page
+    if (!Auth.loggedIn()) {
+        return <Navigate to="/login" replace={true}/>
+    }
+
   if (loading) {
     return <div>Loading...</div>
   }
