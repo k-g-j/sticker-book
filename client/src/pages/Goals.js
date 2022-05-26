@@ -113,9 +113,9 @@ const GoalsList = (props) => {
           </div>
           {/* Submit Button */}
           {goalSubmitted && (
-          <div className="">
-            <label htmlFor="stepBody" className="">First Step:</label>
-            <input
+          <div>
+            <label htmlFor="stepBody">First Step:</label>
+              <input
               placeholder="What's the first step?"
               name="steps"
               type="steps"
@@ -123,7 +123,7 @@ const GoalsList = (props) => {
               onChange={(e) => setStep(e.target.value)}
             />
           </div>
-        )}
+          )}
           {!goalSubmitted && (
            <button className="btn d-block w-100" type="button" onClick={handleFormSubmit}
            class="font-brush text-xl hover:bg-teal-200/50 hover:rounded-lg p-4 text-center">
