@@ -5,7 +5,7 @@ import Star from '../assets/stickers/goldstar.png';
 //We're extracting the key value pairs from props by giving the href it's current page value
 function Nav({ currentPage, handlePageChange }) {
   return (
-    <header className='w-screen'>
+    <header className='w-screen pb-10'>
       <div className='flex flex-row justify-between w-screen absolute p-5'>
         <Link to="/">
           <img className="w-12 h-12" src={Star} alt="Sticker Book Star" />
