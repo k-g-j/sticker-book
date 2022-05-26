@@ -13,6 +13,11 @@
       "type": "image/png"
     },
     {
+      "src": "page-medium.png",
+      "sizes": "450x573",
+      "type": "image/png"
+    },
+    {
       "src": "page.png",
       "sizes": "550x700",
       "type": "image/png"
