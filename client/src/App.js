@@ -49,7 +49,8 @@ function App() {
           <Route exact path="/dashboard" element={<Dashboard/>} />
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/goals" element={<Goals/>} />
-          <Route exact path='/goal/:id' element= {<SingleGoal/>} />
+          <Route exact path='/goal/:id' element={<SingleGoal />} />
+          <Route path="/*" element= {<Feed/>} />
         </Routes>
       </Router>
     </ApolloProvider>
