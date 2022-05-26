@@ -5,7 +5,6 @@ import { QUERY_ME } from "../utils/queries";
 import { UPDATE_STICKER } from "../utils/mutations";
 
 import Auth from "../utils/auth";
-// import { fortunes } from "../lib/fortunes"
 
 // import jquery and jquery Ui to use drag and drop functions
 import $ from "jquery";
@@ -21,7 +20,6 @@ import mentalHealth from "../assets/stickers/mental-health.png";
 import physHealth from "../assets/stickers/phys-health.png";
 
 const Dashboard = () => {
-
     
     const { loading, data } = useQuery(QUERY_ME);
     const [updateSticker] = useMutation(UPDATE_STICKER);
