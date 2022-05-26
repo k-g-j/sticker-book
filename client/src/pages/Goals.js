@@ -62,6 +62,8 @@ if (loading) {
   return (
     <>
       <form onSubmit={handleFormSubmit} class="object-center text-left flex items-center justify-center pt-40">
+        {/* Master Goals Box */}
+        <div className="border-solid p-5 border-white border-8 rounded-lg flex justify-center items-center">
         <div className="" class="font-hand text-xl">
           <label htmlFor="goalText" className="p-5">Goal:</label>
           <input className="font-hand p-2 rounded-lg text-base text-center"
@@ -86,6 +88,7 @@ if (loading) {
            class="font-brush text-xl hover:bg-teal-200/50 hover:rounded-lg p-2">
              Submit
           </button>
+          </div>
         </form>
       <div className='list'>   
         {/*  link to single goal */}
