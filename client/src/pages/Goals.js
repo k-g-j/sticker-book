@@ -63,7 +63,7 @@ if (loading) {
     <>
       <form onSubmit={handleFormSubmit} class="object-center text-left flex items-center justify-center pt-40">
         {/* Master Goals Box */}
-        <div className="border-solid p-5 border-white border-8 rounded-lg flex justify-center items-center">
+        <div className="border-solid p-5 border-white border-8 rounded-lg flex justify-center items-center bg-teal-600">
         {/* Goal */}
         <div className="font-hand text-xl text-center">
           <label htmlFor="goalText" className="p-5">Goal:</label>
