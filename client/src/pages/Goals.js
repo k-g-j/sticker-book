@@ -27,7 +27,7 @@ if (loading) {
   }
   if (!user?.email) {
     return (
-      <h4 class="font-hand text-lg">
+      <h4 class="p-40 font-hand text-center text-lg">
         You need to be logged in to see this. Use the navigation links above to
         sign up or log in!
       </h4>

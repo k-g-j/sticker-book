@@ -45,9 +45,9 @@ function Nav({ currentPage, handlePageChange }) {
               to="/dashboard"
               // Determine whether the Contact nav link is active or not
               // onClick={() => handlePageChange('Dashboard')}
-              className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold"
+              className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'} class="font-hand text-lg hover:font-bold text-center"
             >     
-              Profile
+              Your Stickers
             </Link>
           </li>
         </ul>
