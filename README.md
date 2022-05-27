@@ -11,13 +11,13 @@ Sticker Book is that feeling of nostalgia from your super cool childhood sticker
 
 ## User Story
 
-As a User with a goal.  
-I want to motivate myself to achieve that goal.
-With light-hearted rewards and step-by-step accountability. 
-Through a customizable arrangeable Sticker Page,
-An ability to add new goals and stickers,
-An ability to add new steps,
-And an ability to mark my goal as complete!
+As a constant learner with many goals, 
+I want to motivate myself to achieve these goals
+with light-hearted rewards and step-by-step accountability. 
+I want this accountability through a customizable arrangeable Sticker Page,
+an ability to add new goals and stickers,
+an ability to add new steps,
+and an ability to mark my goal as complete!
 I also want to see other users goals.
 And give them encouragment too!
 
