@@ -7,8 +7,19 @@
 <img width="878" alt="Screen Shot 2022-05-26 at 7 16 18 PM" src="https://user-images.githubusercontent.com/91970214/170594503-84c3623a-52af-4ca2-8609-eef2beca13a3.png">
 
 ## Description
+Sticker Book is that feeling of nostalgia from your super cool childhood sticker-covered notebook in the form of a Goal-tracking web app!  A reward can be something simple.  And a goal can be too.  With Sticker Book, that reward can come in the form of a sticker. And those stickers can be the simple pleasures that motivate you toward you achieving your goals!
 
 ## User Story
+
+As a User with a goal.  
+I want to motivate myself to achieve that goal.
+With light-hearted rewards and step-by-step accountability. 
+Through a customizable arrangeable Sticker Page,
+An ability to add new goals and stickers,
+An ability to add new steps,
+And an ability to mark my goal as complete!
+I also want to see other users goals.
+And give them encouragment too!
 
 ## Installation
 1. Clone the repo
@@ -18,6 +29,6 @@
 
 ## Contributors
 - Kate Johnson: [GitHub](https://github.com/K-G-J)
-- Adam Payne: 
-- Sarah Hart:
-- Camille Theobald: 
+- Adam Payne: [GitHub] (https://github.com/MrSumada)
+- Sarah Hart: [Github] (https://github.com/sarahhart1997)
+- Camille Theobald: [Github] (https://github.com/camilleNicoleT)
