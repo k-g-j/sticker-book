@@ -29,6 +29,6 @@ And give them encouragment too!
 
 ## Contributors
 - Kate Johnson: [GitHub](https://github.com/K-G-J)
-- Adam Payne: [GitHub] (https://github.com/MrSumada)
-- Sarah Hart: [Github] (https://github.com/sarahhart1997)
-- Camille Theobald: [Github] (https://github.com/camilleNicoleT)
+- Adam Payne: [GitHub](https://github.com/MrSumada)
+- Sarah Hart: [Github](https://github.com/sarahhart1997)
+- Camille Theobald: [Github](https://github.com/camilleNicoleT)
